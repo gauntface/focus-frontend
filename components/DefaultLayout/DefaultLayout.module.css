@@ -1,0 +1,38 @@
+.l-default {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100%;
+	justify-items: center;
+}
+
+.l-default__loading {
+	position: absolute;
+}
+
+.l-default__header {
+	width: 100%;
+	position: relative;
+	font-family: var(--title-family);
+	padding: calc(var(--m-padding) * 2) var(--m-padding) var(--m-padding)
+		var(--m-padding);
+	text-align: center;
+}
+
+.l-default__header > * {
+	margin: 0;
+}
+
+.l-default__home {
+	position: absolute;
+	left: 0;
+	margin: 0 var(--m-padding);
+}
+
+.l-default__main {
+	width: 100%;
+	max-width: 1000px;
+	padding: 0 var(--m-padding);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

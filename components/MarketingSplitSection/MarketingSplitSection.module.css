@@ -1,0 +1,31 @@
+.c-mkt-split {
+	width: 100%;
+	max-width: var(--width);
+	margin: var(--xl-padding) auto;
+	padding: var(--page-spacing);
+	container-type: inline-size;
+}
+
+.c-mkt-split > div {
+	display: grid;
+	gap: var(--l-padding);
+}
+
+.c-mkt-split > div h2 {
+	max-width: 60vw;
+	text-align: center;
+	margin: 0 auto;
+}
+
+@container (min-width: 700px) {
+	.c-mkt-split > div {
+		display: grid;
+		grid-template: 1fr 1fr 1fr ". .";
+		gap: 0 0;
+	}
+
+	.c-mkt-split > div h2 {
+		text-align: left;
+		padding-right: 20%;
+	}
+}

@@ -1,0 +1,68 @@
+.l-home__main {
+	display: grid;
+	width: 100%;
+	grid-template:
+		1fr min-content min-content min-content 1fr min-content "date-title"
+		"priorities"
+		"notes"
+		"weeks-in"
+		"quarter-counter";
+	gap: 0 0;
+	text-align: center;
+}
+
+.l-home__today-title {
+	grid-area: date-title;
+}
+
+.l-home__weeks {
+	grid-area: weeks-in;
+}
+
+.l-home__quarter-counter {
+	grid-area: quarter-counter;
+}
+
+.l-home__priorities {
+	grid-area: priorities;
+}
+
+.l-home__notes {
+	grid-area: notes;
+}
+
+.l-home__priorities,
+.l-home__notes {
+	width: 100%;
+}
+
+.l-home__priorities-list > li::marker {
+	font-size: 1.4rem;
+	line-height: 2rem;
+}
+
+.l-home__priorities-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--m-padding);
+	width: 100%;
+	margin: 0;
+	padding-left: 2rem;
+}
+
+.l-home__priority-item {
+	padding-left: var(--s-padding);
+}
+
+@media (width >=700px) {
+	.l-home__main {
+		display: grid;
+		grid-template:
+			1fr 1fr min-content min-content min-content 1fr "date-title date-title"
+			"weeks-in weeks-in"
+			"quarter-counter quarter-counter"
+			"priorities notes";
+		gap: var(--s-padding) var(--m-padding);
+		justify-content: center;
+	}
+}

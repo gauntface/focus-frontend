@@ -1,0 +1,12 @@
+:root {
+	--width: 1280px;
+	--font-size: 18px;
+	--page-spacing: 0 clamp(var(--m-padding), 2vw, var(--xl-padding));
+	--xs-padding: 0.75rem;
+	--s-padding: 1rem;
+	--m-padding: 1.5rem;
+	--l-padding: 3rem;
+	--xl-padding: 6rem;
+	--xxl-padding: 10rem;
+	--center-page-width: 800px;
+}

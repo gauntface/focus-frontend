@@ -1,0 +1,15 @@
+.c-hero {
+	width: 100%;
+	max-width: 400px;
+	height: auto;
+	margin: 0 auto;
+}
+
+.c-hero--title {
+	display: none;
+}
+
+.c-hero--img {
+	max-width: 100%;
+	height: auto;
+}

@@ -1,0 +1,17 @@
+.c-mkt-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: var(--width);
+	margin: var(--m-padding) auto;
+	padding: var(--page-spacing);
+}
+
+.c-mkt-nav__menu {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: var(--m-padding);
+}

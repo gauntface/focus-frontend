@@ -1,0 +1,62 @@
+.c-notesarea {
+	--lh: 2rem;
+
+	font-size: calc(var(--lh) * 0.6);
+}
+
+/*
+A very cool trick from Chris Coyier
+https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
+*/
+.c-notesarea__grow-wrap {
+	display: grid;
+}
+
+.c-notesarea__grow-wrap::after {
+	/* Note the weird space! Needed to preventy jumpy behavior */
+	content: attr(data-replicated-value) " ";
+
+	/* This is how textarea text behaves */
+	white-space: pre-wrap;
+
+	/* Hidden from view, clicks, and screen readers */
+	visibility: hidden;
+}
+
+.c-notesarea__grow-wrap > .c-notesarea__textarea {
+	/* You could leave this, but after a user resizes, then it ruins the auto sizing */
+	resize: none;
+
+	/* Firefox shows scrollbar on growth, you can hide like this. */
+	overflow: hidden;
+}
+
+.c-notesarea__grow-wrap > .c-notesarea__textarea,
+.c-notesarea__grow-wrap::after {
+	/* The styles for the ::after element must match the textarea */
+	width: 100%;
+	background: none;
+	padding: 0;
+	color: inherit;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	font-size: inherit;
+	line-height: var(--lh);
+	background-image: repeating-linear-gradient(
+		transparent,
+		transparent calc(var(--lh) - 1px),
+		var(--navy) calc(var(--lh) - 1px),
+		var(--navy) var(--lh),
+		transparent var(--lh)
+	);
+	background-size: 100% var(--lh);
+	background-attachment: local;
+
+	/* Place on top of each other */
+	grid-area: 1 / 1 / 2 / 2;
+
+	/* Ensure long lines are wrapped */
+	word-break: break-word;
+	word-wrap: break-word;
+}
