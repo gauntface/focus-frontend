@@ -27,3 +27,9 @@ This site is the frontend for [focus.gaunt.dev](https://focus.gaunt.dev).
     ```bash
     npm run dev
     ```
+
+1. Fix and test project for CI
+
+    ```bash
+    npm run ci
+    ```
