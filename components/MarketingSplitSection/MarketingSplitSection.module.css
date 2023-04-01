@@ -20,7 +20,7 @@
 @container (min-width: 700px) {
 	.c-mkt-split > div {
 		display: grid;
-		grid-template: 1fr 1fr 1fr ". .";
+		grid-template: ". ." 1fr / 1fr 1fr;
 		gap: 0 0;
 	}
 

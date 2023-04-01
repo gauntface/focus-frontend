@@ -11,11 +11,11 @@
     "lint:fix": "npm run eslint -- --fix && npm run stylelint -- --fix && npm run prettier -- --write",
     "eslint": "eslint --config './.eslintrc.json' .",
     "stylelint": "stylelint './**/*.css'",
-    "prettier": "prettier './**/*.css' --check",
+    "prettier": "prettier './**/*.css'",
     "test": "jest --watch",
     "test:htmlcov": "jest --coverage --reports=html",
     "test:ci": "jest --coverage",
-    "ci": "npm run build && npm run lint:fix && npm run test:ci"
+    "ci": "npm run build && npm run lint && npm run test:ci"
   },
   "dependencies": {
     "firebase": "9.19.1",
