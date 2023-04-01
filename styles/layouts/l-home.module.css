@@ -2,11 +2,11 @@
 	display: grid;
 	width: 100%;
 	grid-template:
-		1fr min-content min-content min-content 1fr min-content "date-title"
-		"priorities"
-		"notes"
-		"weeks-in"
-		"quarter-counter";
+		"date-title" min-content
+		"priorities" min-content
+		"notes" min-content
+		"weeks-in" 1fr
+		"quarter-counter" min-content / 1fr;
 	gap: 0 0;
 	text-align: center;
 }
@@ -58,10 +58,10 @@
 	.l-home__main {
 		display: grid;
 		grid-template:
-			1fr 1fr min-content min-content min-content 1fr "date-title date-title"
-			"weeks-in weeks-in"
-			"quarter-counter quarter-counter"
-			"priorities notes";
+			"date-title date-title" min-content
+			"weeks-in weeks-in" min-content
+			"quarter-counter quarter-counter" min-content
+			"priorities notes" 1fr / 1fr 1fr;
 		gap: var(--s-padding) var(--m-padding);
 		justify-content: center;
 	}
