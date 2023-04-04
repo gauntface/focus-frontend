@@ -1,4 +1,5 @@
 import { User } from "firebase/auth";
+import Link from 'next/link';
 
 import styles from "./TaskHeader.module.css";
 
@@ -59,12 +60,13 @@ export default function TaskHeader({user, date}: TaskHeaderProps) {
   </div>
   */
 
+	// TODO: Should find a better way to provide a link to the home page
 	return (
 		<div className={styles['c-task-header']}>
 			<div className={styles['c-task-header__wrapper']}>
 				<div className={styles['c-task-header__content']}>
 					<div>
-						<h2><span>Hey,</span> {getFirstName(user)}</h2>
+						<Link href="/home" className={styles['l-default__home']}><h2><span>Hey,</span> {getFirstName(user)}</h2></Link>
             Today is {date.format('dddd, MMMM Do YYYY')}
 					</div>
 				</div>

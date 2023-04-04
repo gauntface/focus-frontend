@@ -41,6 +41,7 @@
 }
 
 .c-footer > p {
+	margin: var(--l-padding) auto;
 	text-align: center;
 }
 
