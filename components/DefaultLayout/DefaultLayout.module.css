@@ -11,15 +11,6 @@
 
 .l-default__header {
 	width: 100%;
-	position: relative;
-	font-family: var(--title-family);
-	padding: calc(var(--m-padding) * 2) var(--m-padding) var(--m-padding)
-		var(--m-padding);
-	text-align: center;
-}
-
-.l-default__header > * {
-	margin: 0;
 }
 
 .l-default__home {
