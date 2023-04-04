@@ -14,6 +14,7 @@ export default function Footer() {
 						<li><Link href="/">Home</Link></li>
 						<li><Link href="/#about">About Focus</Link></li>
 						<li><Link href="https://www.buymeacoffee.com/gauntface" target="_blank">Support this Project</Link></li>
+						<li><Link href="https://app.beampipe.io/domain/focus.gaunt.dev" target="_blank">Analytics</Link></li>
 						<li><SignInButton classModifier="highlight" /></li>
 					</ul>
 				</div>
@@ -29,6 +30,7 @@ export default function Footer() {
 				<div>
 					<h5>Get in Touch</h5>
 					<ul>
+						<li><Link href="https://github.com/gauntface/focus-frontend/issues/new" target="_blank">Found a bug?</Link></li>
 						<li><Link href="mailto:focus@gaunt.dev">E-mail</Link></li>
 						<li><Link href="https://mastodon.gaunt.dev/@matt" target="_blank">Mastodon</Link></li>
 					</ul>

@@ -15,7 +15,7 @@ export default function DefaultLayout(props: Props) {
 			</div>
 
 			<header className={styles['l-default__header']}>
-				<Link href="/" className={styles['l-default__home']}>
+				<Link href="/home" className={styles['l-default__home']}>
             Home
 				</Link>
 				<h1>{props.title}</h1>

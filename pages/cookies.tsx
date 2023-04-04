@@ -30,8 +30,8 @@ const PrivacyPolicy: NextPage = () => {
 			<p>Beampipe is used to get analytics on Focuses usage. We have selected
         Beampipe due to it&apos;s privacy focus.
 			</p>
-      
-			<p>You can view the data we track <a href="https://app.beampipe.io/domain/focus.gaunt.dev">here</a>.</p>
+
+			<p>You can view the data we track <a href="https://app.beampipe.io/domain/focus.gaunt.dev" target="_blank">here</a>.</p>
 		</LegalPage>
 	)
 }
