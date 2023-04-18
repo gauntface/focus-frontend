@@ -40,4 +40,4 @@ jobs:
           NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
 
       - name: Coveralls 📊
-        uses: coverallsapp/github-action@045a25193560dc194e405657f552faeb6b9433aa # v2
+        uses: coverallsapp/github-action@ca2a9dd5a20b12fa9aa428e0a6418a60a38bab22 # v2
