@@ -1,34 +1,27 @@
-.l-qt__weeks {
-	display: inline-flex;
-	flex-flow: row wrap;
-	gap: var(--s-padding);
+.c-qt {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: repeat(2, 1fr);
+	font-weight: bold;
+	gap: var(--xxs-padding);
+	text-align: left;
+	font-size: var(--xs-padding);
 }
 
-.l-qt__weeks--nums {
-	display: inline-flex;
-	flex-direction: row;
-	gap: calc(var(--s-padding) / 2);
+.c-qt__bar {
+	width: 100%;
+	height: 4px;
+	border-radius: 4px;
+	background-color: var(--pink);
+	position: relative;
+	grid-area: 2 / 1 / 3 / 3;
 }
 
-.c-qt__week {
-	--size: clamp(1rem, 5vw, 1.5rem);
-
-	display: inline-block;
-	text-align: center;
-	border-radius: 100%;
-	color: var(--light-pink);
-	background: var(--navy);
-	width: var(--size);
-	height: var(--size);
-	line-height: var(--size);
-	font-size: clamp(0.75rem, 3vw, 1rem);
-}
-
-.c-qt__week--current {
-	background: var(--orange);
-}
-
-.c-qt__week--future {
-	color: var(--navy);
-	background: none;
+.c-qt__prog {
+	height: 4px;
+	border-radius: 4px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--orange);
 }

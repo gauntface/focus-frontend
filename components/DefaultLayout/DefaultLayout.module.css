@@ -21,8 +21,9 @@
 
 .l-default__main {
 	width: 100%;
-	max-width: 1000px;
-	padding: 0 var(--m-padding);
+	max-width: var(--width);
+	margin: 0 auto;
+	padding: var(--page-spacing) 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

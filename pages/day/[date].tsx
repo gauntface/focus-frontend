@@ -174,7 +174,6 @@ const Day: NextPage = () => {
 						<NotesArea disabled={initialLoad} name={`notes`} note={notes}  onChange={(v: string) => onNotesChange(v)} rows={3} />
 					</section>
 
-					<span className={styles['l-home__weeks']}>Weeks in Q{date.quarter()} &apos;{date.format('YY')}</span>
 					<div className={styles['l-home__quarter-counter']}><QuarterTracker date={date} /></div>
 				</div>
 			</DefaultLayout>
