@@ -26,7 +26,7 @@ jobs:
         run: npm run lint
 
       - name: Build 🔧
-        run: npm run build
+        run: npm run build:ci
         env:
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
           NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
