@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Footer from '../components/Footer/Footer'
-import MarketingNav from '../components/MarketingNav/MarketingNav'
-import MarketingHero from '../components/MarketingHero/MarketingHero'
-import MarketingSplitSection from '../components/MarketingSplitSection/MarketingSplitSection'
-import MarketingPurpose from '../components/MarketingPurpose/MarketingPurpose'
-import MarketingAbout from '../components/MarketingAbout/MarketingAbout'
-import MarketingTry from '../components/MarketingTry/MarketingTry'
+import { Footer } from '../components/Footer/Footer'
+import { MarketingNav } from '../components/MarketingNav/MarketingNav'
+import { MarketingHero } from '../components/MarketingHero/MarketingHero'
+import { MarketingSplitSection } from '../components/MarketingSplitSection/MarketingSplitSection'
+import { MarketingPurpose } from '../components/MarketingPurpose/MarketingPurpose'
+import { MarketingAbout } from '../components/MarketingAbout/MarketingAbout'
+import { MarketingTry } from '../components/MarketingTry/MarketingTry'
 
 const Index: NextPage = () => {
 	return (

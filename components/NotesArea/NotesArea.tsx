@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./NotesArea.module.css";
 
-export default function NotesArea(props: Props) {
+export function NotesArea(props: Props) {
 	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		if (!props.onChange) {
 			return;

@@ -1,6 +1,6 @@
 import styles from "./MarketingSplitSection.module.css";
 
-export default function MarketingSplitSection({ children }: MarketingSplitSectionProps) {
+export function MarketingSplitSection({ children }: MarketingSplitSectionProps) {
 	return (
 		<section className={styles['c-mkt-split']}>
 			<div>

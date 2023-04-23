@@ -1,6 +1,6 @@
 import styles from "./MarketingHero.module.css";
 
-export default function MarketingHero() {
+export function MarketingHero() {
 	return (
 		<section className={styles['c-mkt-hero']}>
 			<div className={styles['c-mkt-hero__content']}>

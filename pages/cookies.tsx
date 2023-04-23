@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import LegalPage from '../components/LegalPage/LegalPage'
+import { LegalPage } from '../components/LegalPage/LegalPage'
 
 const PrivacyPolicy: NextPage = () => {
 	return (

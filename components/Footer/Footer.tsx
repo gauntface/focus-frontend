@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SignInButton } from '../SignInButton/SignInButton';
 
-export default function Footer() {
+export function Footer() {
 	return (
 		<footer className={styles['c-footer']}>
 			<p><Link href="/"><Image width="180" height="100" src="/full-logo-white.svg" alt="Focus logo in white" /></Link></p>

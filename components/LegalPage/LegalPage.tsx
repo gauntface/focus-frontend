@@ -1,8 +1,8 @@
-import Footer from '../Footer/Footer';
-import MarketingNav from '../MarketingNav/MarketingNav';
+import { Footer } from '../Footer/Footer';
+import { MarketingNav } from '../MarketingNav/MarketingNav';
 import styles from "./LegalPage.module.css";
 
-export default function LegalPage({ children }: LegalPageProps) {
+export function LegalPage({ children }: LegalPageProps) {
 	return (
 		<div className={styles['c-legal']}>
 			<MarketingNav />

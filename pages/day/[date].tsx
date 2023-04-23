@@ -10,9 +10,9 @@ import {withAuth} from '../../utils/withAuth'
 import { useAuth } from '../../contexts/Auth';
 import { DailyPriority, getDailyPriorities, setDailyPriorities } from "../../models/priorities";
 import {getDailyNotes, setDailyNotes} from "../../models/notes";
-import QuarterTracker from '../../components/QuarterTracker/QuarterTracker'
-import NotesArea from '../../components/NotesArea/NotesArea'
-import DefaultLayout from '../../components/DefaultLayout/DefaultLayout';
+import { QuarterTracker } from '../../components/QuarterTracker/QuarterTracker'
+import { NotesArea } from '../../components/NotesArea/NotesArea'
+import { DefaultLayout } from '../../components/DefaultLayout/DefaultLayout';
 
 let timeoutID: NodeJS.Timeout;
 
