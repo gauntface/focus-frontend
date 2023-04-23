@@ -1,7 +1,7 @@
 import { useAuth } from '../../contexts/Auth';
 import { GoogleAuthProvider } from "firebase/auth";
 
-export default function SignInButton({classModifier, signInText = 'Sign In', redirect = "/home"}: SignInButtonProps) {
+export function SignInButton({classModifier, signInText = 'Sign In', redirect = "/home"}: SignInButtonProps) {
 	const classList = [];
 	if (classModifier) {
 		classList.push(`button--${classModifier}`);

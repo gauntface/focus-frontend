@@ -1,6 +1,6 @@
 import { useAuth } from '../../contexts/Auth';
 import styles from "./MarketingNav.module.css";
-import SignInButton from '../SignInButton/SignInButton';
+import { SignInButton } from '../SignInButton/SignInButton';
 
 import Image from 'next/image';
 import Link from 'next/link';
