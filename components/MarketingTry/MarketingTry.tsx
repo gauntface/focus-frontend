@@ -1,7 +1,7 @@
 import styles from "./MarketingTry.module.css";
 import { SignInButton } from '../SignInButton/SignInButton';
 
-export default function MarketingTry() {
+export function MarketingTry() {
 	return (
 		<section className={styles['c-mkt-try']}>
 			<h2>Ready to start using Focus?</h2>

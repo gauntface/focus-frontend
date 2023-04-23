@@ -5,7 +5,7 @@ import { SignInButton } from '../SignInButton/SignInButton';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function MarketingNav() {
+export function MarketingNav() {
 	const {user} = useAuth();
 	let taskBtn;
 	let modifer;

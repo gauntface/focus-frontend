@@ -1,7 +1,7 @@
 import styles from "./MarketingPurpose.module.css";
 import Image from 'next/image';
 
-export default function MarketingPurpose() {
+export function MarketingPurpose() {
 	return (
 		<div className={styles['c-mkt-purpose']}>
 

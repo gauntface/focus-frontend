@@ -9,7 +9,7 @@ import moment from 'moment';
 
 import { useAuth } from '../../../contexts/Auth';
 import { DailyPriority, DatePriorities, getPrioritiesForDates } from "../../../models/priorities";
-import DefaultLayout from '../../../components/DefaultLayout/DefaultLayout';
+import { DefaultLayout } from '../../../components/DefaultLayout/DefaultLayout';
 
 const Week: NextPage = () => {
 	const {user} = useAuth();

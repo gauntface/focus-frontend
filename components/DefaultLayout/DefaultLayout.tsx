@@ -2,10 +2,10 @@ import styles from "./DefaultLayout.module.css";
 
 import { User } from "firebase/auth";
 
-import Footer from '../Footer/Footer';
-import TaskHeader from '../../components/TaskHeader/TaskHeader';
+import { Footer } from '../Footer/Footer';
+import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 
-export default function DefaultLayout(props: Props) {
+export function DefaultLayout(props: Props) {
 	return <>
 		<div className={styles['l-default']}>
 			<div className={styles['l-default__header']}>

@@ -16,7 +16,7 @@ function getFirstName(user: User) {
 	return name;
 }
 
-export default function TaskHeader({user, date}: TaskHeaderProps) {
+export function TaskHeader({user, date}: TaskHeaderProps) {
 	/* const views = [
     {
       text: 'Daily',

@@ -1,6 +1,6 @@
 import styles from "./MarketingAbout.module.css";
 
-export default function MarketingAbout() {
+export function MarketingAbout() {
 	return (
 		<section id="about" className={styles['c-mkt-about']}>
 			<div>About Focus</div>

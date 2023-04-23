@@ -3,7 +3,7 @@ import styles from './QuarterTracker.module.css';
 import moment from 'moment';
 import Link from 'next/link';
 
-export default function QuarterTracker(props: Props) {
+export function QuarterTracker(props: Props) {
 	const d = props.date;
 	if (!d) {
 		return <div></div>
