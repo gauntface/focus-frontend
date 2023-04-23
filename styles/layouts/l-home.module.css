@@ -2,21 +2,16 @@
 	display: grid;
 	width: 100%;
 	grid-template:
-		"date-title" min-content
+		"quarter-counter" min-content
 		"priorities" min-content
-		"notes" min-content
-		"weeks-in" 1fr
-		"quarter-counter" min-content / 1fr;
-	gap: 0 0;
+		"notes" min-content / 1fr;
+	gap: var(--m-padding);
+	margin: var(--m-padding) auto;
 	text-align: center;
 }
 
 .l-home__today-title {
 	grid-area: date-title;
-}
-
-.l-home__weeks {
-	grid-area: weeks-in;
 }
 
 .l-home__quarter-counter {
@@ -58,8 +53,6 @@
 	.l-home__main {
 		display: grid;
 		grid-template:
-			"date-title date-title" min-content
-			"weeks-in weeks-in" min-content
 			"quarter-counter quarter-counter" min-content
 			"priorities notes" 1fr / 1fr 1fr;
 		gap: var(--s-padding) var(--m-padding);
