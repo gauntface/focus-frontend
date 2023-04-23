@@ -1,5 +1,5 @@
 import styles from "./MarketingTry.module.css";
-import SignInButton from '../SignInButton/SignInButton';
+import { SignInButton } from '../SignInButton/SignInButton';
 
 export default function MarketingTry() {
 	return (

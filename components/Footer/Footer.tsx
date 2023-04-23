@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
-import SignInButton from '../SignInButton/SignInButton';
+import { SignInButton } from '../SignInButton/SignInButton';
 
 export default function Footer() {
 	return (
