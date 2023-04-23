@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:ci": "ENVIRONMENT=.env.ci npm run build",
     "start": "next start",
     "lint": "next lint && npm run eslint && npm run stylelint && npm run prettier -- --check",
     "lint:fix": "npm run eslint -- --fix && npm run stylelint -- --fix && npm run prettier -- --write",
