@@ -1,6 +1,5 @@
 .c-mkt-try {
 	max-width: 600px;
 	margin: var(--xl-padding) auto;
-	padding: var(--page-spacing);
 	text-align: center;
 }

@@ -3,7 +3,6 @@
 	background-color: var(--navy);
 	color: white;
 	margin: var(--xl-padding) auto 0 auto;
-	padding: var(--page-spacing);
 	container-type: inline-size;
 }
 

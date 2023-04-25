@@ -1,20 +1,6 @@
-import { User } from "firebase/auth";
 import Link from 'next/link';
 
 import styles from "./TaskHeader.module.css";
-
-function getFirstName(user: User) {
-	if (!user || !user.displayName) {
-		return '';
-	}
-
-	let name = user.displayName;
-	const parts = name.split(' ');
-	if (parts) {
-		name = parts[0];
-	}
-	return name;
-}
 
 export function TaskHeader({user, date}: TaskHeaderProps) {
 	/* const views = [
@@ -65,18 +51,44 @@ export function TaskHeader({user, date}: TaskHeaderProps) {
 		<div className={styles['c-task-header']}>
 			<div className={styles['c-task-header__wrapper']}>
 				<div className={styles['c-task-header__content']}>
-					<div>
-						<Link href="/home" className={styles['l-default__home']}><h2><span>Hey,</span> {getFirstName(user)}</h2></Link>
-            Today is {date.format('dddd, MMMM Do YYYY')}
-					</div>
+					{getIntro(user)}
+					Today is {date.format('dddd, MMMM Do YYYY')}
 				</div>
+				<div className={styles['c-task-header__bg']}></div>
 			</div>
 		</div>
 	);
 }
 
+function getFirstName(user: TaskHeaderUser) {
+	if (!user || !user.displayName) {
+		return '';
+	}
+
+	let name = user.displayName;
+	const parts = name.split(' ');
+	if (parts) {
+		name = parts[0];
+	}
+	return name;
+}
+
+function getIntro(user: TaskHeaderUser) {
+	const fn = getFirstName(user);
+	if (!fn) {
+		return (<></>);
+	}
+	return (
+		<Link href="/home" className={styles['l-default__home']}><h2><span>Hey,</span> {fn}</h2></Link>
+	);
+}
+
 interface TaskHeaderProps {
   date: moment.Moment;
-  user: User;
+  user: TaskHeaderUser;
   selectedView: 'day' | 'week' | 'quarter';
+}
+
+interface TaskHeaderUser {
+	displayName: string | null;
 }
