@@ -6,7 +6,6 @@
 .c-legal__main {
 	max-width: var(--width);
 	margin: 0 auto;
-	padding: var(--page-spacing);
 	flex: 1;
 }
 

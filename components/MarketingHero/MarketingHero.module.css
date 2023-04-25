@@ -1,7 +1,3 @@
-.c-mkt-hero {
-	padding: var(--page-spacing);
-}
-
 .c-mkt-hero__content {
 	display: flex;
 	position: relative;

@@ -2,7 +2,6 @@
 	width: 100%;
 	max-width: var(--width);
 	margin: var(--xl-padding) auto;
-	padding: var(--page-spacing);
 }
 
 .c-mkt-about > div {

@@ -6,7 +6,6 @@
 	width: 100%;
 	max-width: var(--width);
 	margin: var(--m-padding) auto;
-	padding: var(--page-spacing);
 }
 
 .c-mkt-nav__menu {
