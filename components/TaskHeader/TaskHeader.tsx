@@ -90,5 +90,5 @@ interface TaskHeaderProps {
 }
 
 interface TaskHeaderUser {
-	displayName?: string;
+	displayName: string | null;
 }
