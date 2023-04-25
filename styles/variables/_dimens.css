@@ -1,7 +1,8 @@
 :root {
 	--width: 1280px;
 	--font-size: 18px;
-	--page-spacing: 0 clamp(var(--m-padding), 2vw, var(--xl-padding));
+	--page-spacing: 0 var(--page-spacing-h);
+	--page-spacing-h: clamp(var(--m-padding), 2vw, var(--xl-padding));
 	--xxs-padding: 0.5rem;
 	--xs-padding: 0.75rem;
 	--s-padding: 1rem;
