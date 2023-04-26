@@ -4,6 +4,9 @@
 
 .c-task-header__wrapper {
 	position: relative;
+	margin: calc((100vw - var(--width)) / 4);
+	margin-top: min(var(--l-padding), calc((100vw - var(--width)) / 4));
+	margin-bottom: min(var(--m-padding), calc((100vw - var(--width)) / 4));
 }
 
 .c-task-header__content {
@@ -37,7 +40,7 @@
 	background-repeat: no-repeat, no-repeat;
 	background-position: -50px 20px, right -100px top -100px;
 	background-size: 40%, 45%;
-	border-radius: 0 0 1rem 1rem;
+	border-radius: 1rem;
 	background-color: var(--pink);
 	z-index: 1;
 }
@@ -49,18 +52,6 @@
 		background-repeat: no-repeat, no-repeat, no-repeat;
 		background-position: -80px 40px, center -50px, right -100px top -160px;
 		background-size: 30%, 30%, 35%;
-	}
-}
-
-@container (min-width: 1200px) {
-	.c-task-header__wrapper {
-		margin: calc((100vw - var(--width)) / 4);
-		margin-top: var(--l-padding);
-		margin-bottom: var(--m-padding);
-	}
-
-	.c-task-header__bg {
-		border-radius: 1rem;
 	}
 }
 
