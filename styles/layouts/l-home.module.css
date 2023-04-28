@@ -42,11 +42,17 @@
 	gap: var(--m-padding);
 	width: 100%;
 	margin: 0;
-	padding-left: 2rem;
+	padding: 0;
+	list-style: none;
 }
 
-.l-home__priority-item {
-	padding-left: var(--s-padding);
+.l-home__priority-item,
+.l-home__note-border {
+	border-radius: 1rem;
+	border-color: var(--pink);
+	border-style: solid;
+	border-width: var(--border-width-m);
+	padding: clamp(1rem, 2vw, 2rem);
 }
 
 @media (width >=700px) {

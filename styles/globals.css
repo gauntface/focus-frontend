@@ -97,6 +97,10 @@ h2 {
 	font-size: clamp(1.3rem, 4.2vw, 2.4rem);
 }
 
+h3 {
+	font-size: clamp(1.1rem, 3vw, 1.5rem);
+}
+
 ol li::marker {
 	font-family: var(--title-family);
 }
