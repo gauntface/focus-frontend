@@ -4,6 +4,7 @@ import styles from "./NotesArea.module.css";
 export function NotesArea(props: Props) {
 	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		if (!props.onChange) {
+			console.log('No on Change');
 			return;
 		}
 
@@ -11,7 +12,7 @@ export function NotesArea(props: Props) {
 	}
 
 	return (
-		<div data-replicated-value={props.note} className={[styles['c-notesarea'], styles['c-notesarea__grow-wrap']].join(' ')}>
+		<div data-replicated-value={props.note} className={styles['c-notesarea']}>
 			<textarea disabled={props.disabled} name={`${props.name}-text`} onChange={(e) => handleChange(e)}  rows={props.rows} value={props.note} className={styles['c-notesarea__textarea']}></textarea>
 		</div>
 	);

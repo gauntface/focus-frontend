@@ -159,7 +159,7 @@ const Day: NextPage = () => {
 			<DefaultLayout spinning={initialLoad || loadingPriorities || loadingNotes} user={user} date={date} title={date.format('ddd, Do MMMM')}>
 				<div className={styles['l-home__main']}>
 					<section className={styles['l-home__priorities']}>
-						<h2>Todays Focus</h2>
+						<h3>Tasks</h3>
 						<ol className={styles['l-home__priorities-list']}>
 							{priorities.map((priority: DailyPriority, idx: number) => {
 								return (<li key={idx} className={styles['l-home__priority-item']}>
@@ -170,8 +170,10 @@ const Day: NextPage = () => {
 					</section>
 
 					<section className={styles['l-home__notes']}>
-						<h2>Notes</h2>
-						<NotesArea disabled={initialLoad} name={`notes`} note={notes}  onChange={(v: string) => onNotesChange(v)} rows={3} />
+						<h3>Notes</h3>
+						<div className={styles['l-home__note-border']}>
+							<NotesArea disabled={initialLoad} name={`notes`} note={notes}  onChange={(v: string) => onNotesChange(v)} rows={3} />
+						</div>
 					</section>
 
 					<div className={styles['l-home__quarter-counter']}><QuarterTracker date={date} /></div>

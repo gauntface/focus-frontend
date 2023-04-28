@@ -1,18 +1,16 @@
-.c-notesarea {
-	--lh: 2rem;
-
-	font-size: calc(var(--lh) * 0.6);
-}
-
 /*
 A very cool trick from Chris Coyier
 https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 */
-.c-notesarea__grow-wrap {
+
+.c-notesarea {
+	--lh: 2rem;
+
 	display: grid;
+	font-size: calc(var(--lh) * 0.6);
 }
 
-.c-notesarea__grow-wrap::after {
+.c-notesarea::after {
 	/* Note the weird space! Needed to preventy jumpy behavior */
 	content: attr(data-replicated-value) " ";
 
@@ -23,7 +21,7 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 	visibility: hidden;
 }
 
-.c-notesarea__grow-wrap > .c-notesarea__textarea {
+.c-notesarea > .c-notesarea__textarea {
 	/* You could leave this, but after a user resizes, then it ruins the auto sizing */
 	resize: none;
 
@@ -31,8 +29,8 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 	overflow: hidden;
 }
 
-.c-notesarea__grow-wrap > .c-notesarea__textarea,
-.c-notesarea__grow-wrap::after {
+.c-notesarea > .c-notesarea__textarea,
+.c-notesarea::after {
 	/* The styles for the ::after element must match the textarea */
 	width: 100%;
 	background: none;
@@ -41,15 +39,11 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 	border: none;
 	outline: none;
 	box-shadow: none;
-	font-size: inherit;
+	font-size: 1.2rem;
+	font-family: var(--default-family);
+	font-weight: 600;
+	text-align: start;
 	line-height: var(--lh);
-	background-image: repeating-linear-gradient(
-		transparent,
-		transparent calc(var(--lh) - 1px),
-		var(--navy) calc(var(--lh) - 1px),
-		var(--navy) var(--lh),
-		transparent var(--lh)
-	);
 	background-size: 100% var(--lh);
 	background-attachment: local;
 

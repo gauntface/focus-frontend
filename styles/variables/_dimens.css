@@ -9,6 +9,7 @@
 	--xl-padding: 6rem;
 	--xxl-padding: 10rem;
 	--center-page-width: 800px;
+	--border-width-m: 3px;
 }
 
 @media (width >= 1200px) {
