@@ -1,13 +1,8 @@
 import React from "react";
 import styles from "./NotesArea.module.css";
 
-export function NotesArea(props: Props) {
+export function NotesArea(props: NotesAreaProps) {
 	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		if (!props.onChange) {
-			console.log('No on Change');
-			return;
-		}
-
 		props.onChange(e.target.value);
 	}
 
@@ -18,7 +13,7 @@ export function NotesArea(props: Props) {
 	);
 }
 
-interface Props {
+interface NotesAreaProps {
   note: string;
   name: string;
   disabled: boolean;
