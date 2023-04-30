@@ -27,8 +27,6 @@ async function checkNewUser(uc: UserCredential) {
 		return;
 	}
 
-	window.beampipe('user-signin');
-
 	const aui = getAdditionalUserInfo(uc);
 	if (aui?.isNewUser) {
 		window.beampipe('new-user');
