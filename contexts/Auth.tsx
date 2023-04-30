@@ -1,5 +1,5 @@
 import {auth} from '../utils/firebaseClient';
-import { signInWithPopup, signOut, onAuthStateChanged, User, AuthProvider } from "firebase/auth";
+import { signInWithPopup, signOut, onAuthStateChanged, User, AuthProvider, getAdditionalUserInfo, UserCredential } from "firebase/auth";
 import { useState, useEffect, createContext, useContext } from 'react'
 import { useRouter } from 'next/router'
 
@@ -14,6 +14,25 @@ const AuthContext = createContext<AuthProviderProps>({
 
 export function useAuth() {
 	return useContext(AuthContext);
+}
+
+async function checkNewUser(uc: UserCredential) {
+	if (!uc) {
+		console.warn('No user credentials given.');
+		return;
+	}
+
+	if (!window.beampipe) {
+		console.warn('Unable to report user metrics to beampipe.');
+		return;
+	}
+
+	window.beampipe('user-signin');
+
+	const aui = getAdditionalUserInfo(uc);
+	if (aui?.isNewUser) {
+		window.beampipe('new-user');
+	}
 }
 
 export function FocusAuthProvider({ children }: {children: React.ReactNode; }) {
@@ -35,7 +54,8 @@ export function FocusAuthProvider({ children }: {children: React.ReactNode; }) {
 		signIn: async (provider, url) => {
 			setLoading(true)
 			try {
-				await signInWithPopup(auth, provider);
+				const result = await signInWithPopup(auth, provider);
+				checkNewUser(result);
 				if (url) {
 					router.push(url)
 				}
