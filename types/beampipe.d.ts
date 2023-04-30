@@ -1,3 +1,9 @@
-declare let beampipe: beampipeMetric | null;
+export {};
+
+declare global {
+    interface Window {
+        beampipe: beampipeMetric | null;
+    }
+}
 
 type beampipeMetric = (m: string) => void;
