@@ -4,14 +4,15 @@ import { User } from "firebase/auth";
 
 import { Footer } from '../Footer/Footer';
 import { TaskHeader, ViewSelection } from '../../components/TaskHeader/TaskHeader';
-import { useState } from "react";
+import { QuarterTracker } from "../QuarterTracker/QuarterTracker";
 
 export function DefaultLayout(props: Props) {
 	return <>
 		<div className={styles['l-default']}>
 			<div className={styles['l-default__header']}>
-				<TaskHeader user={props.user} date={props.date} selectedView={props.selectedView} onChangeView={(view) => setSelectedView(view)} />
+				<TaskHeader user={props.user} date={props.date} selectedView={props.selectedView} onViewChange={props.onViewChange} />
 			</div>
+			<div className={styles['l-default__quarter']}><QuarterTracker date={props.date} /></div>
 			<main className={styles['l-default__main']}>{props.children}</main>
 			<Footer />
 		</div>
@@ -25,4 +26,5 @@ interface Props {
   date: moment.Moment;
   user: User;
 	selectedView: ViewSelection;
+	onViewChange: (view: ViewSelection) => void;
 }

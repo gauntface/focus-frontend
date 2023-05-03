@@ -1,4 +1,4 @@
-import styles from '../../styles/layouts/l-home.module.css';
+import styles from './DayTasks.module.css';
 import { QuarterTracker } from '../../components/QuarterTracker/QuarterTracker'
 import { NotesArea } from '../../components/NotesArea/NotesArea'
 import { User } from 'firebase/auth';
@@ -94,31 +94,29 @@ export function DayTasks({date, user}: Props) {
 	}
 
 	return (
-		<div className={styles['l-home__main']}>
-			<section className={styles['l-home__priorities']}>
+		<div className={styles['c-dt']}>
+			<section className={styles['c-dt__tasks-section']}>
 				<h3>Tasks</h3>
-				<ol className={styles['l-home__priorities-list']}>
+				<ol className={styles['c-dt__tasks-list']}>
 					{priorities.map((priority: DailyPriority, idx: number) => {
-						return (<li key={idx} className={styles['l-home__priority-item']}>
+						return (<li key={idx} className={styles['c-dt__task']}>
 							<NotesArea disabled={initialLoad} name={`priority-${idx}`} note={priority.note} onChange={(v: string) => onDailyPriorityChange(idx, v)} rows={1} />
 						</li>)
 					})}
 				</ol>
 			</section>
 
-			<section className={styles['l-home__notes']}>
+			<section className={styles['c-dt__notes-section']}>
 				<h3>Notes</h3>
-				<div className={styles['l-home__note-border']}>
+				<div className={styles['c-dt__notes']}>
 					<NotesArea disabled={initialLoad} name={`notes`} note={notes}  onChange={(v: string) => onNotesChange(v)} rows={3} />
 				</div>
 			</section>
-
-			<div className={styles['l-home__quarter-counter']}><QuarterTracker date={date} /></div>
 		</div>
 	);
 }
 
 interface Props {
-    date: moment.Moment;
-    user: User;
-  }
+	date: moment.Moment;
+	user: User;
+}

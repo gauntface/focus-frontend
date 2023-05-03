@@ -1,6 +1,6 @@
 
 
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import moment from 'moment';
@@ -8,11 +8,10 @@ import { useRouter } from 'next/router';
 
 import {withAuth} from '../../utils/withAuth'
 import { useAuth } from '../../contexts/Auth';
-import { DailyPriority, getDailyPriorities, setDailyPriorities } from "../../models/priorities";
-import {getDailyNotes, setDailyNotes} from "../../models/notes";
 import { DefaultLayout } from '../../components/DefaultLayout/DefaultLayout';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
 import { ViewSelection } from '../../components/TaskHeader/TaskHeader';
+import { WeekTasks } from '../../components/WeekTasks/WeekTasks';
 
 // TODO: This is turned gnarly with handling the User | null types.
 //       Please tidy up this logic.
@@ -31,6 +30,15 @@ const Day: NextPage = () => {
 		return (<div>Please sign in.</div>);
 	}
 
+	let childView;
+	switch (selectedView) {
+	case 'day':
+		childView = (<DayTasks date={date} user={user} />);
+		break;
+	case 'week':
+		childView = (<WeekTasks date={date} user={user} />);
+		break;
+	}
 	return (
 		<div>
 			<Head>
@@ -39,8 +47,8 @@ const Day: NextPage = () => {
 				<link rel="icon" href={'/favicon.ico' } />
 			</Head>
 
-			<DefaultLayout selectedView={selectedView} user={user} date={date} title={date.format('ddd, Do MMMM')}>
-				<DayTasks date={date} user={user} />
+			<DefaultLayout selectedView={selectedView} user={user} date={date} title={date.format('ddd, Do MMMM')} onViewChange={(view) => setSelectedView(view)}>
+				{childView}
 			</DefaultLayout>
 		</div>
 	)

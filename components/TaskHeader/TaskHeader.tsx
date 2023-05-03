@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import styles from "./TaskHeader.module.css";
 
-export function TaskHeader({user, date, selectedView, onChangeView}: TaskHeaderProps) {
+export function TaskHeader({user, date, selectedView, onViewChange}: TaskHeaderProps) {
 	const views = [
 		{
 			text: 'Daily',
@@ -31,7 +31,7 @@ export function TaskHeader({user, date, selectedView, onChangeView}: TaskHeaderP
 			classes.push(styles['c-task-header__task--selected']);
 		}
 		viewIcons.push(
-			<div key={v.view} className={classes.join(' ')} onClick={() => onChangeView(v.view)}>
+			<div key={v.view} className={classes.join(' ')} onClick={() => onViewChange(v.view)}>
 				{v.img}
 				{v.text}
 			</div>
@@ -45,9 +45,10 @@ export function TaskHeader({user, date, selectedView, onChangeView}: TaskHeaderP
 				<div className={styles['c-task-header__content']}>
 					<div>
 						{getIntro(user)}
-            Today is {date.format('dddd, MMMM Do YYYY')}
+						You&apos;re viewing {date.format('dddd, MMMM Do YYYY')}
 					</div>
-					<div>
+
+					<div className={styles['c-task-header__view-section']}>
             How do you like to view your tasks?
 						<div className={styles['c-task-header__tasks']}>
 							{viewIcons}
@@ -89,7 +90,7 @@ interface TaskHeaderProps {
   date: moment.Moment;
   user: TaskHeaderUser;
   selectedView: ViewSelection;
-	onChangeView: (view: ViewSelection) => void;
+	onViewChange: (view: ViewSelection) => void;
 }
 
 interface TaskHeaderUser {
