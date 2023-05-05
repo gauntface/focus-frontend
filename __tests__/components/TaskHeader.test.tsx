@@ -10,7 +10,7 @@ describe('TaskHeader', () => {
 		const title = screen.getByText('Firstname');
 		expect(title).toBeTruthy();
 
-		const date = screen.getByText('Today is Monday, January 2nd 2006');
+		const date = screen.getByText("You're viewing Monday, January 2nd 2006");
 		expect(date).toBeTruthy();
 	})
 
@@ -19,7 +19,7 @@ describe('TaskHeader', () => {
 
 		expect(() => screen.getByText('Hey, ')).toThrow();
 
-		const date = screen.getByText('Today is Monday, January 2nd 2006');
+		const date = screen.getByText("You're viewing Monday, January 2nd 2006");
 		expect(date).toBeTruthy();
 	})
 })
