@@ -1,58 +1,63 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import styles from "./TaskHeader.module.css";
 
-export function TaskHeader({user, date}: TaskHeaderProps) {
-	/* const views = [
-    {
-      text: 'Daily',
-      img: (<Image width="28" height="28" src="/icons/day-view.svg" alt="Day view icon" />),
-      selected: selectedView == 'day',
-    },
-    {
-      text: 'Weekly',
-      img: (<Image width="28" height="28" src="/icons/week-view.svg" alt="Week view icon" />),
-      selected: selectedView == 'week',
-    },
-    {
+export function TaskHeader({user, date, selectedView}: TaskHeaderProps) {
+	const views = [
+		{
+			text: 'Daily',
+			img: (<Image width="28" height="28" src="/icons/day-view.svg" alt="Day view icon" />),
+			view: 'day' as ViewSelection,
+			link: '/home',
+		},
+		{
+			text: 'Weekly',
+			img: (<Image width="28" height="28" src="/icons/week-view.svg" alt="Week view icon" />),
+			view: 'week' as ViewSelection,
+			link: `/week/${date.year()}/${date.week()}`,
+		},
+		/* {
       text: 'Quarter',
       img: (<Image width="28" height="28" src="/icons/quarter-view.svg" alt="Quarter view icon" />),
-      selected: selectedView == 'quarter',
-    },
-  ];
+      view: 'quarter',
+    },*/
+	];
 
-  const viewIcons = [];
-  for (const v of views) {
-    const classes = [
-      styles['c-task-header__task'],
-    ];
-    if (v.selected) {
-      classes.push(styles['c-task-header__task--selected']);
-    }
-    viewIcons.push(
-        <div className={classes.join(' ')}>
-          {v.img}
-          {v.text}
-        </div>
-    );
-  }*/
-
-	/*
-  <div>
-    How do you like to view your tasks?
-    <div className={styles['c-task-header__tasks']}>
-      {viewIcons}
-    </div>
-  </div>
-  */
+	const viewIcons = [];
+	for (const v of views) {
+		const classes = [
+			styles['c-task-header__task'],
+		];
+		if (v.view == selectedView) {
+			classes.push(styles['c-task-header__task--selected']);
+		}
+		viewIcons.push(
+			<div key={v.view}>
+				<Link href={v.link} className={classes.join(' ')}>
+					{v.img}
+					{v.text}
+				</Link>
+			</div>
+		);
+	}
 
 	// TODO: Should find a better way to provide a link to the home page
 	return (
 		<div className={styles['c-task-header']}>
 			<div className={styles['c-task-header__wrapper']}>
 				<div className={styles['c-task-header__content']}>
-					{getIntro(user)}
-					Today is {date.format('dddd, MMMM Do YYYY')}
+					<div>
+						{getIntro(user)}
+						You&apos;re viewing {date.format('dddd, MMMM Do YYYY')}
+					</div>
+
+					<div className={styles['c-task-header__view-section']}>
+            How do you like to view your tasks?
+						<div className={styles['c-task-header__tasks']}>
+							{viewIcons}
+						</div>
+					</div>
 				</div>
 				<div className={styles['c-task-header__bg']}></div>
 			</div>
@@ -83,10 +88,12 @@ function getIntro(user: TaskHeaderUser) {
 	);
 }
 
+export type ViewSelection = 'day' | 'week' | 'quarter';
+
 interface TaskHeaderProps {
   date: moment.Moment;
   user: TaskHeaderUser;
-  selectedView: 'day' | 'week' | 'quarter';
+  selectedView: ViewSelection;
 }
 
 interface TaskHeaderUser {

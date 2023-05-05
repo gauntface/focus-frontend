@@ -1,0 +1,66 @@
+.c-wt {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+}
+
+.c-wt__week-section {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	gap: var(--s-padding);
+}
+
+.c-wt__tasks {
+	display: flex;
+	flex-direction: column;
+	gap: var(--xs-padding);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.c-wt__task-item {
+	border-radius: 1rem;
+	border-color: var(--pink);
+	border-style: solid;
+	border-width: var(--border-width-m);
+	padding: clamp(1rem, 2vw, 2rem);
+}
+
+.c-wt__missing-tasks,
+.c-wt__no-tasks {
+	text-align: center;
+}
+
+.c-wt__no-tasks {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.c-wt__add-task {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: var(--xxs-padding);
+	padding: var(--s-padding);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+@container (width >=700px) {
+	.c-wt__week-section {
+		flex-direction: row;
+		gap: var(--m-padding);
+	}
+
+	.c-wt__day-section {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+}

@@ -1,8 +1,7 @@
-.l-home__main {
+.c-dt {
 	display: grid;
 	width: 100%;
 	grid-template:
-		"quarter-counter" min-content
 		"priorities" min-content
 		"notes" min-content / 1fr;
 	gap: var(--m-padding);
@@ -10,33 +9,25 @@
 	text-align: center;
 }
 
-.l-home__today-title {
-	grid-area: date-title;
-}
-
-.l-home__quarter-counter {
-	grid-area: quarter-counter;
-}
-
-.l-home__priorities {
+.c-dt__tasks-section {
 	grid-area: priorities;
 }
 
-.l-home__notes {
+.c-dt__notes {
 	grid-area: notes;
 }
 
-.l-home__priorities,
-.l-home__notes {
+.c-dt__tasks-section,
+.c-dt__notes {
 	width: 100%;
 }
 
-.l-home__priorities-list > li::marker {
+.c-dt__tasks-section > li::marker {
 	font-size: 1.4rem;
 	line-height: 2rem;
 }
 
-.l-home__priorities-list {
+.c-dt__tasks-list {
 	display: flex;
 	flex-direction: column;
 	gap: var(--m-padding);
@@ -46,8 +37,8 @@
 	list-style: none;
 }
 
-.l-home__priority-item,
-.l-home__note-border {
+.c-dt__task,
+.c-dt__notes {
 	border-radius: 1rem;
 	border-color: var(--pink);
 	border-style: solid;
@@ -55,12 +46,11 @@
 	padding: clamp(1rem, 2vw, 2rem);
 }
 
-@media (width >=700px) {
-	.l-home__main {
+/* TODO: Switch to component queries */
+@container (width >=700px) {
+	.c-dt {
 		display: grid;
-		grid-template:
-			"quarter-counter quarter-counter" min-content
-			"priorities notes" 1fr / 1fr 1fr;
+		grid-template: "priorities notes" 1fr / 1fr 1fr;
 		gap: var(--s-padding) var(--m-padding);
 		justify-content: center;
 	}

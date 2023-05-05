@@ -55,6 +55,10 @@ export async function getPrioritiesForDates(user: User, start: moment.Moment, en
 		const data = await resp.json();
 		if (data.dates) {
 			datePriorities = data.dates as Array<DatePriorities>;
+			datePriorities = datePriorities.map(d => {
+				d.priorities = d.priorities.filter(p => p.note.length > 0);
+				return d
+			});
 		}
 	} catch (err) {
 		console.error(`Fetch request failed: `, err);
