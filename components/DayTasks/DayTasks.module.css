@@ -50,8 +50,7 @@
 @container (width >=700px) {
 	.c-dt {
 		display: grid;
-		grid-template:
-			"priorities notes" 1fr / 1fr 1fr;
+		grid-template: "priorities notes" 1fr / 1fr 1fr;
 		gap: var(--s-padding) var(--m-padding);
 		justify-content: center;
 	}
