@@ -60,7 +60,7 @@ export function WeekTasks({date, user}: Props) {
 	);
 }
 
-function addTasks(date: string, priorities: Array<DatePriorities>) {
+function addTasks(date: string, priorities: Array<DailyPriority>) {
 	if (priorities.length == 3) {
 		return (<></>);
 	}

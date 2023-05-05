@@ -10,12 +10,13 @@ import { DefaultLayout } from '../../../components/DefaultLayout/DefaultLayout';
 
 const Week: NextPage = () => {
 	const {user} = useAuth();
+	const router = useRouter();
+
 	// TODO: Handle no user correctly.
 	if (!user) {
 		return (<div>Please sign in.</div>);
 	}
 
-	const router = useRouter();
 	const { year, week } = router.query;
 
 	let yearNum, weekNum;
@@ -44,7 +45,7 @@ const Week: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<DefaultLayout user={user} date={d} title={`Week ${week}, ${year}`} subtitle={`${d.startOf('week').format('Do MMMM')} - ${d.endOf('week').format('Do MMMM')}`} selectedView='week' onViewChange={(view) => console.error(`TODO: Add View Change to Week page: ${view}`)}>
+			<DefaultLayout user={user} date={d} title={`Week ${week}, ${year}`} subtitle={`${d.startOf('week').format('Do MMMM')} - ${d.endOf('week').format('Do MMMM')}`} selectedView='week'>
 				<WeekTasks date={d} user={user} />
 			</DefaultLayout>
 		</div>

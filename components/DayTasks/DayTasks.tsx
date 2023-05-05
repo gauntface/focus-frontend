@@ -1,5 +1,4 @@
 import styles from './DayTasks.module.css';
-import { QuarterTracker } from '../../components/QuarterTracker/QuarterTracker'
 import { NotesArea } from '../../components/NotesArea/NotesArea'
 import { User } from 'firebase/auth';
 import { DailyPriority, getDailyPriorities, setDailyPriorities } from "../../models/priorities";

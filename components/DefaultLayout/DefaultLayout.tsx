@@ -10,7 +10,7 @@ export function DefaultLayout(props: Props) {
 	return <>
 		<div className={styles['l-default']}>
 			<div className={styles['l-default__header']}>
-				<TaskHeader user={props.user} date={props.date} selectedView={props.selectedView} onViewChange={props.onViewChange} />
+				<TaskHeader user={props.user} date={props.date} selectedView={props.selectedView} />
 			</div>
 			<div className={styles['l-default__quarter']}><QuarterTracker date={props.date} /></div>
 			<main className={styles['l-default__main']}>{props.children}</main>
@@ -26,5 +26,4 @@ interface Props {
   date: moment.Moment;
   user: User;
 	selectedView: ViewSelection;
-	onViewChange: (view: ViewSelection) => void;
 }

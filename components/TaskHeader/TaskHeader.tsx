@@ -3,17 +3,19 @@ import Image from 'next/image';
 
 import styles from "./TaskHeader.module.css";
 
-export function TaskHeader({user, date, selectedView, onViewChange}: TaskHeaderProps) {
+export function TaskHeader({user, date, selectedView}: TaskHeaderProps) {
 	const views = [
 		{
 			text: 'Daily',
 			img: (<Image width="28" height="28" src="/icons/day-view.svg" alt="Day view icon" />),
 			view: 'day' as ViewSelection,
+			link: '/home',
 		},
 		{
 			text: 'Weekly',
 			img: (<Image width="28" height="28" src="/icons/week-view.svg" alt="Week view icon" />),
 			view: 'week' as ViewSelection,
+			link: `/week/${date.year()}/${date.week()}`,
 		},
 		/* {
       text: 'Quarter',
@@ -31,9 +33,11 @@ export function TaskHeader({user, date, selectedView, onViewChange}: TaskHeaderP
 			classes.push(styles['c-task-header__task--selected']);
 		}
 		viewIcons.push(
-			<div key={v.view} className={classes.join(' ')} onClick={() => onViewChange(v.view)}>
-				{v.img}
-				{v.text}
+			<div key={v.view}>
+				<Link href={v.link} className={classes.join(' ')}>
+					{v.img}
+					{v.text}
+				</Link>
 			</div>
 		);
 	}
@@ -90,7 +94,6 @@ interface TaskHeaderProps {
   date: moment.Moment;
   user: TaskHeaderUser;
   selectedView: ViewSelection;
-	onViewChange: (view: ViewSelection) => void;
 }
 
 interface TaskHeaderUser {
