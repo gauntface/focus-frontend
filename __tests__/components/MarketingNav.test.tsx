@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { SignInButton } from '../../components/SignInButton/SignInButton';
+import { MarketingNav } from '../../components/MarketingNav/MarketingNav';
 import '@testing-library/jest-dom';
-import { GoogleAuthProvider } from "firebase/auth";
 
 jest.mock('../../utils/firebaseClient', () => {
 	return {};
@@ -18,7 +17,7 @@ jest.mock('next/router', () => {
 	};
 });
 
-describe('SignInButton', () => {
+describe('MarketingNav', () => {
 	it('renders sign in button', () => {
 		const values: AuthProviderProps = {
 			signIn: () => {},
@@ -29,7 +28,7 @@ describe('SignInButton', () => {
 		const signinSpy = jest.spyOn(values, 'signIn');
 		mockUseAuth.mockReturnValue(values);
 
-		render(<SignInButton />);
+		render(<MarketingNav />);
 
 		// Check sign in button
 		const signInBtn = screen.getByRole('button', {
@@ -41,52 +40,32 @@ describe('SignInButton', () => {
 		expect(signinSpy).toBeCalled();
 	});
 
-	it('renders sign out button', () => {
+	it('renders with sign out and tasks button', () => {
 		const values: AuthProviderProps = {
 			signIn: () => {},
 			signOut: () => {},
 			user: {
 				email: 'example@example.com',
-				displayName: 'Example User',
-				getIdToken: async () => "example-id-token",
 			},
 			loading: false,
 		};
 		const signoutSpy = jest.spyOn(values, 'signOut');
 		mockUseAuth.mockReturnValue(values);
 
-		render(<SignInButton />);
+		render(<MarketingNav />);
 
 		// Check sign in button
-		const signInBtn = screen.getByRole('button', {
+		const signoutBtn = screen.getByRole('button', {
 			name: 'Sign Out',
 		});
-		expect(signInBtn).toBeTruthy();
+		expect(signoutBtn).toBeTruthy();
 
-		signInBtn.click();
-		expect(signoutSpy).toHaveBeenCalled();
-	});
+		signoutBtn.click();
+		expect(signoutSpy).toBeCalled();
 
-	it('renders sign in button with customization props', () => {
-		const values: AuthProviderProps = {
-			signIn: () => {},
-			signOut: () => {},
-			user: null,
-			loading: false,
-		};
-		const signinSpy = jest.spyOn(values, 'signIn');
-		mockUseAuth.mockReturnValue(values);
-
-		render(<SignInButton classModifier="diff-btn" signInText='Go' redirect = "/other" />);
-
-		// Check sign in button
-		const signInBtn = screen.getByRole('button', {
-			name: 'Go',
+		const tasksBtn = screen.getByRole('button', {
+			name: 'Tasks',
 		});
-		expect(signInBtn).toBeTruthy();
-		expect(signInBtn.classList[0]).toEqual('button--diff-btn');
-
-		signInBtn.click();
-		expect(signinSpy).toBeCalledWith(new GoogleAuthProvider(), "/other");
+		expect(tasksBtn).toBeTruthy();
 	});
 });

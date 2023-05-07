@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import Index from '../pages/index'
-import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react';
+import Index from '../pages/index';
+import '@testing-library/jest-dom';
 
 jest.mock('../contexts/Auth', () => {
 	return {useAuth: () => {
@@ -19,7 +19,7 @@ jest.mock('next/router', () => {
 
 describe('Index', () => {
 	it('renders marketing page', () => {
-		render(<Index />)
+		render(<Index />);
 
 		// Check footer
 		const footer = screen.getByText('Support this Project');
@@ -30,5 +30,5 @@ describe('Index', () => {
 			name: 'Sign In',
 		});
 		expect(signInBtns.length).toEqual(2);
-	})
-})
+	});
+});

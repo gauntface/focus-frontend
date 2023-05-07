@@ -1,12 +1,13 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import moment from 'moment';
 
 import {WeekTasks} from '../../../components/WeekTasks/WeekTasks';
 import { useAuth } from '../../../contexts/Auth';
 import { DefaultLayout } from '../../../components/DefaultLayout/DefaultLayout';
+import { WeekSelector } from '../../../components/WeekSelector/WeekSelector';
 
 const Week: NextPage = () => {
 	const {user} = useAuth();
@@ -23,7 +24,7 @@ const Week: NextPage = () => {
 	if (typeof year !== 'string') {
 		yearNum = moment().year();
 	} else {
-		yearNum = parseInt(year, 10)
+		yearNum = parseInt(year, 10);
 	}
 
 	if (typeof week !== 'string') {
@@ -46,10 +47,11 @@ const Week: NextPage = () => {
 			</Head>
 
 			<DefaultLayout user={user} date={d} title={`Week ${week}, ${year}`} subtitle={`${d.startOf('week').format('Do MMMM')} - ${d.endOf('week').format('Do MMMM')}`} selectedView='week'>
+				<WeekSelector date={d} />
 				<WeekTasks date={d} user={user} />
 			</DefaultLayout>
 		</div>
 	);
-}
+};
 
-export default Week
+export default Week;

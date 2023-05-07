@@ -57,7 +57,7 @@ export async function getPrioritiesForDates(user: User, start: moment.Moment, en
 			datePriorities = data.dates as Array<DatePriorities>;
 			datePriorities = datePriorities.map(d => {
 				d.priorities = d.priorities.filter(p => p.note.length > 0);
-				return d
+				return d;
 			});
 		}
 	} catch (err) {

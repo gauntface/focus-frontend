@@ -16,7 +16,7 @@ export function QuarterTracker(props: Props) {
 				<div className={styles['c-qt__prog']} style={progressStyles}></div>
 			</div>
 		</div>
-	)
+	);
 }
 
 function progressDetails(dayViewed: moment.Moment) {
@@ -28,7 +28,7 @@ function progressDetails(dayViewed: moment.Moment) {
 		percentage: Math.round((currentWeek / weeks) * 100),
 		weeksInQuarter: weeks,
 		currentWeek,
-	}
+	};
 }
 
 interface Props {

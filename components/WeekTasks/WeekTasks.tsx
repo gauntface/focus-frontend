@@ -7,15 +7,6 @@ import styles from './WeekTasks.module.css';
 import moment from 'moment';
 import { User } from 'firebase/auth';
 
-const CUTSIE_PHRASES = [
-	"Let's get to work!",
-	"Any ideas what you did?",
-	"Time to make a plan!",
-	"The vibe for this day should be 'chill'",
-	"Productivity can't happen every day",
-	"What problems did you solve?",
-];
-
 export function WeekTasks({date, user}: Props) {
 	const start = moment(date.startOf('week')).add(1, 'd');
 	const end = moment(date.endOf('week')).subtract(1, 'd');
@@ -24,7 +15,7 @@ export function WeekTasks({date, user}: Props) {
 		week[i] = {
 			date: moment(start).add(i, 'd'),
 			priorities: [],
-		}
+		};
 	}
 
 	const [datePriorities, setDatePriorities] = useState<Array<DatePriorities>>(week);
@@ -48,7 +39,7 @@ export function WeekTasks({date, user}: Props) {
 							<h3><Link href={`/day/${formatDateString(dps.date)}`} key={dps.date.toString()}>{dayOfWeek(dps.date)}</Link></h3>
 							<ol className={styles['c-wt__tasks']}>
 								{dps.priorities.map((priority, idx) => {
-									return (<li key={idx} className={styles['c-wt__task-item']}>{priority.note}</li>)
+									return (<li key={idx} className={styles['c-wt__task-item']}>{priority.note}</li>);
 								})}
 							</ol>
 							{addTasks(dps.date, dps.priorities)}
@@ -66,12 +57,9 @@ function addTasks(date: string, priorities: Array<DailyPriority>) {
 	}
 
 	if (priorities.length == 0) {
-		const phrase = CUTSIE_PHRASES[Math.floor(Math.random() * CUTSIE_PHRASES.length)]
 		return (<div className={styles['c-wt__no-tasks']}>
 			<div>
 				You have no tasks for {dayOfWeek(date)}
-				<br />
-				{phrase}
 			</div>
 			{addTaskButton(date)}
 		</div>);
@@ -84,7 +72,7 @@ function addTasks(date: string, priorities: Array<DailyPriority>) {
 function addTaskButton(date: string) {
 	return (<div className={styles['c-wt__add-task']} onClick={() => console.log(`TODO: Go to ${date}`)}>
 		<Image width="18" height="18" src="/icons/add.svg" alt="Add task icon" />
-		Add Task</div>)
+		Add Task</div>);
 }
 
 function dayOfWeek(date: string) {

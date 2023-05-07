@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import Cookies from '../pages/cookies'
-import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react';
+import Cookies from '../pages/cookies';
+import '@testing-library/jest-dom';
 
 jest.mock('../contexts/Auth', () => {
 	return {useAuth: () => {
@@ -13,7 +13,7 @@ jest.mock('../contexts/Auth', () => {
 
 describe('Cookies', () => {
 	it('renders cookie policy', () => {
-		render(<Cookies />)
+		render(<Cookies />);
 
 		const main = screen.getByRole('main');
 		expect(main).toBeInTheDocument();
@@ -21,5 +21,5 @@ describe('Cookies', () => {
 		// Check footer
 		const footer = screen.getByText('Support this Project');
 		expect(footer).toBeInTheDocument();
-	})
-})
+	});
+});
