@@ -7,6 +7,7 @@ import moment from 'moment';
 import {WeekTasks} from '../../../components/WeekTasks/WeekTasks';
 import { useAuth } from '../../../contexts/Auth';
 import { DefaultLayout } from '../../../components/DefaultLayout/DefaultLayout';
+import { WeekSelector } from '../../../components/WeekSelector/WeekSelector';
 
 const Week: NextPage = () => {
 	const {user} = useAuth();
@@ -46,6 +47,7 @@ const Week: NextPage = () => {
 			</Head>
 
 			<DefaultLayout user={user} date={d} title={`Week ${week}, ${year}`} subtitle={`${d.startOf('week').format('Do MMMM')} - ${d.endOf('week').format('Do MMMM')}`} selectedView='week'>
+				<WeekSelector date={d} />
 				<WeekTasks date={d} user={user} />
 			</DefaultLayout>
 		</div>

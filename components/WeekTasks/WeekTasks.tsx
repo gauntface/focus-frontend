@@ -7,15 +7,6 @@ import styles from './WeekTasks.module.css';
 import moment from 'moment';
 import { User } from 'firebase/auth';
 
-const CUTSIE_PHRASES = [
-	"Let's get to work!",
-	"Any ideas what you did?",
-	"Time to make a plan!",
-	"The vibe for this day should be 'chill'",
-	"Productivity can't happen every day",
-	"What problems did you solve?",
-];
-
 export function WeekTasks({date, user}: Props) {
 	const start = moment(date.startOf('week')).add(1, 'd');
 	const end = moment(date.endOf('week')).subtract(1, 'd');
@@ -66,12 +57,9 @@ function addTasks(date: string, priorities: Array<DailyPriority>) {
 	}
 
 	if (priorities.length == 0) {
-		const phrase = CUTSIE_PHRASES[Math.floor(Math.random() * CUTSIE_PHRASES.length)]
 		return (<div className={styles['c-wt__no-tasks']}>
 			<div>
 				You have no tasks for {dayOfWeek(date)}
-				<br />
-				{phrase}
 			</div>
 			{addTaskButton(date)}
 		</div>);
