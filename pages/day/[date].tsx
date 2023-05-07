@@ -1,9 +1,9 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from 'next';
+import Head from 'next/head';
 import moment from 'moment';
 import { useRouter } from 'next/router';
 
-import {withAuth} from '../../utils/withAuth'
+import {withAuth} from '../../utils/withAuth';
 import { useAuth } from '../../contexts/Auth';
 import { DefaultLayout } from '../../components/DefaultLayout/DefaultLayout';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
@@ -35,7 +35,7 @@ const Day: NextPage = () => {
 				<DayTasks date={date} user={user} />
 			</DefaultLayout>
 		</div>
-	)
-}
+	);
+};
 
-export default withAuth(Day)
+export default withAuth(Day);

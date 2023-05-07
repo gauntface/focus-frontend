@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import { LegalPage } from '../components/LegalPage/LegalPage'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { LegalPage } from '../components/LegalPage/LegalPage';
 
 const PrivacyPolicy: NextPage = () => {
 	return (
@@ -33,7 +33,7 @@ const PrivacyPolicy: NextPage = () => {
 
 			<p>You can view the data we track <a href="https://app.beampipe.io/domain/focus.gaunt.dev" target="_blank">here</a>.</p>
 		</LegalPage>
-	)
-}
+	);
+};
 
-export default PrivacyPolicy
+export default PrivacyPolicy;

@@ -4,7 +4,7 @@ import styles from "./NotesArea.module.css";
 export function NotesArea(props: NotesAreaProps) {
 	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		props.onChange(e.target.value);
-	}
+	};
 
 	return (
 		<div data-replicated-value={props.note} className={styles['c-notesarea']}>

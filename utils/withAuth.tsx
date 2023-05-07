@@ -1,6 +1,6 @@
 import { NextComponentType } from "next";
 import {useAuth} from "../contexts/Auth";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 export function withAuth<P extends object>(Component: NextComponentType<P>) {
 	const Auth = (props: P) => {
@@ -14,7 +14,7 @@ export function withAuth<P extends object>(Component: NextComponentType<P>) {
 		}
 
 		if (!user) {
-			router.push("/")
+			router.push("/");
 			return;
 		}
 

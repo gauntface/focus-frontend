@@ -1,7 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import { MarketingNav } from '../../components/MarketingNav/MarketingNav'
-import '@testing-library/jest-dom'
-import { GoogleAuthProvider } from "firebase/auth";
+import { render, screen } from '@testing-library/react';
+import { MarketingNav } from '../../components/MarketingNav/MarketingNav';
+import '@testing-library/jest-dom';
 
 jest.mock('../../utils/firebaseClient', () => {
 	return {};
@@ -29,7 +28,7 @@ describe('MarketingNav', () => {
 		const signinSpy = jest.spyOn(values, 'signIn');
 		mockUseAuth.mockReturnValue(values);
 
-		render(<MarketingNav />)
+		render(<MarketingNav />);
 
 		// Check sign in button
 		const signInBtn = screen.getByRole('button', {
@@ -39,7 +38,7 @@ describe('MarketingNav', () => {
 
 		signInBtn.click();
 		expect(signinSpy).toBeCalled();
-	})
+	});
 
 	it('renders with sign out and tasks button', () => {
 		const values: AuthProviderProps = {
@@ -53,7 +52,7 @@ describe('MarketingNav', () => {
 		const signoutSpy = jest.spyOn(values, 'signOut');
 		mockUseAuth.mockReturnValue(values);
 
-		render(<MarketingNav />)
+		render(<MarketingNav />);
 
 		// Check sign in button
 		const signoutBtn = screen.getByRole('button', {
@@ -68,5 +67,5 @@ describe('MarketingNav', () => {
 			name: 'Tasks',
 		});
 		expect(tasksBtn).toBeTruthy();
-	})
-})
+	});
+});

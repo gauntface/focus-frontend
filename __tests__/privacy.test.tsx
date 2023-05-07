@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import Privacy from '../pages/privacy'
-import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react';
+import Privacy from '../pages/privacy';
+import '@testing-library/jest-dom';
 
 jest.mock('../contexts/Auth', () => {
 	return {useAuth: () => {
@@ -13,7 +13,7 @@ jest.mock('../contexts/Auth', () => {
 
 describe('Privacy', () => {
 	it('renders privacy policy', () => {
-		render(<Privacy />)
+		render(<Privacy />);
 
 		const main = screen.getByRole('main');
 		expect(main).toBeInTheDocument();
@@ -21,5 +21,5 @@ describe('Privacy', () => {
 		// Check footer
 		const footer = screen.getByText('Support this Project');
 		expect(footer).toBeInTheDocument();
-	})
-})
+	});
+});

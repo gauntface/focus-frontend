@@ -8,8 +8,8 @@ export function Checkbox(props: Props) {
 		}
 
 		console.log(`Change => `, e);
-		props.onChange(e.target.checked)
-	}
+		props.onChange(e.target.checked);
+	};
 	console.log(props);
 	return (
 		<div>

@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import { SignInButton } from '../../components/SignInButton/SignInButton'
-import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react';
+import { SignInButton } from '../../components/SignInButton/SignInButton';
+import '@testing-library/jest-dom';
 import { GoogleAuthProvider } from "firebase/auth";
 
 jest.mock('../../utils/firebaseClient', () => {
@@ -29,7 +29,7 @@ describe('SignInButton', () => {
 		const signinSpy = jest.spyOn(values, 'signIn');
 		mockUseAuth.mockReturnValue(values);
 
-		render(<SignInButton />)
+		render(<SignInButton />);
 
 		// Check sign in button
 		const signInBtn = screen.getByRole('button', {
@@ -39,7 +39,7 @@ describe('SignInButton', () => {
 
 		signInBtn.click();
 		expect(signinSpy).toBeCalled();
-	})
+	});
 
 	it('renders sign out button', () => {
 		const values: AuthProviderProps = {
@@ -55,7 +55,7 @@ describe('SignInButton', () => {
 		const signoutSpy = jest.spyOn(values, 'signOut');
 		mockUseAuth.mockReturnValue(values);
 
-		render(<SignInButton />)
+		render(<SignInButton />);
 
 		// Check sign in button
 		const signInBtn = screen.getByRole('button', {
@@ -65,7 +65,7 @@ describe('SignInButton', () => {
 
 		signInBtn.click();
 		expect(signoutSpy).toHaveBeenCalled();
-	})
+	});
 
 	it('renders sign in button with customization props', () => {
 		const values: AuthProviderProps = {
@@ -77,7 +77,7 @@ describe('SignInButton', () => {
 		const signinSpy = jest.spyOn(values, 'signIn');
 		mockUseAuth.mockReturnValue(values);
 
-		render(<SignInButton classModifier="diff-btn" signInText='Go' redirect = "/other" />)
+		render(<SignInButton classModifier="diff-btn" signInText='Go' redirect = "/other" />);
 
 		// Check sign in button
 		const signInBtn = screen.getByRole('button', {
@@ -88,5 +88,5 @@ describe('SignInButton', () => {
 
 		signInBtn.click();
 		expect(signinSpy).toBeCalledWith(new GoogleAuthProvider(), "/other");
-	})
-})
+	});
+});

@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import moment from 'moment';
 
@@ -24,7 +24,7 @@ const Week: NextPage = () => {
 	if (typeof year !== 'string') {
 		yearNum = moment().year();
 	} else {
-		yearNum = parseInt(year, 10)
+		yearNum = parseInt(year, 10);
 	}
 
 	if (typeof week !== 'string') {
@@ -52,6 +52,6 @@ const Week: NextPage = () => {
 			</DefaultLayout>
 		</div>
 	);
-}
+};
 
-export default Week
+export default Week;

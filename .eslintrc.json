@@ -14,7 +14,8 @@
 	},
 	"rules": {
     "indent": ["error", "tab"],
-		"no-tabs": "off"
+		"no-tabs": "off",
+		"semi": ["error", "always"]
 	},
   "overrides": [
     {

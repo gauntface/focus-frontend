@@ -1,5 +1,5 @@
 import styles from './DayTasks.module.css';
-import { NotesArea } from '../../components/NotesArea/NotesArea'
+import { NotesArea } from '../../components/NotesArea/NotesArea';
 import { User } from 'firebase/auth';
 import { DailyPriority, getDailyPriorities, setDailyPriorities } from "../../models/priorities";
 import {getDailyNotes, setDailyNotes} from "../../models/notes";
@@ -34,7 +34,7 @@ export function DayTasks({date, user}: Props) {
 			const [ps, ns] = await Promise.all([
 				getDailyPriorities(user, date),
 				getDailyNotes(user, date),
-			])
+			]);
 			setPriorities(ps);
 
 			setNotes(ns);
@@ -63,7 +63,7 @@ export function DayTasks({date, user}: Props) {
 			}
 
 			try {
-				await setDailyPriorities(user, date, ps)
+				await setDailyPriorities(user, date, ps);
 			} catch(err) {
 				console.error('Failed to set daily priorities: ', e);
 			}
@@ -85,7 +85,7 @@ export function DayTasks({date, user}: Props) {
 			}
 
 			try {
-				await setDailyNotes(user, date, e)
+				await setDailyNotes(user, date, e);
 			} catch(err) {
 				console.error('Failed to set daily notes: ', e);
 			}
@@ -100,7 +100,7 @@ export function DayTasks({date, user}: Props) {
 					{priorities.map((priority: DailyPriority, idx: number) => {
 						return (<li key={idx} className={styles['c-dt__task']}>
 							<NotesArea disabled={initialLoad} name={`priority-${idx}`} note={priority.note} onChange={(v: string) => onDailyPriorityChange(idx, v)} rows={1} />
-						</li>)
+						</li>);
 					})}
 				</ol>
 			</section>

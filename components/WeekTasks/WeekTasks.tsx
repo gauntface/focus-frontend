@@ -15,7 +15,7 @@ export function WeekTasks({date, user}: Props) {
 		week[i] = {
 			date: moment(start).add(i, 'd'),
 			priorities: [],
-		}
+		};
 	}
 
 	const [datePriorities, setDatePriorities] = useState<Array<DatePriorities>>(week);
@@ -39,7 +39,7 @@ export function WeekTasks({date, user}: Props) {
 							<h3><Link href={`/day/${formatDateString(dps.date)}`} key={dps.date.toString()}>{dayOfWeek(dps.date)}</Link></h3>
 							<ol className={styles['c-wt__tasks']}>
 								{dps.priorities.map((priority, idx) => {
-									return (<li key={idx} className={styles['c-wt__task-item']}>{priority.note}</li>)
+									return (<li key={idx} className={styles['c-wt__task-item']}>{priority.note}</li>);
 								})}
 							</ol>
 							{addTasks(dps.date, dps.priorities)}
@@ -72,7 +72,7 @@ function addTasks(date: string, priorities: Array<DailyPriority>) {
 function addTaskButton(date: string) {
 	return (<div className={styles['c-wt__add-task']} onClick={() => console.log(`TODO: Go to ${date}`)}>
 		<Image width="18" height="18" src="/icons/add.svg" alt="Add task icon" />
-		Add Task</div>)
+		Add Task</div>);
 }
 
 function dayOfWeek(date: string) {
