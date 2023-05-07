@@ -41,13 +41,13 @@ describe('MarketingNav', () => {
 		expect(signinSpy).toBeCalled();
 	})
 
-  it('renders with sign out and tasks button', () => {
+	it('renders with sign out and tasks button', () => {
 		const values: AuthProviderProps = {
 			signIn: () => {},
 			signOut: () => {},
 			user: {
-        email: 'example@example.com',
-      },
+				email: 'example@example.com',
+			},
 			loading: false,
 		};
 		const signoutSpy = jest.spyOn(values, 'signOut');
