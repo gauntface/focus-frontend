@@ -28,7 +28,7 @@ export function WeekTasks({date, user}: Props) {
 			setDatePriorities(dates);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [date]);
 
 	return (
 		<div className={styles['c-wt']}>
