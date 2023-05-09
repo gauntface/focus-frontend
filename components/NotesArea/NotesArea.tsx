@@ -8,7 +8,7 @@ export function NotesArea(props: NotesAreaProps) {
 
 	return (
 		<div data-replicated-value={props.note} className={styles['c-notesarea']}>
-			<textarea disabled={props.disabled} name={`${props.name}-text`} onChange={(e) => handleChange(e)}  rows={props.rows} value={props.note} className={styles['c-notesarea__textarea']}></textarea>
+			<textarea disabled={props.disabled == undefined ? false : props.disabled } name={`${props.name}-text`} onChange={(e) => handleChange(e)}  rows={props.rows} value={props.note} className={styles['c-notesarea__textarea']}></textarea>
 		</div>
 	);
 }
@@ -16,7 +16,7 @@ export function NotesArea(props: NotesAreaProps) {
 interface NotesAreaProps {
   note: string;
   name: string;
-  disabled: boolean;
+  disabled?: boolean;
   rows: number;
   onChange: (s: string) => void;
 }

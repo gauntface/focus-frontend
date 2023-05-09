@@ -1,8 +1,8 @@
-.c-dt {
+.c-dt__wrapper {
 	container-type: inline-size;
 }
 
-.c-dt__wrapper {
+.c-dt {
 	display: grid;
 	width: var(--width);
 	grid-template:
@@ -51,7 +51,7 @@
 }
 
 @container (width >=700px) {
-	.c-dt__wrapper {
+	.c-dt {
 		display: grid;
 		grid-template: "priorities notes" 1fr / 1fr 1fr;
 		gap: var(--s-padding) var(--m-padding);

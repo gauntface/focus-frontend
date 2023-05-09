@@ -101,6 +101,10 @@ h3 {
 	font-size: clamp(1.1rem, 3vw, 1.5rem);
 }
 
+h3:first-child {
+	margin-top: 0;
+}
+
 ol li::marker {
 	font-family: var(--title-family);
 }
