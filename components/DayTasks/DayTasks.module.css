@@ -1,6 +1,10 @@
 .c-dt {
+	container-type: inline-size;
+}
+
+.c-dt__wrapper {
 	display: grid;
-	width: 100%;
+	width: var(--width);
 	grid-template:
 		"priorities" min-content
 		"notes" min-content / 1fr;
@@ -46,9 +50,8 @@
 	padding: clamp(1rem, 2vw, 2rem);
 }
 
-/* TODO: Switch to component queries */
 @container (width >=700px) {
-	.c-dt {
+	.c-dt__wrapper {
 		display: grid;
 		grid-template: "priorities notes" 1fr / 1fr 1fr;
 		gap: var(--s-padding) var(--m-padding);

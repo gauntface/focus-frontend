@@ -62,6 +62,7 @@ export async function getPrioritiesForDates(user: User, start: moment.Moment, en
 		}
 	} catch (err) {
 		console.error(`Fetch request failed: `, err);
+		throw err;
 	}
 	return datePriorities;
 }

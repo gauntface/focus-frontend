@@ -2,6 +2,8 @@
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-template-rows: repeat(2, 1fr);
+	width: var(--width);
+	margin: auto;
 	font-weight: bold;
 	gap: var(--xxs-padding);
 	text-align: left;

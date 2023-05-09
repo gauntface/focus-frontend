@@ -1,5 +1,6 @@
 :root {
-	--width: calc(100vw - 2 * clamp(var(--m-padding), 5vw, var(--xl-padding)));
+	--width: calc(100vw - (2 * clamp(8vw, 8vw, 8vw)));
+	--large-width: calc(100vw - (2 * clamp(5vw, 5vw, 5vw)));
 	--font-size: 18px;
 	--xxs-padding: 0.5rem;
 	--xs-padding: 0.75rem;
@@ -14,6 +15,12 @@
 
 @media (width >= 1200px) {
 	:root {
-		--width: 1080px;
+		--width: 980px;
+	}
+}
+
+@media (width >= 1600px) {
+	:root {
+		--large-width: 1480px;
 	}
 }

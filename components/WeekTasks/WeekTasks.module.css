@@ -1,6 +1,11 @@
 .c-wt {
+	container-type: inline-size;
+}
+
+.c-wt__wrapper {
 	display: flex;
-	width: 100%;
+	width: var(--large-width);
+	margin: auto;
 	flex-direction: column;
 }
 
@@ -52,8 +57,13 @@
 	cursor: pointer;
 }
 
+.c-wt__dayofmonth {
+	font-size: clamp(0.7rem, 2vw, 1rem);
+}
+
 @container (width >=700px) {
 	.c-wt__week-section {
+		width: var(--large-width);
 		flex-direction: row;
 		gap: var(--m-padding);
 	}

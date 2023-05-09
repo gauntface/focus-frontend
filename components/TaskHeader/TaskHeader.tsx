@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import moment from 'moment';
 
 import styles from "./TaskHeader.module.css";
 
@@ -42,6 +43,8 @@ export function TaskHeader({user, date, selectedView}: TaskHeaderProps) {
 		);
 	}
 
+	const dh = dateHeading(selectedView, date);
+
 	// TODO: Should find a better way to provide a link to the home page
 	return (
 		<div className={styles['c-task-header']}>
@@ -49,7 +52,7 @@ export function TaskHeader({user, date, selectedView}: TaskHeaderProps) {
 				<div className={styles['c-task-header__content']}>
 					<div>
 						{getIntro(user)}
-						You&apos;re viewing {date.format('dddd, MMMM Do YYYY')}
+						{dh}
 					</div>
 
 					<div className={styles['c-task-header__view-section']}>
@@ -63,6 +66,20 @@ export function TaskHeader({user, date, selectedView}: TaskHeaderProps) {
 			</div>
 		</div>
 	);
+}
+
+function dateHeading(selectedView: ViewSelection, date: moment.Moment) {
+	switch (selectedView) {
+	case 'day':
+		return date.format('dddd, MMMM Do YYYY');
+	case 'week': {
+		const start = moment(date.startOf('week')).add(1, 'd');
+		const end = moment(date.endOf('week')).subtract(1, 'd');
+		return `${start.format('MMMM Do YYYY')} - ${end.format('MMMM Do YYYY')}`;
+	}
+	default:
+		return '';
+	}
 }
 
 function getFirstName(user: TaskHeaderUser) {
