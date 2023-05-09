@@ -4,16 +4,16 @@
 
 .c-task-header__wrapper {
 	position: relative;
-	margin: calc((100vw - var(--width)) / 4);
-	margin-top: min(var(--l-padding), calc((100vw - var(--width)) / 4));
-	margin-bottom: min(var(--m-padding), calc((100vw - var(--width)) / 4));
+	width: var(--large-width);
+	margin: min(var(--l-padding), calc((100vw - var(--width)) / 4)) auto
+		min(var(--m-padding), calc((100vw - var(--width)) / 4)) auto;
 }
 
 .c-task-header__content {
 	display: flex;
 	flex-direction: column;
 	gap: var(--m-padding);
-	max-width: var(--width);
+	width: var(--width);
 	margin: 0 auto;
 	position: relative;
 	z-index: 2;

@@ -5,8 +5,10 @@ import { useRouter } from 'next/router';
 
 import {withAuth} from '../../utils/withAuth';
 import { useAuth } from '../../contexts/Auth';
-import { DefaultLayout } from '../../components/DefaultLayout/DefaultLayout';
+import { Footer } from '../../components/Footer/Footer';
+import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
+import { QuarterTracker } from "../../components/QuarterTracker/QuarterTracker";
 
 // TODO: This is turned gnarly with handling the User | null types.
 //       Please tidy up this logic.
@@ -31,9 +33,12 @@ const Day: NextPage = () => {
 				<link rel="icon" href={'/favicon.ico' } />
 			</Head>
 
-			<DefaultLayout selectedView="day" user={user} date={date} title={date.format('ddd, Do MMMM')}>
+			<div>
+				<TaskHeader user={user} date={date} selectedView="day" />
+				<QuarterTracker date={date} />
 				<DayTasks date={date} user={user} />
-			</DefaultLayout>
+				<Footer />
+			</div>
 		</div>
 	);
 };

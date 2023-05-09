@@ -3,6 +3,7 @@
 	flex-direction: row;
 	gap: var(--s-padding);
 	align-items: center;
+	justify-content: center;
 	margin: min(var(--l-padding), calc((100vw - var(--width)) / 4)) auto;
 }
 

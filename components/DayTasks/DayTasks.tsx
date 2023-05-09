@@ -28,9 +28,6 @@ export function DayTasks({date, user}: Props) {
 
 	useEffect(() => {
 		(async () => {
-			if (!user) {
-				return;
-			}
 			const [ps, ns] = await Promise.all([
 				getDailyPriorities(user, date),
 				getDailyNotes(user, date),
@@ -42,7 +39,7 @@ export function DayTasks({date, user}: Props) {
 			setInitialLoad(false);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [date]);
 
 	function onDailyPriorityChange(idx: number, e: string) {
 		if (priorities[idx].note == e) {
@@ -94,23 +91,25 @@ export function DayTasks({date, user}: Props) {
 
 	return (
 		<div className={styles['c-dt']}>
-			<section className={styles['c-dt__tasks-section']}>
-				<h3>Tasks</h3>
-				<ol className={styles['c-dt__tasks-list']}>
-					{priorities.map((priority: DailyPriority, idx: number) => {
-						return (<li key={idx} className={styles['c-dt__task']}>
-							<NotesArea disabled={initialLoad} name={`priority-${idx}`} note={priority.note} onChange={(v: string) => onDailyPriorityChange(idx, v)} rows={1} />
-						</li>);
-					})}
-				</ol>
-			</section>
+			<div className={styles['c-dt__wrapper']}>
+				<section className={styles['c-dt__tasks-section']}>
+					<h3>Tasks</h3>
+					<ol className={styles['c-dt__tasks-list']}>
+						{priorities.map((priority: DailyPriority, idx: number) => {
+							return (<li key={idx} className={styles['c-dt__task']}>
+								<NotesArea disabled={initialLoad} name={`priority-${idx}`} note={priority.note} onChange={(v: string) => onDailyPriorityChange(idx, v)} rows={1} />
+							</li>);
+						})}
+					</ol>
+				</section>
 
-			<section className={styles['c-dt__notes-section']}>
-				<h3>Notes</h3>
-				<div className={styles['c-dt__notes']}>
-					<NotesArea disabled={initialLoad} name={`notes`} note={notes}  onChange={(v: string) => onNotesChange(v)} rows={3} />
-				</div>
-			</section>
+				<section className={styles['c-dt__notes-section']}>
+					<h3>Notes</h3>
+					<div className={styles['c-dt__notes']}>
+						<NotesArea disabled={initialLoad} name={`notes`} note={notes}  onChange={(v: string) => onNotesChange(v)} rows={3} />
+					</div>
+				</section>
+			</div>
 		</div>
 	);
 }
