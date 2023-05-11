@@ -1,8 +1,8 @@
-.c-wt {
+.c-wt__wrapper {
 	container-type: inline-size;
 }
 
-.c-wt__wrapper {
+.c-wt {
 	display: flex;
 	width: var(--large-width);
 	margin: auto;

@@ -20,8 +20,8 @@ export function QuarterTracker(props: Props) {
 }
 
 function progressDetails(dayViewed: moment.Moment) {
-	const start = moment().quarter(dayViewed.quarter()).startOf('quarter');
-	const end = moment().quarter(dayViewed.quarter()).endOf('quarter');
+	const start = moment(dayViewed).quarter(dayViewed.quarter()).startOf('quarter');
+	const end = moment(dayViewed).quarter(dayViewed.quarter()).endOf('quarter');
 	const weeks = end.diff(start, 'weeks');
 	const currentWeek = dayViewed.diff(start, 'weeks');
 	return {

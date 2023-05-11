@@ -41,7 +41,7 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 	box-shadow: none;
 	font-size: 1.2rem;
 	font-family: var(--default-family);
-	font-weight: 600;
+	font-weight: 500;
 	text-align: start;
 	line-height: var(--lh);
 	background-size: 100% var(--lh);

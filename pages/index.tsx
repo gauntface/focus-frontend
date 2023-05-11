@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 import { Footer } from '../components/Footer/Footer';
 import { MarketingNav } from '../components/MarketingNav/MarketingNav';
 import { MarketingHero } from '../components/MarketingHero/MarketingHero';
@@ -22,20 +23,20 @@ const Index: NextPage = () => {
 			<MarketingHero />
 
 			<MarketingSplitSection>
-				<h2>We help you focus on the work that matters so you can achieve your goals.</h2>
+				<h3>We help you focus on the work that matters so you can achieve your goals.</h3>
 				<MarketingPurpose />
 			</MarketingSplitSection>
 
 			<MarketingAbout />
 
 			<MarketingSplitSection>
-				<div>TODO: Add Image</div>
-				<h2>A simple day-to-day view to set your priorities and add notes</h2>
+				<div><Image src="/marketing/screenshots/day.png" alt="Screenshot of the day view of focus" width={1080} height={800} /></div>
+				<h3>A simple day-to-day view to set your priorities and add notes</h3>
 			</MarketingSplitSection>
 
 			<MarketingSplitSection>
-				<h2>Get an easy overview of your tasks for the week</h2>
-				<div>TODO: Add Image</div>
+				<h3>Get an easy overview of your tasks for the week</h3>
+				<div><Image src="/marketing/screenshots/week.png" alt="Screenshot of the week view of focus" width={1080} height={800} /></div>
 			</MarketingSplitSection>
 
 			<MarketingTry />
