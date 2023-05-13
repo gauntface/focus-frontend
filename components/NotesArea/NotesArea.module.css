@@ -58,15 +58,15 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 
 .c-notesarea--skeleton {
 	display: inline-block;
-  inset: 0;
-  position: absolute;
-  overflow: hidden;
-  background-color: none;
+	inset: 0;
+	position: absolute;
+	overflow: hidden;
+	background-color: none;
 	border-radius: 1rem;
 }
 
 .c-notesarea--skeleton::after {
-	content: '';
+	content: "";
 	position: absolute;
 	inset: 0;
 	transform: translateX(-100%);
