@@ -22,6 +22,7 @@ const Day: NextPage = () => {
 	const dateString = router.query.date;
 	const date = moment(dateString);
 
+	const [loading, setLoading] = useState<boolean>(true);
 	const [priorities, setPriorities] = useState<Array<DailyPriority>>(getEmptyPriorities());
 	const [notes, setNotes] = useState<string>('');
 
@@ -40,8 +41,8 @@ const Day: NextPage = () => {
 				getDailyNotes(user, date),
 			]);
 			setPriorities(ps);
-
 			setNotes(ns);
+			setLoading(false);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dateString]);
@@ -112,7 +113,7 @@ const Day: NextPage = () => {
 			<div>
 				<TaskHeader user={user} date={date} selectedView="day" />
 				<QuarterTracker date={date} />
-				<DayTasks priorities={priorities} notes={notes} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} />
+				<DayTasks priorities={priorities} notes={notes} loading={loading} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} />
 				<Footer />
 			</div>
 		</div>
