@@ -49,9 +49,9 @@ function addTasks(date: moment.Moment, priorities: Array<DailyPriority>) {
 }
 
 function addTaskButton(date: moment.Moment) {
-	return (<div className={styles['c-wt__add-task']} onClick={() => console.log(`TODO: Go to ${date}`)}>
+	return (<Link className={styles['c-wt__add-task']} href={`/day/${date.format('YYYY-MM-DD')}`}>
 		<Image width="18" height="18" src="/icons/add.svg" alt="Add task icon" />
-		Add Task</div>);
+		Add Task</Link>);
 }
 
 interface Props {

@@ -44,9 +44,9 @@ describe('NotesArea', () => {
 		const textarea = notesareaDiv.querySelector('textarea') as HTMLTextAreaElement;
 		expect(textarea).toBeTruthy();
 		expect(textarea.disabled).toEqual(true);
-		expect(textarea.name).toEqual("");
+		expect(textarea.name).toEqual("example-text");
 		expect(textarea.rows).toEqual(2);
-		expect(textarea.value).toEqual("");
+		expect(textarea.value).toEqual("This is an example note.");
 	});
 
 	it('accepts user input', async () => {

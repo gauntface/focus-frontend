@@ -31,15 +31,15 @@ const Day: NextPage = () => {
 	const [notes, setNotes] = useState<string>('');
 
 	useEffect(() => {
-		setPriorities(getEmptyPriorities());
-		setNotes('');
-
 		// TODO: Handle no user correctly.
 		if (!user) {
 			throw new Error(`User is undefined`);
 		}
 
 		(async () => {
+			setPriorities(getEmptyPriorities());
+			setNotes('');
+
 			const [ps, ns] = await Promise.all([
 				getDailyPriorities(user, date),
 				getDailyNotes(user, date),

@@ -6,18 +6,17 @@ export function NotesArea(props: NotesAreaProps) {
 		props.onChange(e.target.value);
 	};
 
+	let skeleton: JSX.Element|undefined;
 	if (props.loading) {
-		return (
-			<div data-replicated-value={props.note} className={styles['c-notesarea']}>
-				<textarea disabled={true} rows={props.rows} className={styles['c-notesarea__textarea']}></textarea>
-				<div className={`${styles['c-notesarea--skeleton']}`}></div>
-			</div>
+		skeleton =(
+			<div className={`${styles['c-notesarea--skeleton']}`}></div>
 		);
 	}
 
 	return (
 		<div data-replicated-value={props.note} className={styles['c-notesarea']}>
-			<textarea name={`${props.name}-text`} onChange={(e) => handleChange(e)}  rows={props.rows} value={props.note} className={styles['c-notesarea__textarea']}></textarea>
+			<textarea name={`${props.name}-text`} onChange={(e) => handleChange(e)}  rows={props.rows} value={props.note} className={styles['c-notesarea__textarea']} disabled={props.loading}></textarea>
+			{skeleton}
 		</div>
 	);
 }
