@@ -10,4 +10,9 @@
 	--orange: #fbb03b;
 	--orange-lighten: #fcc062;
 	--orange-darken: #fa9e0d;
+
+	/* The following vars are to alter toastify */
+	--toastify-color-light: var(--pink);
+	--toastify-text-color-light: var(--navy);
+	--toastify-color-success: var(--navy);
 }

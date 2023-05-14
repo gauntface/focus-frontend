@@ -29,18 +29,14 @@ export async function getDailyPriorities(user: User, d: moment.Moment): Promise<
 }
 
 export async function setDailyPriorities(user: User, d: moment.Moment, priorities: Array<DailyPriority>) {
-	try {
-		const token = await user.getIdToken();
-		await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${d.format('YYYY-MM-DD')}`, {
-			method: 'post',
-			headers: {
-				Authorization: `Bearer ${token}`
-			},
-			body: JSON.stringify(priorities),
-		});
-	} catch (err) {
-		console.error(`Fetch request failed: `, err);
-	}
+	const token = await user.getIdToken();
+	await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${d.format('YYYY-MM-DD')}`, {
+		method: 'post',
+		headers: {
+			Authorization: `Bearer ${token}`
+		},
+		body: JSON.stringify(priorities),
+	});
 }
 
 export async function getPrioritiesForDates(user: User, start: moment.Moment, end: moment.Moment): Promise<Array<DatePriorities>> {
