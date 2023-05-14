@@ -3,6 +3,7 @@ import Head from 'next/head';
 import moment from 'moment';
 import { useRouter } from 'next/router';
 import {useEffect, useState} from 'react';
+import { toast } from "react-toastify";
 
 import { DailyPriority, getDailyPriorities, setDailyPriorities } from "../../models/priorities";
 import {getDailyNotes, setDailyNotes} from "../../models/notes";
@@ -12,6 +13,9 @@ import { Footer } from '../../components/Footer/Footer';
 import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
 import { QuarterTracker } from "../../components/QuarterTracker/QuarterTracker";
+
+const DATE_PAGE_TOAST_ID = 'DatePageToastID';
+const SAVE_TIMEOUT_MS = 2000;
 
 let priorityTimeoutID: NodeJS.Timeout;
 let notesTimeoutID: NodeJS.Timeout;
@@ -59,6 +63,15 @@ const Day: NextPage = () => {
 			return;
 		}
 
+		toast.info("Tasks will be saved shortly", {
+			icon: '✏️',
+			hideProgressBar: false,
+			closeButton: false,
+			toastId: DATE_PAGE_TOAST_ID,
+			autoClose: false,
+		});
+
+
 		const ps = [...priorities];
 		ps[idx].note = e;
 		setPriorities(ps);
@@ -70,12 +83,19 @@ const Day: NextPage = () => {
 				return;
 			}
 
-			try {
-				await setDailyPriorities(user, date, ps);
-			} catch(err) {
-				console.error('Failed to set daily priorities: ', e);
-			}
-		}, 2000);
+			toast.dismiss(DATE_PAGE_TOAST_ID);
+			toast.promise(
+				setDailyPriorities(user, date, ps),
+				{
+					pending: 'Saving tasks...',
+					success: {
+						render: 'Tasks saved',
+						autoClose: 1200,
+					},
+					error: 'Failed to save tasks'
+				}
+			);
+		}, SAVE_TIMEOUT_MS);
 	}
 
 	function onNotesChange(e: string) {
