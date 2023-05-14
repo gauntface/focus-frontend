@@ -13,8 +13,8 @@ import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
 import { QuarterTracker } from "../../components/QuarterTracker/QuarterTracker";
 
-// TODO: This is turned gnarly with handling the User | null types.
-//       Please tidy up this logic.
+let priorityTimeoutID: NodeJS.Timeout;
+let notesTimeoutID: NodeJS.Timeout;
 
 const Day: NextPage = () => {
 	const {user} = useAuth();
@@ -52,7 +52,6 @@ const Day: NextPage = () => {
 		throw new Error(`User is undefined`);
 	}
 
-	let priorityTimeoutID: NodeJS.Timeout;
 	function onDailyPriorityChange(idx: number, e: string) {
 		if (priorities[idx].note == e) {
 			// Do not set priorities and trigger hooks if
@@ -79,7 +78,6 @@ const Day: NextPage = () => {
 		}, 2000);
 	}
 
-	let notesTimeoutID: NodeJS.Timeout;
 	function onNotesChange(e: string) {
 		if (notes == e) {
 			return;
