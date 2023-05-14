@@ -30,7 +30,8 @@
 	border-color: var(--pink);
 	border-style: solid;
 	border-width: var(--border-width-m);
-	padding: clamp(1rem, 2vw, 2rem);
+	padding: clamp(0.6rem, 1vw, 2rem);
+	word-break: break-word;
 }
 
 .c-wt__missing-tasks,
@@ -61,7 +62,7 @@
 	font-size: clamp(0.7rem, 2vw, 1rem);
 }
 
-@container (width >=700px) {
+@container (width >=880px) {
 	.c-wt__week-section {
 		width: var(--large-width);
 		flex-direction: row;
