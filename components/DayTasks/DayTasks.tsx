@@ -10,8 +10,8 @@ export function DayTasks({priorities, notes, loading, onNotesChange, onDailyPrio
 					<h3>Tasks</h3>
 					<ol className={styles['c-dt__tasks-list']}>
 						{priorities.map((priority: DailyPriority, idx: number) => {
-							return (<li key={idx} className={styles['c-dt__task']}>
-								<NotesArea name={`priority-${idx}`} note={priority.note} onChange={(s: string) => onDailyPriorityChange(idx, s)} rows={1} loading={loading} />
+							return (<li key={`task-li-${idx}`} className={styles['c-dt__task']}>
+								<NotesArea key={`task-${idx}`} name={`priority-${idx}`} note={priority.note} onChange={(s: string) => onDailyPriorityChange(idx, s)} rows={1} loading={loading} />
 							</li>);
 						})}
 					</ol>

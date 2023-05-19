@@ -2,8 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import {useEffect, useState} from 'react';
-import { toast } from "react-toastify";
+import {useEffect, useState, useRef} from 'react';
 
 import { DailyPriority, getDailyPriorities, setDailyPriorities } from "../../models/priorities";
 import {getDailyNotes, setDailyNotes} from "../../models/notes";
@@ -13,111 +12,85 @@ import { Footer } from '../../components/Footer/Footer';
 import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
 import { QuarterTracker } from "../../components/QuarterTracker/QuarterTracker";
+import { DelayAPI } from '../../utils/useDelayedState';
 
-const DATE_PAGE_TOAST_ID = 'DatePageToastID';
 const SAVE_TIMEOUT_MS = 2000;
 
-let priorityTimeoutID: NodeJS.Timeout;
-let notesTimeoutID: NodeJS.Timeout;
+const tasksDelay = new DelayAPI(SAVE_TIMEOUT_MS, 'DatePageSaveTasks', {
+	pending: 'Saving tasks...',
+	success: {
+		render: 'Tasks saved',
+		autoClose: 1200,
+	},
+	error: 'Failed to save tasks'
+});
+const notesDelay = new DelayAPI(SAVE_TIMEOUT_MS, 'DatePageSaveNotes', {
+	pending: 'Saving notes...',
+	success: {
+		render: 'Notes saved',
+		autoClose: 1200,
+	},
+	error: 'Failed to save notes',
+});
 
 const Day: NextPage = () => {
 	const {user} = useAuth();
-	const router = useRouter();
-	const dateString = router.query.date;
-	const date = moment(dateString);
+	const {query, isReady} = useRouter();
 
 	const [loading, setLoading] = useState<boolean>(true);
 	const [priorities, setPriorities] = useState<Array<DailyPriority>>(getEmptyPriorities());
 	const [notes, setNotes] = useState<string>('');
 
+	const dateString = query.date;
+	const dateRef = useRef(dateString);
+
 	useEffect(() => {
-		// TODO: Handle no user correctly.
-		if (!user) {
-			throw new Error(`User is undefined`);
+		if (!isReady) {
+			return;
 		}
+
+		dateRef.current = dateString;
+		setLoading(true);
 
 		(async () => {
 			setPriorities(getEmptyPriorities());
 			setNotes('');
 
+			const date = moment(dateString);
 			const [ps, ns] = await Promise.all([
 				getDailyPriorities(user, date),
 				getDailyNotes(user, date),
 			]);
+
+			if (dateRef.current != dateString) {
+				return;
+			}
+
 			setPriorities(ps);
 			setNotes(ns);
 			setLoading(false);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dateString]);
+	}, [dateString, isReady]);
 
-	// TODO: Handle no user correctly.
-	if (!user) {
-		throw new Error(`User is undefined`);
-	}
+	const date = moment(dateString);
 
 	function onDailyPriorityChange(idx: number, e: string) {
-		if (priorities[idx].note == e) {
-			// Do not set priorities and trigger hooks if
-			// nothing has acutally changed.
-			return;
-		}
-
-		toast.info("Tasks will be saved shortly", {
-			icon: '✏️',
-			hideProgressBar: false,
-			closeButton: false,
-			toastId: DATE_PAGE_TOAST_ID,
-			autoClose: false,
-		});
-
-
 		const ps = [...priorities];
 		ps[idx].note = e;
 		setPriorities(ps);
 
-		clearTimeout(priorityTimeoutID);
-		priorityTimeoutID = setTimeout(async () => {
-			// TODO: Handle no user correctly.
-			if (!user) {
-				return;
-			}
-
-			toast.dismiss(DATE_PAGE_TOAST_ID);
-			toast.promise(
-				setDailyPriorities(user, date, ps),
-				{
-					pending: 'Saving tasks...',
-					success: {
-						render: 'Tasks saved',
-						autoClose: 1200,
-					},
-					error: 'Failed to save tasks'
-				}
-			);
-		}, SAVE_TIMEOUT_MS);
+		tasksDelay.queue(async () => {
+			await setDailyPriorities(user, date, ps);
+		});
 	}
 
 	function onNotesChange(e: string) {
-		if (notes == e) {
-			return;
-		}
-
 		setNotes(e);
 
-		clearTimeout(notesTimeoutID);
-		notesTimeoutID = setTimeout(async () => {
-			// TODO: Handle no user correctly.
-			if (!user) {
-				return;
-			}
-
-			try {
-				await setDailyNotes(user, date, e);
-			} catch(err) {
-				console.error('Failed to set daily notes: ', e);
-			}
-		}, 2000);
+		notesDelay.queue(async () => {
+			await setDailyNotes(user, date, e);
+		});
 	}
 
 	return (

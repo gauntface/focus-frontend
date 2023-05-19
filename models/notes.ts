@@ -1,7 +1,11 @@
 import moment from "moment";
 import {User} from 'firebase/auth';
 
-export async function getDailyNotes(user: User, d: moment.Moment): Promise<string> {
+export async function getDailyNotes(user: User|null, d: moment.Moment): Promise<string> {
+	if (!user) {
+		throw new Error(`User is undefined`);
+	}
+
 	let notes = '';
 	try {
 		const token = await user.getIdToken();
@@ -21,7 +25,11 @@ export async function getDailyNotes(user: User, d: moment.Moment): Promise<strin
 	return notes;
 }
 
-export async function setDailyNotes(user: User, d: moment.Moment, notes: string) {
+export async function setDailyNotes(user: User|null, d: moment.Moment, notes: string) {
+	if (!user) {
+		throw new Error(`User is undefined`);
+	}
+
 	try {
 		const token = await user.getIdToken();
 		await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/notes/forday/${d.format('YYYY-MM-DD')}`, {

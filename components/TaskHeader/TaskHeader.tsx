@@ -77,12 +77,10 @@ function dateHeading(selectedView: ViewSelection, date: moment.Moment) {
 		const end = moment(date.endOf('week')).subtract(1, 'd');
 		return `${start.format('MMMM Do YYYY')} - ${end.format('MMMM Do YYYY')}`;
 	}
-	default:
-		return '';
 	}
 }
 
-function getFirstName(user: TaskHeaderUser) {
+function getFirstName(user: TaskHeaderUser|null) {
 	if (!user || !user.displayName) {
 		return '';
 	}
@@ -95,7 +93,7 @@ function getFirstName(user: TaskHeaderUser) {
 	return name;
 }
 
-function getIntro(user: TaskHeaderUser) {
+function getIntro(user: TaskHeaderUser|null) {
 	const fn = getFirstName(user);
 	if (!fn) {
 		return (<></>);
@@ -105,14 +103,18 @@ function getIntro(user: TaskHeaderUser) {
 	);
 }
 
-export type ViewSelection = 'day' | 'week' | 'quarter';
+export type ViewSelection = 'day' | 'week'; // | 'quarter';
 
 interface TaskHeaderProps {
   date: moment.Moment;
-  user: TaskHeaderUser;
+  user: TaskHeaderUser|null;
   selectedView: ViewSelection;
 }
 
 interface TaskHeaderUser {
 	displayName: string | null;
+}
+
+function assertUnreachable(x: never): never {
+	throw new Error("Didn't expect to get here");
 }

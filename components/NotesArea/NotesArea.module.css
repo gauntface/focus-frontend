@@ -6,12 +6,16 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 .c-notesarea {
 	--lh: 2rem;
 
-	display: grid;
-	position: relative;
 	font-size: calc(var(--lh) * 0.6);
+	text-align: start;
 }
 
-.c-notesarea::after {
+.c-notesarea__growing-textarea {
+	display: grid;
+	position: relative;
+}
+
+.c-notesarea__growing-textarea::after {
 	/* Note the weird space! Needed to preventy jumpy behavior */
 	content: attr(data-replicated-value) " ";
 
@@ -31,7 +35,7 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 }
 
 .c-notesarea__textarea,
-.c-notesarea::after {
+.c-notesarea__growing-textarea::after {
 	/* The styles for the ::after element must match the textarea */
 	width: 100%;
 	background: none;
@@ -43,7 +47,6 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 	font-size: 1.2rem;
 	font-family: var(--default-family);
 	font-weight: 500;
-	text-align: start;
 	line-height: var(--lh);
 	background-size: 100% var(--lh);
 	background-attachment: local;
@@ -58,10 +61,11 @@ https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
 
 .c-notesarea--skeleton {
 	display: inline-block;
-	inset: 0;
-	position: absolute;
+	height: calc(var(--lh) - 8px);
+	margin: 4px 0;
+	position: relative;
 	overflow: hidden;
-	background-color: none;
+	background-color: var(--mid-pink);
 	border-radius: 1rem;
 }
 

@@ -8,12 +8,14 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { FocusAuthProvider } from '../contexts/Auth';
 import { ToastContainer } from "react-toastify";
+import { User } from "firebase/auth";
+import { NextComponentType } from "next";
 
 
-function MyApp({
+function FocusApp({
 	Component,
 	pageProps: { ...pageProps }
-}: AppProps) {
+}: CustomAppProps) {
 	return <FocusAuthProvider>
 		<Component {...pageProps} />
 		<ToastContainer
@@ -23,4 +25,9 @@ function MyApp({
 	</FocusAuthProvider>;
 }
 
-export default MyApp;
+export default FocusApp ;
+
+//Add custom appProp type then use union to add it
+type CustomAppProps = AppProps & {
+  Component: NextComponentType & {auth?: User}
+}
