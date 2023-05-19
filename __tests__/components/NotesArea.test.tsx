@@ -36,20 +36,19 @@ describe('NotesArea', () => {
 
 	it('renders NotesArea disabled while loading', () => {
 		const changeMock = jest.fn();
-		const { container } = render(<NotesArea loading={true} note="This is an example note." name="example" rows={2} onChange={changeMock} />);
+		const { container } = render(<NotesArea loading={true} note="This is an example note." name="example" rows={50} onChange={changeMock} />);
 
 		const notesareaDiv = container.querySelector('.c-notesarea') as HTMLElement;
 		expect(notesareaDiv).toBeTruthy();
 
 		const textarea = notesareaDiv.querySelector('textarea') as HTMLTextAreaElement;
-		expect(textarea).toBeTruthy();
-		expect(textarea.disabled).toEqual(true);
-		expect(textarea.name).toEqual("example-text");
-		expect(textarea.rows).toEqual(2);
-		expect(textarea.value).toEqual("This is an example note.");
+		expect(textarea).toBeFalsy();
+
+		const skeletonDivs = notesareaDiv.querySelectorAll('.c-notesarea--skeleton') as NodeListOf<HTMLElement>;
+		expect(skeletonDivs.length).toEqual(50);
 	});
 
-	it('accepts user input', async () => {
+	it('accepts user input with no existing note', async () => {
 		const user = userEvent.setup();
 
 		const changeMock = jest.fn();
@@ -72,7 +71,7 @@ describe('NotesArea', () => {
 		expect(changeMock.mock.lastCall).toEqual(["."]);
 	});
 
-	it('accepts user input', async () => {
+	it('accepts user input updating note', async () => {
 		const user = userEvent.setup();
 
 		let note = "";

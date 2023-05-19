@@ -22,4 +22,32 @@ describe('TaskHeader', () => {
 		const date = screen.getByText("Monday, January 2nd 2006");
 		expect(date).toBeTruthy();
 	});
+
+	it('renders header with date for week view', () => {
+		const { container } = render(<TaskHeader date={moment("2006-01-02")} user={{displayName: "Firstname Lastname"}} selectedView='week' />);
+
+		const title = screen.getByText('Firstname');
+		expect(title).toBeTruthy();
+
+		const date = screen.getByText("January 2nd 2006 - January 6th 2006");
+		expect(date).toBeTruthy();
+
+		const viewBtn = container.querySelector('.c-task-header__task--selected') as HTMLAnchorElement;
+		expect(viewBtn).toBeTruthy();
+		expect(viewBtn.href).toEqual("http://localhost/week/2006/1");
+	});
+
+	it('renders header with date for week view', () => {
+		const { container } = render(<TaskHeader date={moment("2006-01-02")} user={{displayName: "Firstname Lastname"}} selectedView='week' />);
+
+		const title = screen.getByText('Firstname');
+		expect(title).toBeTruthy();
+
+		const date = screen.getByText("January 2nd 2006 - January 6th 2006");
+		expect(date).toBeTruthy();
+
+		const viewBtn = container.querySelector('.c-task-header__task--selected') as HTMLAnchorElement;
+		expect(viewBtn).toBeTruthy();
+		expect(viewBtn.href).toEqual("http://localhost/week/2006/1");
+	});
 });

@@ -1,7 +1,11 @@
 import moment from "moment";
 import {User} from 'firebase/auth';
 
-export async function getDailyPriorities(user: User, d: moment.Moment): Promise<Array<DailyPriority>> {
+export async function getDailyPriorities(user: User|null, d: moment.Moment): Promise<Array<DailyPriority>> {
+	if (!user) {
+		throw new Error(`User is undefined`);
+	}
+
 	let priorities: Array<DailyPriority> = [];
 	try {
 		const token = await user.getIdToken();
@@ -28,7 +32,11 @@ export async function getDailyPriorities(user: User, d: moment.Moment): Promise<
 	return priorities;
 }
 
-export async function setDailyPriorities(user: User, d: moment.Moment, priorities: Array<DailyPriority>) {
+export async function setDailyPriorities(user: User|null, d: moment.Moment, priorities: Array<DailyPriority>) {
+	if (!user) {
+		throw new Error(`User is not defined`);
+	}
+
 	const token = await user.getIdToken();
 	await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${d.format('YYYY-MM-DD')}`, {
 		method: 'post',
