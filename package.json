@@ -20,6 +20,7 @@
     "screenshots": "node ./take-screenshots.js"
   },
   "dependencies": {
+    "date-fns": "2.30.0",
     "firebase": "9.22.2",
     "moment": "2.29.4",
     "next": "^13.2.4",

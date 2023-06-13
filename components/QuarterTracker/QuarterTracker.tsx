@@ -1,6 +1,6 @@
 import styles from './QuarterTracker.module.css';
 
-import moment from 'moment';
+import {getQuarter, startOfQuarter, endOfQuarter, differenceInCalendarWeeks, format} from 'date-fns';
 
 export function QuarterTracker(props: Props) {
 	const d = props.date;
@@ -10,7 +10,7 @@ export function QuarterTracker(props: Props) {
 	};
 	return (
 		<div className={styles['c-qt']}>
-			<div>Progress in Q{d.quarter()} &apos;{d.format('YY')}</div>
+			<div>Progress in Q{getQuarter(d)} &apos;{format(d, 'yy')}</div>
 			<div>{progress.currentWeek + 1} of {progress.weeksInQuarter}</div>
 			<div className={styles['c-qt__bar']}>
 				<div className={styles['c-qt__prog']} style={progressStyles}></div>
@@ -19,11 +19,11 @@ export function QuarterTracker(props: Props) {
 	);
 }
 
-function progressDetails(dayViewed: moment.Moment) {
-	const start = moment(dayViewed).quarter(dayViewed.quarter()).startOf('quarter');
-	const end = moment(dayViewed).quarter(dayViewed.quarter()).endOf('quarter');
-	const weeks = end.diff(start, 'weeks');
-	const currentWeek = dayViewed.diff(start, 'weeks');
+function progressDetails(dayViewed: Date) {
+	const start = startOfQuarter(dayViewed);
+	const end = endOfQuarter(dayViewed);
+	const weeks = differenceInCalendarWeeks(end, start);
+	const currentWeek = differenceInCalendarWeeks(dayViewed, start);
 	return {
 		percentage: Math.round((currentWeek / weeks) * 100),
 		weeksInQuarter: weeks,
@@ -32,5 +32,5 @@ function progressDetails(dayViewed: moment.Moment) {
 }
 
 interface Props {
-  date: moment.Moment;
+  date: Date;
 }
