@@ -114,7 +114,3 @@ interface TaskHeaderProps {
 interface TaskHeaderUser {
 	displayName: string | null;
 }
-
-function assertUnreachable(x: never): never {
-	throw new Error("Didn't expect to get here");
-}
