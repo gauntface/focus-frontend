@@ -23,7 +23,7 @@ const Day: NextPage = () => {
 
 			<div>
 				<TaskHeader user={user} date={date} selectedView="day" />
-				<QuarterTracker date={date} />
+				<QuarterTracker date={date.toDate()} />
 				<DayTasks priorities={demoPriorities()} notes={demoNotes()} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} loading={false} />
 			</div>
 		</div>
