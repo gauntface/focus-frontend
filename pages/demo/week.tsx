@@ -32,7 +32,7 @@ const Week: NextPage = () => {
 			<div>
 				<TaskHeader user={user} date={d.toDate()} selectedView="week" />
 				<QuarterTracker date={d.toDate()} />
-				<WeekSelector date={d} />
+				<WeekSelector date={d.toDate()} />
 				<WeekTasks datePriorities={demoDatePriorities()} />
 			</div>
 		</div>
@@ -42,10 +42,10 @@ const Week: NextPage = () => {
 function demoDatePriorities() {
 	return [
 		{
-			date: '2006-01-02',
+			date: new Date(2006, 0, 2),
 			priorities: [],
 		}, {
-			date: '2006-01-03',
+			date: new Date(2006, 0, 3),
 			priorities: [
 				{
 					note: 'Meeting with Anne about roadmap for the quarter',
@@ -59,7 +59,7 @@ function demoDatePriorities() {
 				},
 			],
 		}, {
-			date: '2006-01-04',
+			date: new Date(2006, 0, 4),
 			priorities: [
 				{
 					note: 'Team offsite 🎉',
@@ -70,7 +70,7 @@ function demoDatePriorities() {
 				}
 			],
 		}, {
-			date: '2006-01-05',
+			date: new Date(2006, 0, 5),
 			priorities: [
 				{
 					note: 'Implement auth plugin for deployment service',
@@ -84,7 +84,7 @@ function demoDatePriorities() {
 				},
 			],
 		}, {
-			date: '2006-01-06',
+			date: new Date(2006, 0, 6),
 			priorities: [
 				{
 					note: 'Finish off GitHub stats dashboard',

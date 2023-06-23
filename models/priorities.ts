@@ -1,5 +1,6 @@
 import moment from "moment";
 import {User} from 'firebase/auth';
+import {parse, format} from 'date-fns';
 
 export async function getDailyPriorities(user: User|null, d: moment.Moment): Promise<Array<DailyPriority>> {
 	if (!user) {
@@ -47,21 +48,22 @@ export async function setDailyPriorities(user: User|null, d: moment.Moment, prio
 	});
 }
 
-export async function getPrioritiesForDates(user: User, start: moment.Moment, end: moment.Moment): Promise<Array<DatePriorities>> {
+export async function getPrioritiesForDates(user: User, start: Date, end: Date): Promise<Array<DatePriorities>> {
 	let datePriorities: Array<DatePriorities> = [];
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/fordates/${start.format('YYYY-MM-DD')}/${end.format('YYYY-MM-DD')}`, {
+		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/fordates/${format(start, 'yyyy-MM-dd')}/${format(end, 'yyyy-MM-dd')}`, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			},
 		});
-		const data = await resp.json();
+		const data = (await resp.json() as PriorityResponse);
 		if (data.dates) {
-			datePriorities = data.dates as Array<DatePriorities>;
-			datePriorities = datePriorities.map(d => {
-				d.priorities = d.priorities.filter(p => p.note.length > 0);
-				return d;
+			datePriorities = data.dates.map(d => {
+				return {
+					date: parse(d.date, 'yyyy-MM-dd', new Date()),
+					priorities: d.priorities.filter(p => p.note.length > 0),
+				};
 			});
 		}
 	} catch (err) {
@@ -77,6 +79,13 @@ export interface DailyPriority {
 }
 
 export interface DatePriorities {
-  date: string;
+  date: Date;
   priorities: Array<DailyPriority>;
+}
+
+interface PriorityResponse {
+	dates: Array<{
+		date: string;
+		priorities: Array<DailyPriority>;
+	}>;
 }

@@ -3,18 +3,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './WeekTasks.module.css';
-import moment from 'moment';
+import {format} from 'date-fns';
 
 export function WeekTasks({datePriorities}: Props) {
+	console.log();
 	return (
 		<div className={styles['c-wt__wrapper']}>
 			<div id="c-wt" className={styles['c-wt']}>
 				<section className={styles['c-wt__week-section']}>
 					{datePriorities.map((dps: DatePriorities, idx: number) => {
-						const date = moment(dps.date);
+						const date = dps.date;
 						return (
 							<div className={styles['c-wt__day-section']} key={idx}>
-								<h3><Link href={`/day/${date.format('YYYY-MM-DD')}`} key={date.toString()}>{date.format('dddd')}<br/><span className={styles['c-wt__dayofmonth']}>{date.format('Do')}</span></Link></h3>
+								<h3><Link href={`/day/${format(date, 'yyyy-MM-dd')}`} key={date.toString()}>{format(date, 'dddd')}<br/><span className={styles['c-wt__dayofmonth']}>{format(date, 'do')}</span></Link></h3>
 								<ol className={styles['c-wt__tasks']}>
 									{dps.priorities.map((priority, idx) => {
 										return (<li key={idx} className={styles['c-wt__task-item']}>{priority.note}</li>);
@@ -30,7 +31,7 @@ export function WeekTasks({datePriorities}: Props) {
 	);
 }
 
-function addTasks(date: moment.Moment, priorities: Array<DailyPriority>) {
+function addTasks(date: Date, priorities: Array<DailyPriority>) {
 	if (priorities.length == 3) {
 		return (<></>);
 	}
@@ -38,7 +39,7 @@ function addTasks(date: moment.Moment, priorities: Array<DailyPriority>) {
 	if (priorities.length == 0) {
 		return (<div className={styles['c-wt__no-tasks']}>
 			<div>
-				You have no tasks for {date.format('dddd')}
+				You have no tasks for {format(date, 'dddd')}
 			</div>
 			{addTaskButton(date)}
 		</div>);
@@ -48,8 +49,8 @@ function addTasks(date: moment.Moment, priorities: Array<DailyPriority>) {
 	</div>);
 }
 
-function addTaskButton(date: moment.Moment) {
-	return (<Link className={styles['c-wt__add-task']} href={`/day/${date.format('YYYY-MM-DD')}`}>
+function addTaskButton(date: Date) {
+	return (<Link className={styles['c-wt__add-task']} href={`/day/${format(date, 'yyyy-MM-dd')}`}>
 		<Image width="18" height="18" src="/icons/add.svg" alt="Add task icon" />
 		Add Task</Link>);
 }
