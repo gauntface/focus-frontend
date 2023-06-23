@@ -102,7 +102,7 @@ const Day: NextPage = () => {
 			</Head>
 
 			<div>
-				<TaskHeader user={user} date={date} selectedView="day" />
+				<TaskHeader user={user} date={date.toDate()} selectedView="day" />
 				<QuarterTracker date={date.toDate()} />
 				<DayTasks priorities={priorities} notes={notes} loading={loading} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} />
 				<Footer />

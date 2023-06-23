@@ -1,11 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import '@testing-library/jest-dom';
-import moment from 'moment';
 
 describe('TaskHeader', () => {
 	it('renders header with intro and date', () => {
-		render(<TaskHeader date={moment("2006-01-02")} user={{displayName: "Firstname Lastname"}} selectedView='day' />);
+		render(<TaskHeader date={new Date(2006, 0, 2)} user={{displayName: "Firstname Lastname"}} selectedView='day' />);
 
 		const title = screen.getByText('Firstname');
 		expect(title).toBeTruthy();
@@ -15,7 +14,7 @@ describe('TaskHeader', () => {
 	});
 
 	it('renders header with date', () => {
-		render(<TaskHeader date={moment("2006-01-02")} user={{displayName: null}} selectedView='day' />);
+		render(<TaskHeader date={new Date(2006, 0, 2)} user={{displayName: null}} selectedView='day' />);
 
 		expect(() => screen.getByText('Hey, ')).toThrow();
 
@@ -24,7 +23,7 @@ describe('TaskHeader', () => {
 	});
 
 	it('renders header with date for week view', () => {
-		const { container } = render(<TaskHeader date={moment("2006-01-02")} user={{displayName: "Firstname Lastname"}} selectedView='week' />);
+		const { container } = render(<TaskHeader date={new Date(2006, 0, 2)} user={{displayName: "Firstname Lastname"}} selectedView='week' />);
 
 		const title = screen.getByText('Firstname');
 		expect(title).toBeTruthy();
@@ -38,7 +37,7 @@ describe('TaskHeader', () => {
 	});
 
 	it('renders header with date for week view', () => {
-		const { container } = render(<TaskHeader date={moment("2006-01-02")} user={{displayName: "Firstname Lastname"}} selectedView='week' />);
+		const { container } = render(<TaskHeader date={new Date(2006, 0, 2)} user={{displayName: "Firstname Lastname"}} selectedView='week' />);
 
 		const title = screen.getByText('Firstname');
 		expect(title).toBeTruthy();

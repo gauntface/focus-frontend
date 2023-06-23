@@ -30,7 +30,7 @@ const Week: NextPage = () => {
 			</Head>
 
 			<div>
-				<TaskHeader user={user} date={d} selectedView="week" />
+				<TaskHeader user={user} date={d.toDate()} selectedView="week" />
 				<QuarterTracker date={d.toDate()} />
 				<WeekSelector date={d} />
 				<WeekTasks datePriorities={demoDatePriorities()} />
