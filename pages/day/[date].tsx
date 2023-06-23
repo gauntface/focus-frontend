@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import moment from 'moment';
+import {parseISO} from 'date-fns';
+
 import { useRouter } from 'next/router';
 import {useEffect, useState, useRef} from 'react';
 
@@ -41,7 +42,7 @@ const Day: NextPage = () => {
 	const [priorities, setPriorities] = useState<Array<DailyPriority>>(getEmptyPriorities());
 	const [notes, setNotes] = useState<string>('');
 
-	const dateString = query.date;
+	const dateString = query.date as string;
 	const dateRef = useRef(dateString);
 
 	useEffect(() => {
@@ -56,7 +57,7 @@ const Day: NextPage = () => {
 			setPriorities(getEmptyPriorities());
 			setNotes('');
 
-			const date = moment(dateString);
+			const date = parseISO(dateString);
 			const [ps, ns] = await Promise.all([
 				getDailyPriorities(user, date),
 				getDailyNotes(user, date),
@@ -73,7 +74,7 @@ const Day: NextPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dateString, isReady]);
 
-	const date = moment(dateString);
+	const date = parseISO(dateString);
 
 	function onDailyPriorityChange(idx: number, e: string) {
 		const ps = [...priorities];
@@ -102,8 +103,8 @@ const Day: NextPage = () => {
 			</Head>
 
 			<div>
-				<TaskHeader user={user} date={date.toDate()} selectedView="day" />
-				<QuarterTracker date={date.toDate()} />
+				<TaskHeader user={user} date={date} selectedView="day" />
+				<QuarterTracker date={date} />
 				<DayTasks priorities={priorities} notes={notes} loading={loading} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} />
 				<Footer />
 			</div>

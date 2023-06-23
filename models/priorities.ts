@@ -1,8 +1,9 @@
-import moment from "moment";
 import {User} from 'firebase/auth';
 import {parse, format} from 'date-fns';
 
-export async function getDailyPriorities(user: User|null, d: moment.Moment): Promise<Array<DailyPriority>> {
+const API_DATE_FORMAT = 'yyyy-MM-dd';
+
+export async function getDailyPriorities(user: User|null, d: Date): Promise<Array<DailyPriority>> {
 	if (!user) {
 		throw new Error(`User is undefined`);
 	}
@@ -10,7 +11,7 @@ export async function getDailyPriorities(user: User|null, d: moment.Moment): Pro
 	let priorities: Array<DailyPriority> = [];
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${d.format('YYYY-MM-DD')}`, {
+		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
@@ -33,13 +34,13 @@ export async function getDailyPriorities(user: User|null, d: moment.Moment): Pro
 	return priorities;
 }
 
-export async function setDailyPriorities(user: User|null, d: moment.Moment, priorities: Array<DailyPriority>) {
+export async function setDailyPriorities(user: User|null, d: Date, priorities: Array<DailyPriority>) {
 	if (!user) {
 		throw new Error(`User is not defined`);
 	}
 
 	const token = await user.getIdToken();
-	await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${d.format('YYYY-MM-DD')}`, {
+	await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
 		method: 'post',
 		headers: {
 			Authorization: `Bearer ${token}`
@@ -52,7 +53,7 @@ export async function getPrioritiesForDates(user: User, start: Date, end: Date):
 	let datePriorities: Array<DatePriorities> = [];
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/fordates/${format(start, 'yyyy-MM-dd')}/${format(end, 'yyyy-MM-dd')}`, {
+		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/fordates/${format(start, API_DATE_FORMAT)}/${format(end, API_DATE_FORMAT)}`, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			},

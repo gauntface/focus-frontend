@@ -1,7 +1,9 @@
-import moment from "moment";
 import {User} from 'firebase/auth';
+import {format} from 'date-fns';
 
-export async function getDailyNotes(user: User|null, d: moment.Moment): Promise<string> {
+const API_DATE_FORMAT = 'yyyy-MM-dd';
+
+export async function getDailyNotes(user: User|null, d: Date): Promise<string> {
 	if (!user) {
 		throw new Error(`User is undefined`);
 	}
@@ -9,7 +11,7 @@ export async function getDailyNotes(user: User|null, d: moment.Moment): Promise<
 	let notes = '';
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/notes/forday/${d.format('YYYY-MM-DD')}`, {
+		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/notes/forday/${format(d, API_DATE_FORMAT)}`, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
@@ -25,14 +27,14 @@ export async function getDailyNotes(user: User|null, d: moment.Moment): Promise<
 	return notes;
 }
 
-export async function setDailyNotes(user: User|null, d: moment.Moment, notes: string) {
+export async function setDailyNotes(user: User|null, d: Date, notes: string) {
 	if (!user) {
 		throw new Error(`User is undefined`);
 	}
 
 	try {
 		const token = await user.getIdToken();
-		await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/notes/forday/${d.format('YYYY-MM-DD')}`, {
+		await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/notes/forday/${format(d, API_DATE_FORMAT)}`, {
 			method: 'post',
 			headers: {
 				Authorization: `Bearer ${token}`

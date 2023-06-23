@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-
-import moment from 'moment';
+import {parse} from 'date-fns';
 
 import {WeekTasks} from '../../components/WeekTasks/WeekTasks';
 import { WeekSelector } from '../../components/WeekSelector/WeekSelector';
@@ -15,11 +14,12 @@ const Week: NextPage = () => {
 
 	const yearNum = 2006;
 	const weekNum = 3;
-
-	const d = moment(`${yearNum}W${weekNum.toLocaleString('en-US', {
+	const weekStr = weekNum.toLocaleString('en-US', {
 		minimumIntegerDigits: 2,
 		useGrouping: false
-	})}`);
+	});
+
+	const d = parse(`${yearNum} ${weekStr}`, 'yyyy ww', new Date());
 
 	return (
 		<div>
@@ -30,9 +30,9 @@ const Week: NextPage = () => {
 			</Head>
 
 			<div>
-				<TaskHeader user={user} date={d.toDate()} selectedView="week" />
-				<QuarterTracker date={d.toDate()} />
-				<WeekSelector date={d.toDate()} />
+				<TaskHeader user={user} date={d} selectedView="week" />
+				<QuarterTracker date={d} />
+				<WeekSelector date={d} />
 				<WeekTasks datePriorities={demoDatePriorities()} />
 			</div>
 		</div>
