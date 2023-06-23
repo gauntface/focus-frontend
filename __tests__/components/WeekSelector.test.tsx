@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { WeekSelector } from '../../components/WeekSelector/WeekSelector';
 import '@testing-library/jest-dom';
-import moment from 'moment';
 
 jest.mock('next/router', () => {
 	return {
@@ -11,7 +10,7 @@ jest.mock('next/router', () => {
 
 describe('WeekSelector', () => {
 	it('renders week selector', () => {
-		render(<WeekSelector date={moment("2006-01-02")} />);
+		render(<WeekSelector date={new Date(2006, 0, 2)} />);
 
 		// Check sign in button
 		const prevWeekBtn = screen.getByLabelText('Previous week');

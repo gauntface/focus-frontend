@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import moment from 'moment';
+import {add, sub, startOfWeek, endOfWeek, parse, getYear, getWeek} from 'date-fns';
 import {useEffect, useState} from 'react';
 import { DatePriorities, getPrioritiesForDates } from '../../../models/priorities';
 import {withAuth} from '../../../utils/withAuth';
@@ -22,20 +22,23 @@ const Week: NextPage = () => {
 
 	let yearNum: number, weekNum: number;
 	if (typeof year !== 'string') {
-		yearNum = moment().year();
+		yearNum = getYear(new Date());
 	} else {
 		yearNum = parseInt(year, 10);
 	}
 
 	if (typeof week !== 'string') {
-		weekNum = moment().week();
+		weekNum = getWeek(new Date());
 	} else {
 		weekNum = parseInt(week, 10);
 	}
-	const date = moment(`${yearNum}W${weekNum.toLocaleString('en-US', {
+	const weekStr = weekNum.toLocaleString('en-US', {
 		minimumIntegerDigits: 2,
 		useGrouping: false
-	})}`);
+	});
+	const date = parse(`${yearNum} ${weekStr}`, 'YYYY ww', new Date(), {
+		useAdditionalWeekYearTokens: true,
+	});
 
 	const [datePriorities, setDatePriorities] = useState<Array<DatePriorities>>(getEmptyWeekDetails(date));
 
@@ -77,7 +80,7 @@ const Week: NextPage = () => {
 
 			<div>
 				<TaskHeader user={user} date={date} selectedView="week" />
-				<QuarterTracker date={date.toDate()} />
+				<QuarterTracker date={date} />
 				<WeekSelector date={date} />
 				<WeekTasks datePriorities={datePriorities} />
 				<Footer />
@@ -86,18 +89,18 @@ const Week: NextPage = () => {
 	);
 };
 
-function getWeekDates(date: moment.Moment) {
-	const start = moment(date.startOf('week')).add(1, 'd');
-	const end = moment(date.endOf('week')).subtract(1, 'd');
+function getWeekDates(date: Date) {
+	const start = add(startOfWeek(date), {days: 1});
+	const end = sub(endOfWeek(date), {days: 1});
 	return {start, end};
 }
 
-function getEmptyWeekDetails(date: moment.Moment) {
+function getEmptyWeekDetails(date: Date): Array<DatePriorities> {
 	const {start} = getWeekDates(date);
-	const week = Array(5).fill({});
+	const week: Array<DatePriorities> = Array(5).fill({});
 	for (let i = 0; i < week.length; i++) {
 		week[i] = {
-			date: moment(start).add(i, 'd'),
+			date: add(start, {days: i}),
 			priorities: [],
 		};
 	}

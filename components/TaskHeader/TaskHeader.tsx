@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import moment from 'moment';
+
+import {startOfWeek, endOfWeek, add, sub, format, getWeek, getYear} from 'date-fns';
 
 import styles from "./TaskHeader.module.css";
 
@@ -16,7 +17,7 @@ export function TaskHeader({user, date, selectedView}: TaskHeaderProps) {
 			text: 'Weekly',
 			img: (<Image width="28" height="28" src="/icons/week-view.svg" alt="Week view icon" />),
 			view: 'week' as ViewSelection,
-			link: `/week/${date.year()}/${date.week()}`,
+			link: `/week/${getYear(date)}/${getWeek(date)}`,
 		},
 		/* {
       text: 'Quarter',
@@ -68,14 +69,14 @@ export function TaskHeader({user, date, selectedView}: TaskHeaderProps) {
 	);
 }
 
-function dateHeading(selectedView: ViewSelection, date: moment.Moment) {
+function dateHeading(selectedView: ViewSelection, date: Date) {
 	switch (selectedView) {
 	case 'day':
-		return date.format('dddd, MMMM Do YYYY');
+		return format(date, 'EEEE, MMMM do yyyy');
 	case 'week': {
-		const start = moment(date.startOf('week')).add(1, 'd');
-		const end = moment(date.endOf('week')).subtract(1, 'd');
-		return `${start.format('MMMM Do YYYY')} - ${end.format('MMMM Do YYYY')}`;
+		const start = add(startOfWeek(date), {days: 1});
+		const end = sub(endOfWeek(date), {days: 1});
+		return `${format(start, 'MMMM do yyyy')} - ${format(end, 'MMMM do yyyy')}`;
 	}
 	}
 }
@@ -106,7 +107,7 @@ function getIntro(user: TaskHeaderUser|null) {
 export type ViewSelection = 'day' | 'week'; // | 'quarter';
 
 interface TaskHeaderProps {
-  date: moment.Moment;
+  date: Date;
   user: TaskHeaderUser|null;
   selectedView: ViewSelection;
 }

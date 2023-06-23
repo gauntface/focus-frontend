@@ -1,13 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import moment from 'moment';
 
 import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
 import { QuarterTracker } from "../../components/QuarterTracker/QuarterTracker";
 
 const Day: NextPage = () => {
-	const date = moment('2006-01-02');
+	const date = new Date(2006, 0, 2);
 
 	const user = {
 		displayName: `Ruffles Gaunt-Seo`,
@@ -23,7 +22,7 @@ const Day: NextPage = () => {
 
 			<div>
 				<TaskHeader user={user} date={date} selectedView="day" />
-				<QuarterTracker date={date.toDate()} />
+				<QuarterTracker date={date} />
 				<DayTasks priorities={demoPriorities()} notes={demoNotes()} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} loading={false} />
 			</div>
 		</div>

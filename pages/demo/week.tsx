@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-
-import moment from 'moment';
+import {parse} from 'date-fns';
 
 import {WeekTasks} from '../../components/WeekTasks/WeekTasks';
 import { WeekSelector } from '../../components/WeekSelector/WeekSelector';
@@ -15,11 +14,14 @@ const Week: NextPage = () => {
 
 	const yearNum = 2006;
 	const weekNum = 3;
-
-	const d = moment(`${yearNum}W${weekNum.toLocaleString('en-US', {
+	const weekStr = weekNum.toLocaleString('en-US', {
 		minimumIntegerDigits: 2,
 		useGrouping: false
-	})}`);
+	});
+
+	const d = parse(`${yearNum} ${weekStr}`, 'YYYY ww', new Date(), {
+		useAdditionalWeekYearTokens: true,
+	});
 
 	return (
 		<div>
@@ -31,7 +33,7 @@ const Week: NextPage = () => {
 
 			<div>
 				<TaskHeader user={user} date={d} selectedView="week" />
-				<QuarterTracker date={d.toDate()} />
+				<QuarterTracker date={d} />
 				<WeekSelector date={d} />
 				<WeekTasks datePriorities={demoDatePriorities()} />
 			</div>
@@ -42,10 +44,10 @@ const Week: NextPage = () => {
 function demoDatePriorities() {
 	return [
 		{
-			date: '2006-01-02',
+			date: new Date(2006, 0, 2),
 			priorities: [],
 		}, {
-			date: '2006-01-03',
+			date: new Date(2006, 0, 3),
 			priorities: [
 				{
 					note: 'Meeting with Anne about roadmap for the quarter',
@@ -59,7 +61,7 @@ function demoDatePriorities() {
 				},
 			],
 		}, {
-			date: '2006-01-04',
+			date: new Date(2006, 0, 4),
 			priorities: [
 				{
 					note: 'Team offsite 🎉',
@@ -70,7 +72,7 @@ function demoDatePriorities() {
 				}
 			],
 		}, {
-			date: '2006-01-05',
+			date: new Date(2006, 0, 5),
 			priorities: [
 				{
 					note: 'Implement auth plugin for deployment service',
@@ -84,7 +86,7 @@ function demoDatePriorities() {
 				},
 			],
 		}, {
-			date: '2006-01-06',
+			date: new Date(2006, 0, 6),
 			priorities: [
 				{
 					note: 'Finish off GitHub stats dashboard',
