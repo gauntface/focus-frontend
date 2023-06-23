@@ -57,7 +57,11 @@ const Day: NextPage = () => {
 			setPriorities(getEmptyPriorities());
 			setNotes('');
 
-			const date = parseISO(dateString);
+			let date = new Date();
+			if (dateString) {
+				date = parseISO(dateString);
+			}
+
 			const [ps, ns] = await Promise.all([
 				getDailyPriorities(user, date),
 				getDailyNotes(user, date),
@@ -74,7 +78,10 @@ const Day: NextPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dateString, isReady]);
 
-	const date = parseISO(dateString);
+	let date = new Date();
+	if (dateString) {
+		date = parseISO(dateString);
+	}
 
 	function onDailyPriorityChange(idx: number, e: string) {
 		const ps = [...priorities];

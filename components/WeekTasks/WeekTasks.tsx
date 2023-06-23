@@ -15,7 +15,7 @@ export function WeekTasks({datePriorities}: Props) {
 						const date = dps.date;
 						return (
 							<div className={styles['c-wt__day-section']} key={idx}>
-								<h3><Link href={`/day/${format(date, 'yyyy-MM-dd')}`} key={date.toString()}>{format(date, 'dddd')}<br/><span className={styles['c-wt__dayofmonth']}>{format(date, 'do')}</span></Link></h3>
+								<h3><Link href={`/day/${format(date, 'yyyy-MM-dd')}`} key={date.toString()}>{format(date, 'EEEE')}<br/><span className={styles['c-wt__dayofmonth']}>{format(date, 'do')}</span></Link></h3>
 								<ol className={styles['c-wt__tasks']}>
 									{dps.priorities.map((priority, idx) => {
 										return (<li key={idx} className={styles['c-wt__task-item']}>{priority.note}</li>);
@@ -39,7 +39,7 @@ function addTasks(date: Date, priorities: Array<DailyPriority>) {
 	if (priorities.length == 0) {
 		return (<div className={styles['c-wt__no-tasks']}>
 			<div>
-				You have no tasks for {format(date, 'dddd')}
+				You have no tasks for {format(date, 'EEEE')}
 			</div>
 			{addTaskButton(date)}
 		</div>);

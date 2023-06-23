@@ -19,7 +19,9 @@ const Week: NextPage = () => {
 		useGrouping: false
 	});
 
-	const d = parse(`${yearNum} ${weekStr}`, 'yyyy ww', new Date());
+	const d = parse(`${yearNum} ${weekStr}`, 'YYYY ww', new Date(), {
+		useAdditionalWeekYearTokens: true,
+	});
 
 	return (
 		<div>

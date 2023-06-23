@@ -36,7 +36,9 @@ const Week: NextPage = () => {
 		minimumIntegerDigits: 2,
 		useGrouping: false
 	});
-	const date = parse(`${yearNum} ${weekStr}`, 'yyyy ww', new Date());
+	const date = parse(`${yearNum} ${weekStr}`, 'YYYY ww', new Date(), {
+		useAdditionalWeekYearTokens: true,
+	});
 
 	const [datePriorities, setDatePriorities] = useState<Array<DatePriorities>>(getEmptyWeekDetails(date));
 
