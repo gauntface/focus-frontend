@@ -13,7 +13,7 @@ import { NextComponentType } from "next";
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
-	dsn: process.env.SENTRY_DSN,
+	dsn: process.env.NEXT_SENTRY_DSN,
 	integrations: [
 		new Sentry.BrowserTracing({
 			// Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
