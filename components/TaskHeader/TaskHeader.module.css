@@ -40,7 +40,9 @@
 	height: 100%;
 	background-image: url("/header-blob.svg"), url("/header-blob-2.svg");
 	background-repeat: no-repeat, no-repeat;
-	background-position: -50px 20px, right -100px top -100px;
+	background-position:
+		-50px 20px,
+		right -100px top -100px;
 	background-size: 40%, 45%;
 	border-radius: 1rem;
 	background-color: var(--pink);
@@ -99,7 +101,10 @@
 		background-image: url("/header-blob.svg"), url("/header-blob.svg"),
 			url("/header-blob-2.svg");
 		background-repeat: no-repeat, no-repeat, no-repeat;
-		background-position: -80px 40px, center -50px, right -100px top -160px;
+		background-position:
+			-80px 40px,
+			center -50px,
+			right -100px top -160px;
 		background-size: 30%, 30%, 35%;
 	}
 }
