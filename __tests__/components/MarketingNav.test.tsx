@@ -7,6 +7,7 @@ jest.mock('../../utils/firebaseClient', () => {
 });
 
 import {AuthProviderProps, useAuth} from '../../contexts/Auth';
+import { getByRole } from '../../__testutils__/screen';
 jest.mock('../../contexts/Auth');
 
 const mockUseAuth = useAuth as jest.MockedFunction<typeof useAuth>;
@@ -18,7 +19,7 @@ jest.mock('next/router', () => {
 });
 
 describe('MarketingNav', () => {
-	it('renders sign in button', () => {
+	it('renders sign in button', async () => {
 		const values: AuthProviderProps = {
 			signIn: () => {},
 			signOut: () => {},
@@ -31,7 +32,7 @@ describe('MarketingNav', () => {
 		render(<MarketingNav />);
 
 		// Check sign in button
-		const signInBtn = screen.getByRole('button', {
+		const signInBtn = await getByRole('button', {
 			name: 'Sign In',
 		});
 		expect(signInBtn).toBeTruthy();
@@ -40,7 +41,7 @@ describe('MarketingNav', () => {
 		expect(signinSpy).toBeCalled();
 	});
 
-	it('renders with sign out and tasks button', () => {
+	it('renders with sign out and tasks button', async () => {
 		const values: AuthProviderProps = {
 			signIn: () => {},
 			signOut: () => {},
@@ -55,7 +56,7 @@ describe('MarketingNav', () => {
 		render(<MarketingNav />);
 
 		// Check sign in button
-		const signoutBtn = screen.getByRole('button', {
+		const signoutBtn = await getByRole('button', {
 			name: 'Sign Out',
 		});
 		expect(signoutBtn).toBeTruthy();

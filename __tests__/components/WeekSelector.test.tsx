@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { WeekSelector } from '../../components/WeekSelector/WeekSelector';
+import { getByLabelText, getByText } from '../../__testutils__/screen';
 import '@testing-library/jest-dom';
 
 jest.mock('next/router', () => {
@@ -9,19 +10,19 @@ jest.mock('next/router', () => {
 });
 
 describe('WeekSelector', () => {
-	it('renders week selector', () => {
+	it('renders week selector', async () => {
 		render(<WeekSelector date={new Date(2006, 0, 2)} />);
 
 		// Check sign in button
-		const prevWeekBtn = screen.getByLabelText('Previous week');
+		const prevWeekBtn = await getByLabelText('Previous week');
 		expect(prevWeekBtn).toBeTruthy();
 		expect(prevWeekBtn).toHaveAttribute('href', '/week/2005/53');
 
-		const nextWeekBtn = screen.getByLabelText('Next week');
+		const nextWeekBtn = await getByLabelText('Next week');
 		expect(nextWeekBtn).toBeTruthy();
 		expect(nextWeekBtn).toHaveAttribute('href', '/week/2006/2');
 
-		const textEle = screen.getByText('January 2006 - Week 1');
+		const textEle = await getByText('January 2006 - Week 1');
 		expect(textEle).toBeTruthy();
 	});
 });

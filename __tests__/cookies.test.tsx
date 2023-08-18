@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Cookies from '../pages/cookies';
 import '@testing-library/jest-dom';
+import { getByRole, getByText } from '../__testutils__/screen';
 
 jest.mock('../contexts/Auth', () => {
 	return {useAuth: () => {
@@ -12,14 +13,14 @@ jest.mock('../contexts/Auth', () => {
 });
 
 describe('Cookies', () => {
-	it('renders cookie policy', () => {
+	it('renders cookie policy', async () => {
 		render(<Cookies />);
 
-		const main = screen.getByRole('main');
+		const main = await getByRole('main');
 		expect(main).toBeInTheDocument();
 
 		// Check footer
-		const footer = screen.getByText('Support this Project');
+		const footer = await getByText('Support this Project');
 		expect(footer).toBeInTheDocument();
 	});
 });
