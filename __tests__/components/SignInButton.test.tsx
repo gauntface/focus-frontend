@@ -19,7 +19,7 @@ jest.mock('next/router', () => {
 });
 
 describe('SignInButton', () => {
-	it('renders sign in button', () => {
+	it('renders sign in button', async () => {
 		const values: AuthProviderProps = {
 			signIn: () => {},
 			signOut: () => {},

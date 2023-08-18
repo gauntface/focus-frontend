@@ -13,7 +13,9 @@ import { Footer } from '../../components/Footer/Footer';
 import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
 import { QuarterTracker } from "../../components/QuarterTracker/QuarterTracker";
+import { LayoutFullHeight } from "../../components/LayoutFullHeight/LayoutFullHeight";
 import { DelayAPI } from '../../utils/useDelayedState';
+
 
 const SAVE_TIMEOUT_MS = 2000;
 
@@ -102,20 +104,22 @@ const Day: NextPage = () => {
 	}
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Focus</title>
 				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
 				<link rel="icon" href={'/favicon.ico' } />
 			</Head>
 
-			<div>
+			<LayoutFullHeight>
 				<TaskHeader user={user} date={date} selectedView="day" />
 				<QuarterTracker date={date} />
-				<DayTasks priorities={priorities} notes={notes} loading={loading} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} />
+				<main>
+					<DayTasks priorities={priorities} notes={notes} loading={loading} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} />
+				</main>
 				<Footer />
-			</div>
-		</div>
+			</LayoutFullHeight>
+		</>
 	);
 };
 

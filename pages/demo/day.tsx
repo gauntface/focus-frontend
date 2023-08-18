@@ -13,19 +13,17 @@ const Day: NextPage = () => {
 	};
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Focus</title>
 				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
 				<link rel="icon" href={'/favicon.ico' } />
 			</Head>
 
-			<div>
-				<TaskHeader user={user} date={date} selectedView="day" />
-				<QuarterTracker date={date} />
-				<DayTasks priorities={demoPriorities()} notes={demoNotes()} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} loading={false} />
-			</div>
-		</div>
+			<TaskHeader user={user} date={date} selectedView="day" />
+			<QuarterTracker date={date} />
+			<DayTasks priorities={demoPriorities()} notes={demoNotes()} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} loading={false} />
+		</>
 	);
 };
 

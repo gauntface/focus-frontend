@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 describe('NotesArea', () => {
-	it('renders empty NotesArea', () => {
+	it('renders empty NotesArea', async () => {
 		const changeMock = jest.fn();
 		const { container } = render(<NotesArea note="" name="example" rows={2} onChange={changeMock} />);
 
@@ -19,7 +19,7 @@ describe('NotesArea', () => {
 		expect(textarea.value).toEqual("");
 	});
 
-	it('renders NotesArea with note', () => {
+	it('renders NotesArea with note', async () => {
 		const changeMock = jest.fn();
 		const { container } = render(<NotesArea note="This is an example note." name="example" rows={2} onChange={changeMock} />);
 
@@ -34,7 +34,7 @@ describe('NotesArea', () => {
 		expect(textarea.value).toEqual("This is an example note.");
 	});
 
-	it('renders NotesArea disabled while loading', () => {
+	it('renders NotesArea disabled while loading', async () => {
 		const changeMock = jest.fn();
 		const { container } = render(<NotesArea loading={true} note="This is an example note." name="example" rows={50} onChange={changeMock} />);
 

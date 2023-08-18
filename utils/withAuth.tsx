@@ -1,6 +1,10 @@
 import { NextComponentType } from "next";
 import {useAuth} from "../contexts/Auth";
 import { useRouter } from 'next/router';
+import { LayoutFullHeight } from "../components/LayoutFullHeight/LayoutFullHeight";
+import { Loading } from "../components/Loading/Loading";
+
+import styles from "../styles/layouts/l-auth.module.css";
 
 export function withAuth<P extends object>(Component: NextComponentType<P>) {
 	const Auth = (props: P) => {
@@ -8,9 +12,11 @@ export function withAuth<P extends object>(Component: NextComponentType<P>) {
 		const router = useRouter();
 
 		if (loading) {
-			return (<div>
-				<p>Loading...</p>
-			</div>);
+			return (<LayoutFullHeight>
+				<main className={styles['l-auth__loading']}>
+					<Loading />
+				</main>
+			</LayoutFullHeight>);
 		}
 
 		if (!user) {
