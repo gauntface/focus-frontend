@@ -1,0 +1,10 @@
+.l-auth__loading {
+  justify-self: center;
+  align-self: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+}

@@ -12,8 +12,7 @@ body {
 /* stylelint-disable selector-id-pattern */
 body,
 body > div:first-child,
-div#__next,
-div#__next > div:first-child
+div#__next
 /* stylelint-enable selector-id-pattern */ {
 	min-height: 100vh;
 }

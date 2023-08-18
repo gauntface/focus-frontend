@@ -24,20 +24,18 @@ const Week: NextPage = () => {
 	});
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Focus</title>
 				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<div>
-				<TaskHeader user={user} date={d} selectedView="week" />
-				<QuarterTracker date={d} />
-				<WeekSelector date={d} />
-				<WeekTasks datePriorities={demoDatePriorities()} />
-			</div>
-		</div>
+			<TaskHeader user={user} date={d} selectedView="week" />
+			<QuarterTracker date={d} />
+			<WeekSelector date={d} />
+			<WeekTasks datePriorities={demoDatePriorities()} />
+		</>
 	);
 };
 

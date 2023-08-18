@@ -11,7 +11,7 @@ import { MarketingTry } from '../components/MarketingTry/MarketingTry';
 
 const Index: NextPage = () => {
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Focus</title>
 				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
@@ -42,7 +42,7 @@ const Index: NextPage = () => {
 			<MarketingTry />
 
 			<Footer />
-		</div>
+		</>
 	);
 };
 

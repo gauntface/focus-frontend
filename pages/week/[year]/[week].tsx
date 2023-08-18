@@ -12,7 +12,7 @@ import { WeekSelector } from '../../../components/WeekSelector/WeekSelector';
 import { Footer } from '../../../components/Footer/Footer';
 import { TaskHeader } from '../../../components/TaskHeader/TaskHeader';
 import { QuarterTracker } from "../../../components/QuarterTracker/QuarterTracker";
-
+import { LayoutFullHeight } from "../../../components/LayoutFullHeight/LayoutFullHeight";
 
 const Week: NextPage = () => {
 	const {user} = useAuth();
@@ -71,21 +71,23 @@ const Week: NextPage = () => {
 	}
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Focus</title>
 				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<div>
+			<LayoutFullHeight>
 				<TaskHeader user={user} date={date} selectedView="week" />
 				<QuarterTracker date={date} />
 				<WeekSelector date={date} />
-				<WeekTasks datePriorities={datePriorities} />
+				<main>
+					<WeekTasks datePriorities={datePriorities} />
+				</main>
 				<Footer />
-			</div>
-		</div>
+			</LayoutFullHeight>
+		</>
 	);
 };
 
