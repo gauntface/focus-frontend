@@ -3,19 +3,19 @@
   "name": "Focus",
   "icons": [
     {
-      "src": "/logo/webapp-logo.svg",
+      "src": "/logo/maskable-logo.svg",
       "type": "image/svg+xml",
       "sizes": "any",
       "purpose": "maskable"
     },
     {
-      "src": "/logo/webapp-logo-192.png",
+      "src": "/logo/maskable-logo-192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "/logo/webapp-logo-512.png",
+      "src": "/logo/maskable-logo-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
@@ -39,7 +39,7 @@
   "id": "/?source=pwa",
   "start_url": "/home?source=pwa",
   "background_color": "#ffe9e1",
-  "theme_color": "#ffd6cf",
+  "theme_color": "#ffe9e1",
   "display": "standalone",
   "scope": "/",
   "shortcuts": [],
