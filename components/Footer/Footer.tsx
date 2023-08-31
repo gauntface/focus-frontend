@@ -6,7 +6,7 @@ import { SignInButton } from '../SignInButton/SignInButton';
 export function Footer() {
 	return (
 		<footer className={styles['c-footer']}>
-			<p><Link href="/"><Image width="180" height="100" src="/full-logo-white.svg" alt="Focus logo in white" /></Link></p>
+			<p><Link href="/"><Image width="180" height="100" src="/logo/full-logo-white.svg" alt="Focus logo in white" /></Link></p>
 			<div className={styles['c-footer__content']}>
 				<div>
 					<h5>Useful Links</h5>

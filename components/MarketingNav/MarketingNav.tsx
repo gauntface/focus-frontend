@@ -18,7 +18,7 @@ export function MarketingNav() {
 
 	return (
 		<section className={styles['c-mkt-nav']}>
-			<Link href="/"><Image width="48" height="48" src="/mini-logo.svg" alt="Small Focus Logo" /></Link>
+			<Link href="/"><Image width="48" height="48" src="/logo/mini-logo.svg" alt="Small Focus Logo" /></Link>
 
 			<div className={styles['c-mkt-nav__menu']}>
 				<SignInButton classModifier={modifer} />

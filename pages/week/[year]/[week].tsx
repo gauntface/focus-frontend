@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import {add, sub, startOfWeek, endOfWeek, parse, getYear, getWeek} from 'date-fns';
@@ -72,12 +71,6 @@ const Week: NextPage = () => {
 
 	return (
 		<>
-			<Head>
-				<title>Focus</title>
-				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
-
 			<LayoutFullHeight>
 				<TaskHeader user={user} date={date} selectedView="week" />
 				<QuarterTracker date={date} />

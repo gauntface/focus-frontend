@@ -1,9 +1,16 @@
+/* eslint-disable @next/next/no-title-in-document-head */
 import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
 	return (
 		<Html>
-			<Head />
+			<Head>
+				<title>Focus</title>
+				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
+				<link rel="icon" href="/favicon.ico" />
+				<link rel="manifest" href="/manifest.json" />
+				<meta name="theme-color" content="#ffd6cf"></meta>
+			</Head>
 			<body>
 				<Main />
 				<NextScript />
