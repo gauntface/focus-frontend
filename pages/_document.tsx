@@ -9,7 +9,8 @@ export default function Document() {
 				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
 				<link rel="icon" href="/favicon.ico" />
 				<link rel="manifest" href="/manifest.json" />
-				<meta name="theme-color" content="#ffe9e1"></meta>
+				<link rel="apple-touch-icon" href="/logo/maskable-logo-180.png" />
+				<meta name="theme-color" content="#ffe9e1" />
 			</Head>
 			<body>
 				<Main />
