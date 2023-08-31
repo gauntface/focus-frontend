@@ -7,8 +7,6 @@ const PrivacyPolicy: NextPage = () => {
 		<LegalPage>
 			<Head>
 				<title>Cookies</title>
-				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			<h1>Cookies</h1>

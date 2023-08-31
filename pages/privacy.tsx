@@ -9,8 +9,6 @@ const PrivacyPolicy: NextPage = () => {
 		<LegalPage>
 			<Head>
 				<title>Privacy Policy</title>
-				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			<h1>Privacy Policy</h1>

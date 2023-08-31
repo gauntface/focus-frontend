@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 
 import { TaskHeader } from '../../components/TaskHeader/TaskHeader';
 import { DayTasks } from '../../components/DayTasks/DayTasks';
@@ -14,12 +13,6 @@ const Day: NextPage = () => {
 
 	return (
 		<>
-			<Head>
-				<title>Focus</title>
-				<meta name="description" content="Focus is a simple tool to help you plan and focus on your work" />
-				<link rel="icon" href={'/favicon.ico' } />
-			</Head>
-
 			<TaskHeader user={user} date={date} selectedView="day" />
 			<QuarterTracker date={date} />
 			<DayTasks priorities={demoPriorities()} notes={demoNotes()} onNotesChange={onNotesChange} onDailyPriorityChange={onDailyPriorityChange} loading={false} />

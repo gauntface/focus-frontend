@@ -1,0 +1,55 @@
+{
+  "short_name": "Focus",
+  "name": "Focus",
+  "icons": [
+    {
+      "src": "/logo/webapp-logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo/webapp-logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo/webapp-logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo/generic-logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/logo/generic-logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo/generic-logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "/?source=pwa",
+  "start_url": "/home?source=pwa",
+  "background_color": "#ffe9e1",
+  "theme_color": "#ffd6cf",
+  "display": "standalone",
+  "scope": "/",
+  "shortcuts": [],
+  "description": "Discipline, productivity, focus.",
+  "screenshots": [
+    {
+      "src": "/marketing/screenshots/iphone12-home.png",
+      "type": "image/png",
+      "sizes": "1170x2532",
+      "form_factor": "narrow"
+    }
+  ]
+}
