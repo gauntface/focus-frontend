@@ -10,28 +10,20 @@ import { FocusAuthProvider } from '../contexts/Auth';
 import { ToastContainer } from "react-toastify";
 import { User } from "firebase/auth";
 import { NextComponentType } from "next";
-import * as Sentry from "@sentry/react";
+import {registerInstallPrompt} from '../controllers/app-banner';
+import { registerSW } from "../controllers/service-worker";
+import '../controllers/sentry';
+import { useEffect } from "react";
 
-Sentry.init({
-	dsn: process.env.NEXT_SENTRY_DSN,
-	integrations: [
-		new Sentry.BrowserTracing({
-			// Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
-			tracePropagationTargets: ["localhost", /^https:\/\/*.gaunt.dev/],
-		}),
-		new Sentry.Replay(),
-	],
-	// Performance Monitoring
-	tracesSampleRate: 0.1,
-	// Session Replay
-	replaysSessionSampleRate: 0.1,
-	replaysOnErrorSampleRate: 1.0,
-});
 
 function FocusApp({
 	Component,
 	pageProps: { ...pageProps }
 }: CustomAppProps) {
+	useEffect(() => {
+		registerInstallPrompt();
+		registerSW();
+	}, []);
 	return <FocusAuthProvider>
 		<Component {...pageProps} />
 		<ToastContainer
