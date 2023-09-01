@@ -12,11 +12,15 @@ for (const pageFiles of Object.values(pages)) {
 	pageFiles.forEach((f) => allFiles.add(f));
 }
 const precacheFiles = Array.from(allFiles).map((f) => `/_next/${f}`);
+precacheFiles.push(...[
+	"/",
+	"/home",
+]);
 
 await esbuild.build({
 	define: {
 		'FOCUS_PRECACHE_FILES': JSON.stringify(precacheFiles),
-		'FOCUS_PRECACHE_SUFFIX': `${Math.floor(new Date().getTime() / 1000)}`,
+		'FOCUS_PRECACHE_SUFFIX': `-${Math.floor(new Date().getTime() / 1000)}`,
 	},
 	entryPoints: ['./serviceworker/sw.prod.ts'],
 	bundle: true,
