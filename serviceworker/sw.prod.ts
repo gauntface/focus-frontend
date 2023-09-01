@@ -5,7 +5,7 @@ declare const self: ServiceWorkerGlobalScope;
 
 import { cleanupPrecacheCaches, getPrecacheFiles, precacheFiles } from './libs/precache';
 import { registerRoute, Route } from 'workbox-routing';
-import { CacheFirst } from 'workbox-strategies';
+import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { ExpirationPlugin } from 'workbox-expiration';
 
 self.addEventListener('install', function(event) {
@@ -51,3 +51,13 @@ const fontRoute = new Route(({ request }) => {
 	],
 }));
 registerRoute(fontRoute);
+
+const pageRoutes = new Route(({ url, sameOrigin }) => {
+	return sameOrigin && (
+		url.pathname == "/" ||
+		url.pathname.startsWith("/home") ||
+		url.pathname.startsWith("/week") ||
+		url.pathname.startsWith("/day")
+	);
+}, new StaleWhileRevalidate());
+registerRoute(pageRoutes);
