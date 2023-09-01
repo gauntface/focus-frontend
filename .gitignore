@@ -39,3 +39,4 @@ yarn-error.log*
 
 # The service worker will be dynamically built
 public/sw.js
+public/sw.js.map
