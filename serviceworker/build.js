@@ -15,8 +15,8 @@ const precacheFiles = Array.from(allFiles).map((f) => `/_next/${f}`);
 
 await esbuild.build({
 	define: {
-		'process.env.FOCUS_PRECACHE_FILES': JSON.stringify(precacheFiles),
-		'process.env.FOCUS_PRECACHE_SUFFIX': `${Math.floor(new Date().getTime() / 1000)}`,
+		'FOCUS_PRECACHE_FILES': JSON.stringify(precacheFiles),
+		'FOCUS_PRECACHE_SUFFIX': `${Math.floor(new Date().getTime() / 1000)}`,
 	},
 	entryPoints: ['./serviceworker/sw.prod.ts'],
 	bundle: true,
