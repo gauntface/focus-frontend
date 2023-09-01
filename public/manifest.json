@@ -41,6 +41,11 @@
   "background_color": "#ffe9e1",
   "theme_color": "#ffe9e1",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "browser"
+  ],
   "scope": "/",
   "shortcuts": [],
   "description": "Discipline, productivity, focus.",
@@ -51,5 +56,13 @@
       "sizes": "1170x2532",
       "form_factor": "narrow"
     }
-  ]
+  ],
+  "orientation": "any",
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
+  "launch_handler": {
+    "client_mode": ["navigate-existing, auto"]
+  }
 }
