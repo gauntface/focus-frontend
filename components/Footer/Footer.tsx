@@ -2,8 +2,17 @@ import styles from "./Footer.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
 import { SignInButton } from '../SignInButton/SignInButton';
+import { canPromptForInstall, performInstall } from "../../controllers/app-banner";
+import { useState } from "react";
 
 export function Footer() {
+	const [promptForInstall, setPromptForInstall] = useState(canPromptForInstall());
+
+	const onInstallClick = async () => {
+		await performInstall();
+		setPromptForInstall(canPromptForInstall());
+	};
+
 	return (
 		<footer className={styles['c-footer']}>
 			<p><Link href="/"><Image width="180" height="100" src="/logo/full-logo-white.svg" alt="Focus logo in white" /></Link></p>
@@ -13,6 +22,9 @@ export function Footer() {
 					<ul>
 						<li><Link href="/">Home</Link></li>
 						<li><Link href="/#about">About Focus</Link></li>
+						{promptForInstall && (
+							<li><a onClick={() => onInstallClick()}>Install App</a></li>
+						)}
 						<li><Link href="https://www.buymeacoffee.com/gauntface" target="_blank">Support this Project</Link></li>
 						<li><Link href="https://app.beampipe.io/domain/focus.gaunt.dev" target="_blank">Analytics</Link></li>
 						<li><SignInButton classModifier="highlight" /></li>

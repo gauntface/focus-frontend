@@ -36,3 +36,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# The service worker will be dynamically built
+public/sw.js
+public/sw.js.map
