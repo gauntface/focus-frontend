@@ -1,6 +1,5 @@
 .l-auth__loading {
-	justify-self: center;
-	align-self: center;
+	place-self: center center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
