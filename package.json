@@ -47,7 +47,7 @@
     "prettier": "^3.0.0",
     "puppeteer": "^21.0.0",
     "stylelint": "^16.0.0",
-    "stylelint-config-standard": "^35.0.0",
+    "stylelint-config-standard": "^36.0.0",
     "typescript": "5.3.3",
     "workbox-expiration": "^7.0.0",
     "workbox-strategies": "^7.0.0"
