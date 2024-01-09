@@ -31,7 +31,7 @@ export function WeekSelector({date}: Props) {
 			<Image width="8" height="14" src="/icons/arrow.svg" alt="Left arrow" />
 		</Link>
 		{format(date, 'MMMM yyyy')} - Week {getWeek(date)}
-		<Link className={styles['c-ws__right']} href={`/week/${nextYear}/${getWeek(nextWeek)}`} aria-label="Next week">
+		<Link className={styles['c-ws__right']} href={`/week/${nextYear}/${nextWeek}`} aria-label="Next week">
 			<Image width="8" height="14" src="/icons/arrow.svg" alt="Right arrow" />
 		</Link>
 	</div>);
