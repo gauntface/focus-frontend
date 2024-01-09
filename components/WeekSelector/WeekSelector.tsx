@@ -5,6 +5,12 @@ import {add, sub, format, getWeek, getYear} from 'date-fns';
 import styles from "./WeekSelector.module.css";
 
 export function WeekSelector({date}: Props) {
+	// When dates cross years, the getWeek() will return the correct week
+	// (i.e. week 52 of year 2023 and week 1 of 2024) but getYear, may not
+	// return the correct year for the week.
+	// For example, Sunday 31st 2023 is week 1 of 2024, so getWeek(<sun 31st>)
+	// returns `1` but getYear(<sun 31st>) returns 2023.
+	// This naive approach returns the week + year we want
 	let prevWeek = getWeek(date) - 1;
 	let prevYear = getYear(date);
 	if (prevWeek <= 0) {
