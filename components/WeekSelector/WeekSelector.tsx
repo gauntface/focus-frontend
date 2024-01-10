@@ -8,14 +8,11 @@ export function WeekSelector({date}: Props) {
 	const prevWeek = sub(date, {weeks: 1});
 	const nextWeek = add(date, {weeks: 1});
 
-	// Since the UI shows the first day as Monday, lets show as the date
-	const monday = nextMonday(date);
-
 	return (<div className={styles['c-ws']}>
 		<Link className={styles['c-ws__left']} href={`/week/${getWeekYear(prevWeek)}/${getWeek(prevWeek)}`} aria-label="Previous week">
 			<Image width="8" height="14" src="/icons/arrow.svg" alt="Left arrow" />
 		</Link>
-		{format(monday, 'MMMM yyyy')} - Week {getWeek(date)}
+		{format(nextWeek, 'MMMM yyyy')} - Week {getWeek(date)}
 		<Link className={styles['c-ws__right']} href={`/week/${getWeekYear(nextWeek)}/${getWeek(nextWeek)}`} aria-label="Next week">
 			<Image width="8" height="14" src="/icons/arrow.svg" alt="Right arrow" />
 		</Link>
