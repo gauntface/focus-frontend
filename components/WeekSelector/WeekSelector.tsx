@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import {add, sub, format, getWeek, nextMonday, getWeekYear} from 'date-fns';
+import {add, sub, format, getWeek, getWeekYear} from 'date-fns';
 
 import styles from "./WeekSelector.module.css";
 
