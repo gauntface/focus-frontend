@@ -48,7 +48,7 @@
     "puppeteer": "^22.0.0",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0",
-    "typescript": "5.4.3",
+    "typescript": "5.4.4",
     "workbox-expiration": "^7.0.0",
     "workbox-strategies": "^7.0.0"
   }
