@@ -5,9 +5,11 @@
   import QuarterTracker from "./components/QuarterTracker.svelte";
   import DayTasks from "./components/DayTasks.svelte";
   import {userStore} from "../../common/auth/auth";
-  import { getDailyPriorities, type DailyPriority } from "../../models/priorities";
+  import { getDailyPriorities, setDailyPriorities, type DailyPriority } from "../../models/priorities";
   import { getDailyNotes } from "../../models/notes";
   import type { User } from "firebase/auth";
+  import {debounce} from "lodash-es";
+  import { SvelteToast, toast} from '@zerodevx/svelte-toast';
 
   // TODO: Get date from url parameter
   let date = new Date();
@@ -15,12 +17,30 @@
   let note: string = "";
   let loading = true;
 
+  // Priotity toast options
+  const priorityToastOptions = {
+
+  };
+
   function onNoteChange(n: string) {
     note = n;
   }
 
+  const setPriorities = debounce(async (toastNumber: number) => {
+    console.log(`Doing API call`);
+      await setDailyPriorities($userStore, date, priorities);
+      toast.pop(toastNumber);
+    }, 2000);
+
   function onPriorityChange(idx: number, s: string) {
     priorities[idx].note = s;
+    console.log(`onPriorityChange: ${idx} ${s}`);
+    const number = toast.push('hello world', {
+      // Toast can only be dismissed programatically
+      initial: 0,
+      dismissable: false
+    });
+    setPriorities(number);
   }
 
   function getEmptyPriorities() {
@@ -65,7 +85,7 @@
   </LayoutFullHeight>
 </SignedIn>
 
-
+<SvelteToast options={priorityToastOptions} />
 <style>
 
 </style>
