@@ -11,6 +11,8 @@
   import {debounce} from "lodash-es";
   import { SvelteToast, toast} from '@zerodevx/svelte-toast';
 
+  const DEBOUNCE_DURATION = 2000;
+
   // TODO: Get date from url parameter
   let date = new Date();
   let priorities: Array<DailyPriority> = getEmptyPriorities();
@@ -26,21 +28,26 @@
     note = n;
   }
 
-  const setPriorities = debounce(async (toastNumber: number) => {
+  let toastID: number | undefined;
+  const setPriorities = debounce(async () => {
     console.log(`Doing API call`);
       await setDailyPriorities($userStore, date, priorities);
-      toast.pop(toastNumber);
-    }, 2000);
+      toast.pop(toastID);
+      toastID = undefined;
+    }, DEBOUNCE_DURATION);
 
   function onPriorityChange(idx: number, s: string) {
     priorities[idx].note = s;
     console.log(`onPriorityChange: ${idx} ${s}`);
-    const number = toast.push('hello world', {
-      // Toast can only be dismissed programatically
-      initial: 0,
-      dismissable: false
-    });
-    setPriorities(number);
+    if (toastID === undefined) {
+      toastID = toast.push('<div class="loader"></div> Saving tasks...', {
+        // Toast can only be dismissed programatically
+        dismissable: false,
+        initial: 0,
+        duration: DEBOUNCE_DURATION,
+      });
+    }
+    setPriorities();
   }
 
   function getEmptyPriorities() {
@@ -86,6 +93,16 @@
 </SignedIn>
 
 <SvelteToast options={priorityToastOptions} />
-<style>
 
+<style>
+:root {
+  --toastContainerTop: auto;
+  --toastContainerRight: var(--m-padding);
+  --toastContainerBottom: var(--s-padding);
+  --toastContainerLeft: auto;
+
+  	/* The following vars are to alter toastify */
+	--toastBackground: var(--pink);
+	--toastColor: var(--navy);
+}
 </style>

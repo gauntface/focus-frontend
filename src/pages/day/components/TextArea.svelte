@@ -16,7 +16,7 @@ const handleChange = (e: Event) => {
 {#if loading}
   <TextAreaSkeleton {rows} />
 {:else}
-  <textarea class="c-ta__textarea" {rows} bind:value on:change={handleChange}></textarea>
+  <textarea class="c-ta__textarea" {rows} bind:value on:input={handleChange}></textarea>
 {/if}
 </div>
 
