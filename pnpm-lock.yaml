@@ -39,6 +39,9 @@ importers:
       svelte-check:
         specifier: ^3.6.7
         version: 3.7.1(postcss@8.4.38)(svelte@4.2.16)
+      svelte-toasts:
+        specifier: ^1.1.2
+        version: 1.1.2
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -954,6 +957,9 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  svelte-toasts@1.1.2:
+    resolution: {integrity: sha512-m+yL4eEKXyJoyjTYaH1j1GFwF0Pi8YDqnVfwWPDmwi4712iZesv+TNCmToSNlav3R5Vkmc8ZBRkT8DOcu3sywQ==}
 
   svelte@4.2.16:
     resolution: {integrity: sha512-mQwHpqHD2PmFcCyHaZ7XiTqposaLvJ75WpYcyY5/ce3qxbYtwQpZ+M7ZKP+2CG5U6kfnBZBpPLyofhlE6ROrnQ==}
@@ -2006,6 +2012,8 @@ snapshots:
     optionalDependencies:
       postcss: 8.4.38
       typescript: 5.4.5
+
+  svelte-toasts@1.1.2: {}
 
   svelte@4.2.16:
     dependencies:

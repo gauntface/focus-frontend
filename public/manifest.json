@@ -1,71 +1,64 @@
 {
-  "short_name": "Focus",
-  "name": "Focus",
-  "icons": [
-    {
-      "src": "/logo/maskable-logo.svg",
-      "type": "image/svg+xml",
-      "sizes": "any",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/logo/maskable-logo-192.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/logo/maskable-logo-512.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/logo/generic-logo.svg",
-      "type": "image/svg+xml",
-      "sizes": "any"
-    },
-    {
-      "src": "/logo/generic-logo-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "/logo/generic-logo-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "id": "/?source=pwa",
-  "start_url": "/home?source=pwa",
-  "background_color": "#ffe9e1",
-  "theme_color": "#ffe9e1",
-  "display": "standalone",
-  "display_override": [
-    "window-controls-overlay",
-    "standalone",
-    "browser"
-  ],
-  "scope": "/",
-  "shortcuts": [],
-  "description": "Discipline, productivity, focus.",
-  "screenshots": [
-    {
-      "src": "/marketing/screenshots/iphone12-home.png",
-      "type": "image/png",
-      "sizes": "1170x2532",
-      "form_factor": "narrow"
-    }
-  ],
-  "orientation": "any",
-  "categories": [
-    "productivity",
-    "utilities"
-  ],
-  "launch_handler": {
-    "client_mode": ["navigate-existing, auto"]
-  },
-  "edge_side_panel": {
-    "preferred_width": 480
-  }
+	"short_name": "Focus",
+	"name": "Focus",
+	"icons": [
+		{
+			"src": "/logo/maskable-logo.svg",
+			"type": "image/svg+xml",
+			"sizes": "any",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/logo/maskable-logo-192.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/logo/maskable-logo-512.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/logo/generic-logo.svg",
+			"type": "image/svg+xml",
+			"sizes": "any"
+		},
+		{
+			"src": "/logo/generic-logo-192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/logo/generic-logo-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"id": "/?source=pwa",
+	"start_url": "/home?source=pwa",
+	"background_color": "#ffe9e1",
+	"theme_color": "#ffe9e1",
+	"display": "standalone",
+	"display_override": ["window-controls-overlay", "standalone", "browser"],
+	"scope": "/",
+	"shortcuts": [],
+	"description": "Discipline, productivity, focus.",
+	"screenshots": [
+		{
+			"src": "/marketing/screenshots/iphone12-home.png",
+			"type": "image/png",
+			"sizes": "1170x2532",
+			"form_factor": "narrow"
+		}
+	],
+	"orientation": "any",
+	"categories": ["productivity", "utilities"],
+	"launch_handler": {
+		"client_mode": ["navigate-existing", "auto"]
+	},
+	"edge_side_panel": {
+		"preferred_width": 480
+	}
 }

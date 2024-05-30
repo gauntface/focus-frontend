@@ -19,22 +19,26 @@
   let note: string = "";
   let loading = true;
 
-  // Priotity toast options
-  const priorityToastOptions = {
-
-  };
-
   function onNoteChange(n: string) {
     note = n;
   }
 
   let toastID: number | undefined;
   const setPriorities = debounce(async () => {
-    console.log(`Doing API call`);
-      await setDailyPriorities($userStore, date, priorities);
-      toast.pop(toastID);
-      toastID = undefined;
-    }, DEBOUNCE_DURATION);
+      console.log(`Doing API call`);
+      try {
+        await setDailyPriorities($userStore, date, priorities);
+
+        toast.push('✅ Save successful', {
+          duration: 1500,
+        });
+      } catch(err) {
+        console.error(`Failed to save priorities: ${err}`);
+      } finally {
+        toast.pop(toastID);
+        toastID = undefined;
+      }
+  }, DEBOUNCE_DURATION);
 
   function onPriorityChange(idx: number, s: string) {
     priorities[idx].note = s;
@@ -44,7 +48,6 @@
         // Toast can only be dismissed programatically
         dismissable: false,
         initial: 0,
-        duration: DEBOUNCE_DURATION,
       });
     }
     setPriorities();
@@ -92,7 +95,7 @@
   </LayoutFullHeight>
 </SignedIn>
 
-<SvelteToast options={priorityToastOptions} />
+<SvelteToast />
 
 <style>
 :root {
@@ -103,6 +106,12 @@
 
   	/* The following vars are to alter toastify */
 	--toastBackground: var(--pink);
+  --toastBarBackground: var(--navy);
 	--toastColor: var(--navy);
+}
+
+:global(._toastMsg .loader) {
+  vertical-align: middle;
+  margin: 0 var(--xxs-padding);
 }
 </style>

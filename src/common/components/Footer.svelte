@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { canPromptForInstall, performInstall } from '../../controllers/app-install';
   import { Modifier } from './Button.svelte';
   import SignInButton from './SignInButton.svelte';
-  let promptForInstall = false;
-  function onInstallClick() {
-    // TODO: on install click
+  let promptForInstall = canPromptForInstall();
+  async function onInstallClick() {
+    await performInstall();
+    promptForInstall = canPromptForInstall();
   }
 </script>
 <footer class="c-footer">
