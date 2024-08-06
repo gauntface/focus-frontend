@@ -1,11 +1,23 @@
 <script lang="ts" context="module">
 	export type ViewSelection = 'day' | 'week'; // | 'quarter';
+
+	export function getFirstName(displayName: string) {
+		if (!displayName) {
+			return '';
+		}
+
+		let name = displayName;
+		const parts = name.split(' ');
+		if (parts) {
+			name = parts[0];
+		}
+		return name;
+	}
 </script>
 
 <script lang="ts">
-	import { getFirstName } from '../utils/get-intro';
-	import { dateHeading } from '../utils/date-heading';
-	import TaskHeaderViewIcons from './TaskHeaderViewIcons.svelte';
+	import { dateHeading } from '../../routes/day/[date]/utils/date-heading';
+	import TaskHeaderViewIcons from '../../routes/day/[date]/components/TaskHeaderViewIcons.svelte';
 
 	export let displayName: string;
 	export let date: Date;

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '$lib/styles/reset.css';
 	import MarketingNav from '$lib/components/MarketingNav.svelte';
 	import MarketingHero from '$lib/components/MarketingHero.svelte';
 	import MarketingSplitSection from '$lib/components/MarketingSplitSection.svelte';

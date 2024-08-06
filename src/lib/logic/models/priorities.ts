@@ -1,12 +1,12 @@
 import type { User } from 'firebase/auth';
-import {parse, format} from 'date-fns';
-
+import { parse, format } from 'date-fns';
 
 const API_DATE_FORMAT = 'yyyy-MM-dd';
 
-
-
-export async function getDailyPriorities(user: User|null, d: Date): Promise<Array<DailyPriority>> {
+export async function getDailyPriorities(
+	user: User | null,
+	d: Date
+): Promise<Array<DailyPriority>> {
 	if (!user) {
 		throw new Error(`User is undefined`);
 	}
@@ -14,11 +14,14 @@ export async function getDailyPriorities(user: User|null, d: Date): Promise<Arra
 	let priorities: Array<DailyPriority> = [];
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${import.meta.env.VITE_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
-			headers: {
-				Authorization: `Bearer ${token}`
+		const resp = await fetch(
+			`${import.meta.env.VITE_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`,
+			{
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
 			}
-		});
+		);
 		const data = await resp.json();
 		if (data.priorities) {
 			priorities = data.priorities as Array<DailyPriority>;
@@ -30,43 +33,57 @@ export async function getDailyPriorities(user: User|null, d: Date): Promise<Arra
 	while (priorities.length < 3) {
 		priorities.push({
 			note: '',
-			order: priorities.length,
+			order: priorities.length
 		});
 	}
 
 	return priorities;
 }
 
-export async function setDailyPriorities(user: User|null, d: Date, priorities: Array<DailyPriority>) {
+export async function setDailyPriorities(
+	user: User | null,
+	d: Date,
+	priorities: Array<DailyPriority>
+) {
 	if (!user) {
 		throw new Error(`User is not defined`);
 	}
 
 	const token = await user.getIdToken();
-	await fetch(`${import.meta.env.VITE_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
-		method: 'post',
-		headers: {
-			Authorization: `Bearer ${token}`
-		},
-		body: JSON.stringify(priorities),
-	});
-}
-
-export async function getPrioritiesForDates(user: User, start: Date, end: Date): Promise<Array<DatePriorities>> {
-	let datePriorities: Array<DatePriorities> = [];
-	try {
-		const token = await user.getIdToken();
-		const resp = await fetch(`${import.meta.env.VITE_API_SERVER}/priorities/fordates/${format(start, API_DATE_FORMAT)}/${format(end, API_DATE_FORMAT)}`, {
+	await fetch(
+		`${import.meta.env.VITE_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`,
+		{
+			method: 'post',
 			headers: {
 				Authorization: `Bearer ${token}`
 			},
-		});
-		const data = (await resp.json() as PriorityResponse);
+			body: JSON.stringify(priorities)
+		}
+	);
+}
+
+export async function getPrioritiesForDates(
+	user: User,
+	start: Date,
+	end: Date
+): Promise<Array<DatePriorities>> {
+	let datePriorities: Array<DatePriorities> = [];
+	try {
+		const token = await user.getIdToken();
+		const resp = await fetch(
+			`${import.meta.env.VITE_API_SERVER}/priorities/fordates/${format(start, API_DATE_FORMAT)}/${format(end, API_DATE_FORMAT)}`,
+			{
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			}
+		);
+		const data = (await resp.json()) as PriorityResponse;
 		if (data.dates) {
-			datePriorities = data.dates.map(d => {
+			datePriorities = data.dates.map((d) => {
 				return {
 					date: parse(d.date, 'yyyy-MM-dd', new Date()),
-					priorities: d.priorities.filter(p => p.note.length > 0),
+					priorities: d.priorities.filter((p) => p.note.length > 0)
 				};
 			});
 		}
@@ -78,13 +95,13 @@ export async function getPrioritiesForDates(user: User, start: Date, end: Date):
 }
 
 export interface DailyPriority {
-  note: string;
-  order: number;
+	note: string;
+	order: number;
 }
 
 export interface DatePriorities {
-  date: Date;
-  priorities: Array<DailyPriority>;
+	date: Date;
+	priorities: Array<DailyPriority>;
 }
 
 interface PriorityResponse {

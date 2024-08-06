@@ -1,7 +1,8 @@
 <script lang="ts">
+	import '$lib/styles/reset.css';
 	import LayoutFullHeight from '$lib/layouts/LayoutFullHeight.svelte';
-	import TaskHeader from './components/TaskHeader.svelte';
-	import QuarterTracker from './components/QuarterTracker.svelte';
+	import TaskHeader from '$lib/components/TaskHeader.svelte';
+	import QuarterTracker from '$lib/components/QuarterTracker.svelte';
 	import DayTasks from './components/DayTasks.svelte';
 	import { userStore } from '$lib/logic/auth/auth';
 	import {
@@ -17,7 +18,7 @@
 	const DEBOUNCE_DURATION = 2000;
 
 	// TODO: Get date from url parameter
-	let date = new Date();
+	export let date: Date = new Date();
 	let priorities: Array<DailyPriority> = getEmptyPriorities();
 	let note: string = '';
 	let loading = true;
