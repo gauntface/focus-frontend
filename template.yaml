@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  focus-frontend
+
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  FocusFrontendFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: frontend/
+      MemorySize: 256
+      PackageType: Image
+      Architectures:
+        - x86_64
+      Events:
+        RootEvent:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: any
+        ProxyEvent:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: any
+    Metadata:
+      DockerTag: v1
+      DockerContext: ./frontend
+      Dockerfile: Dockerfile
+
+Outputs:
+  NextjsFunctionURL:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/"
