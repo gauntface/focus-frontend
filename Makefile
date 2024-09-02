@@ -20,3 +20,9 @@ build:
 
 sam-start: sam-build
 	sam local start-api
+
+deploy-dev: build
+	sam deploy \
+		--config-env=dev-frontend \
+		--config-file="samconfig.toml" \
+		--no-fail-on-empty-changeset
