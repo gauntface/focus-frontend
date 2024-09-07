@@ -1,6 +1,7 @@
 import {auth} from '~/utils/firebaseClient';
 import { signInWithPopup, signOut, onAuthStateChanged, User, AuthProvider, getAdditionalUserInfo, UserCredential } from "firebase/auth";
 import { useState, useEffect, createContext, useContext } from 'react';
+import { useNavigate } from "@remix-run/react"
 
 const AuthContext = createContext<AuthProviderProps>({
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -35,7 +36,7 @@ async function checkNewUser(uc: UserCredential) {
 export function FocusAuthProvider({ children }: {children: React.ReactNode; }) {
 	const [user, setUser] = useState<User|null>(null);
 	const [loading, setLoading] = useState(true);
-	const router = useRouter();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		// Listen for changes on auth state (logged in, signed out, etc.)
@@ -54,7 +55,8 @@ export function FocusAuthProvider({ children }: {children: React.ReactNode; }) {
 				const result = await signInWithPopup(auth, provider);
 				checkNewUser(result);
 				if (url) {
-					router.push(url);
+					navigate(url);
+					console.warn("TODO: Change URL => ", url);
 				}
 			} catch (err) {
 				console.log('Failed to sign in user: ', err);
@@ -64,7 +66,8 @@ export function FocusAuthProvider({ children }: {children: React.ReactNode; }) {
 		},
 		signOut: async (url) => {
 			await signOut(auth);
-			router.push(url ? url : "/");
+			console.warn("TODO: Change URL", url || "/");
+			navigate(url || "/");
 		},
 		user,
 		loading,

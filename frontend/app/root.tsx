@@ -11,6 +11,7 @@ import fontStyles from  '~/styles/variables/_fonts.css?url';
 import dimenStyles from '~/styles/variables/_dimens.css?url';
 import globalStyles from  '~/styles/globals.css?url';
 import type { LinksFunction } from "@remix-run/node";
+import { FocusAuthProvider } from "./contexts/Auth";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: colorStyles },
@@ -29,9 +30,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <FocusAuthProvider>
+          {children}
+        </FocusAuthProvider>
         <ScrollRestoration />
         <Scripts />
+        <script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain={import.meta.env.VITE_PUBLIC_BEAMPIPE_ANALYTICS}></script>
       </body>
     </html>
   );
