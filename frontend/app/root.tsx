@@ -5,7 +5,19 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import "./tailwind.css";
+
+import colorStyles from  '~/styles/variables/_colors.css?url';
+import fontStyles from  '~/styles/variables/_fonts.css?url';
+import dimenStyles from '~/styles/variables/_dimens.css?url';
+import globalStyles from  '~/styles/globals.css?url';
+import type { LinksFunction } from "@remix-run/node";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: colorStyles },
+  { rel: "stylesheet", href: fontStyles },
+  { rel: "stylesheet", href: dimenStyles },
+  { rel: "stylesheet", href: globalStyles },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

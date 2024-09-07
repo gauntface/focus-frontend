@@ -15,7 +15,7 @@ docker-rm:
 
 docker-cycle: docker-stop docker-rm docker-run
 
-build:
+sam-build:
 	sam build
 
 sam-start: sam-build

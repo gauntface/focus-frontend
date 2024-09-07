@@ -1,0 +1,108 @@
+html,
+body {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: var(--default-family);
+	font-size: var(--font-size);
+	background: var(--light-pink);
+	color: var(--navy);
+}
+
+/* stylelint-disable selector-id-pattern */
+body,
+body > div:first-child,
+div#__next
+/* stylelint-enable selector-id-pattern */ {
+	min-height: 100vh;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+button,
+.button {
+	font-family: var(--title-family);
+	font-weight: 600;
+	font-size: 1rem;
+	background-color: var(--navy);
+	color: var(--light-pink);
+	border: none;
+	border-radius: 6px;
+	padding: var(--xs-padding) var(--m-padding);
+	cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+	background: var(--navy-lighten);
+}
+
+button:active,
+.button:active {
+	background: var(--navy-darken);
+}
+
+.button--highlight {
+	background-color: var(--orange);
+	color: var(--navy);
+}
+
+.button--highlight:hover {
+	background-color: var(--orange-lighten);
+}
+
+.button--highlight:active {
+	background-color: var(--orange-darken);
+}
+
+.button--subtle {
+	background-color: transparent;
+	color: var(--navy);
+}
+
+.button--subtle:hover {
+	background-color: var(--pink-lighten);
+}
+
+.button--subtle:active {
+	background-color: var(--pink-darken);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--title-family);
+}
+
+h1 {
+	font-size: clamp(2rem, 6vw, 4rem);
+}
+
+h2 {
+	font-size: clamp(1.3rem, 4.2vw, 2.4rem);
+}
+
+h3 {
+	font-size: clamp(1.1rem, 3vw, 1.5rem);
+}
+
+h3:first-child {
+	margin-top: 0;
+}
+
+ol li::marker {
+	font-family: var(--title-family);
+}
