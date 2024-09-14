@@ -80,6 +80,7 @@ function Day() {
 	}
 
 	function onDailyPriorityChange(idx: number, e: string) {
+		console.log('onDailyPriorityChange', idx, e);
 		const ps = [...priorities];
 		ps[idx].note = e;
 		setPriorities(ps);

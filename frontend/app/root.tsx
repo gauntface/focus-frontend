@@ -10,10 +10,15 @@ import colorStyles from  '~/styles/variables/_colors.css?url';
 import fontStyles from  '~/styles/variables/_fonts.css?url';
 import dimenStyles from '~/styles/variables/_dimens.css?url';
 import globalStyles from  '~/styles/globals.css?url';
+import toastifyStyles from "react-toastify/dist/ReactToastify.css?url";
 import type { LinksFunction } from "@remix-run/node";
+import { ToastContainer } from "react-toastify";
 import { FocusAuthProvider } from "./contexts/Auth";
 
 export const links: LinksFunction = () => [
+  // Toastify styles *before* our vars to ensure we override them
+  { rel: "stylesheet", href: toastifyStyles },
+
   { rel: "stylesheet", href: colorStyles },
   { rel: "stylesheet", href: fontStyles },
   { rel: "stylesheet", href: dimenStyles },
@@ -32,6 +37,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <FocusAuthProvider>
           {children}
+          <ToastContainer
+            position="bottom-right"
+            newestOnTop={true}
+          />
         </FocusAuthProvider>
         <ScrollRestoration />
         <Scripts />

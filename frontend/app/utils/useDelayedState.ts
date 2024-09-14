@@ -31,7 +31,7 @@ export class DelayAPI {
 			}).then(() => this.cb()).then(() => {
 				this.promise = undefined;
 			});
-
+			console.log('toasty promise');
 			toast.promise(
 				this.promise,
 				this.toastPromiseParams,

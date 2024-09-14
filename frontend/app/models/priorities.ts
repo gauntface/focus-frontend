@@ -11,7 +11,7 @@ export async function getDailyPriorities(user: User|null, d: Date): Promise<Arra
 	let priorities: Array<DailyPriority> = [];
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
+		const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
@@ -40,7 +40,7 @@ export async function setDailyPriorities(user: User|null, d: Date, priorities: A
 	}
 
 	const token = await user.getIdToken();
-	await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
+	await fetch(`${import.meta.env.VITE_PUBLIC_API_SERVER}/priorities/forday/${format(d, API_DATE_FORMAT)}`, {
 		method: 'post',
 		headers: {
 			Authorization: `Bearer ${token}`
@@ -53,7 +53,7 @@ export async function getPrioritiesForDates(user: User, start: Date, end: Date):
 	let datePriorities: Array<DatePriorities> = [];
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/priorities/fordates/${format(start, API_DATE_FORMAT)}/${format(end, API_DATE_FORMAT)}`, {
+		const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API_SERVER}/priorities/fordates/${format(start, API_DATE_FORMAT)}/${format(end, API_DATE_FORMAT)}`, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			},

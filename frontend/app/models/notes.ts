@@ -11,7 +11,7 @@ export async function getDailyNotes(user: User|null, d: Date): Promise<string> {
 	let notes = '';
 	try {
 		const token = await user.getIdToken();
-		const resp = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/notes/forday/${format(d, API_DATE_FORMAT)}`, {
+		const resp = await fetch(`${import.meta.env.VITE_PUBLIC_API_SERVER}/notes/forday/${format(d, API_DATE_FORMAT)}`, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
@@ -34,7 +34,7 @@ export async function setDailyNotes(user: User|null, d: Date, notes: string) {
 
 	try {
 		const token = await user.getIdToken();
-		await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/notes/forday/${format(d, API_DATE_FORMAT)}`, {
+		await fetch(`${import.meta.env.VITE_PUBLIC_API_SERVER}/notes/forday/${format(d, API_DATE_FORMAT)}`, {
 			method: 'post',
 			headers: {
 				Authorization: `Bearer ${token}`
