@@ -1,15 +1,15 @@
 import { NextComponentType } from "next";
 import {useAuth} from "../contexts/Auth";
-import { useRouter } from 'next/router';
-import { LayoutFullHeight } from "../components/LayoutFullHeight/LayoutFullHeight";
-import { Loading } from "../components/Loading/Loading";
+import { LayoutFullHeight } from "~/components/LayoutFullHeight/LayoutFullHeight";
+import { Loading } from "~/components/Loading/Loading";
+import { useNavigate } from "@remix-run/react"
 
-import styles from "../styles/layouts/l-auth.module.css";
+import styles from "~/styles/layouts/l-auth.module.css";
 
 export function withAuth<P extends object>(Component: NextComponentType<P>) {
 	const Auth = (props: P) => {
 		const { user, loading } = useAuth();
-		const router = useRouter();
+		const navigate = useNavigate();
 
 		if (loading) {
 			return (<LayoutFullHeight>
@@ -20,7 +20,7 @@ export function withAuth<P extends object>(Component: NextComponentType<P>) {
 		}
 
 		if (!user) {
-			router.push("/");
+			navigate("/");
 			return;
 		}
 

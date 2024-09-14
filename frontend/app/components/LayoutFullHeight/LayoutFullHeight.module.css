@@ -1,0 +1,9 @@
+.l-full-h {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.l-full-h main {
+	flex: 1;
+}

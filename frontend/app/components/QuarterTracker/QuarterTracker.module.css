@@ -1,0 +1,29 @@
+.c-qt {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: repeat(2, 1fr);
+	width: var(--width);
+	margin: auto;
+	font-weight: bold;
+	gap: var(--xxs-padding);
+	text-align: left;
+	font-size: var(--xs-padding);
+}
+
+.c-qt__bar {
+	width: 100%;
+	height: 4px;
+	border-radius: 4px;
+	background-color: var(--pink);
+	position: relative;
+	grid-area: 2 / 1 / 3 / 3;
+}
+
+.c-qt__prog {
+	height: 4px;
+	border-radius: 4px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--orange);
+}

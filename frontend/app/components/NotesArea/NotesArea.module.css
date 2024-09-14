@@ -1,0 +1,93 @@
+/*
+A very cool trick from Chris Coyier
+https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
+*/
+
+.c-notesarea {
+	--lh: 2rem;
+
+	display: flex;
+	flex-direction: column;
+	font-size: calc(var(--lh) * 0.6);
+	text-align: start;
+}
+
+.c-notesarea__growing-textarea {
+	display: grid;
+	position: relative;
+}
+
+.c-notesarea__growing-textarea::after {
+	/* Note the weird space! Needed to preventy jumpy behavior */
+	content: attr(data-replicated-value) " ";
+
+	/* This is how textarea text behaves */
+	white-space: pre-wrap;
+
+	/* Hidden from view, clicks, and screen readers */
+	visibility: hidden;
+}
+
+.c-notesarea__textarea {
+	/* You could leave this, but after a user resizes, then it ruins the auto sizing */
+	resize: none;
+
+	/* Firefox shows scrollbar on growth, you can hide like this. */
+	overflow: hidden;
+}
+
+.c-notesarea__textarea,
+.c-notesarea__growing-textarea::after {
+	/* The styles for the ::after element must match the textarea */
+	width: 100%;
+	background: none;
+	padding: 0;
+	color: inherit;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	font-size: 1.2rem;
+	font-family: var(--default-family);
+	font-weight: 500;
+	line-height: var(--lh);
+	background-size: 100% var(--lh);
+	background-attachment: local;
+
+	/* Place on top of each other */
+	grid-area: 1 / 1 / 2 / 2;
+
+	/* Ensure long lines are wrapped */
+	word-break: break-word;
+	word-wrap: break-word;
+}
+
+.c-notesarea--skeleton {
+	display: inline-block;
+	height: calc(var(--lh) - 8px);
+	margin: 4px 0;
+	position: relative;
+	overflow: hidden;
+	background-color: var(--mid-pink);
+	border-radius: 1rem;
+}
+
+.c-notesarea--skeleton::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: translateX(-100%);
+	background-image: linear-gradient(
+		90deg,
+		rgba(255 214 207 / 0%) 0,
+		rgba(255 214 207 / 40%) 20%,
+		rgba(255 214 207 / 80%) 60%,
+		rgba(255 214 207 / 0%)
+	);
+	animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+	100% {
+		transform: translateX(100%);
+	}
+}
