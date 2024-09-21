@@ -1,0 +1,19 @@
+import { Footer } from '../Footer/Footer';
+import { MarketingNav } from '../marketing/MarketingNav/MarketingNav';
+import styles from "./LegalPage.module.css";
+
+export function LegalPage({ children }: LegalPageProps) {
+	return (
+		<div className={styles['c-legal']}>
+			<MarketingNav />
+
+			<main className={styles['c-legal__main']}>
+				{ children }
+			</main>
+			<Footer />
+		</div>);
+}
+
+interface LegalPageProps {
+  children: JSX.Element[];
+}
