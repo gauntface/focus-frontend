@@ -98,7 +98,7 @@ function getIntro(user: TaskHeaderUser|null) {
 		return (<></>);
 	}
 	return (
-		<Link href="/home" className={styles['l-default__home']}><h2><span>Hey,</span> {fn}</h2></Link>
+		<Link to="/home" className={styles['l-default__home']}><h2><span>Hey,</span> {fn}</h2></Link>
 	);
 }
 

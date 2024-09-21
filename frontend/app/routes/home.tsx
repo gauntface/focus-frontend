@@ -1,2 +1,2 @@
-import Day from './day/$date';
+import Day from './day.$date';
 export default Day;

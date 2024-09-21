@@ -110,7 +110,7 @@ function Day() {
 			</LayoutFullHeight>
 		</>
 	);
-};
+}
 
 function getEmptyPriorities() {
 	return [

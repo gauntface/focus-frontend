@@ -1,0 +1,23 @@
+.c-ws {
+	display: flex;
+	flex-direction: row;
+	gap: var(--s-padding);
+	align-items: center;
+	justify-content: center;
+	margin: min(var(--l-padding), calc((100vw - var(--width)) / 4)) auto;
+}
+
+.c-ws__left,
+.c-ws__right {
+	display: inline-flex;
+	width: 28px;
+	height: 28px;
+	border-radius: 100%;
+	background-color: var(--pink);
+	justify-content: center;
+	align-items: center;
+}
+
+.c-ws__right {
+	transform: rotate(180deg);
+}
