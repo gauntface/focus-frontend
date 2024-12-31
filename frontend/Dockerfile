@@ -16,6 +16,6 @@ ENV AWS_LWA_ENABLE_COMPRESSION=true
 WORKDIR /frontend
 COPY --from=builder /frontend/build ./build
 COPY --from=builder /frontend/package.json ./package.json
-RUN npm install @remix-run/serve
+RUN npm install --omit=dev
 
 CMD ["npm", "run", "start"]
