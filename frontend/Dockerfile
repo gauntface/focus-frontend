@@ -2,11 +2,12 @@
 
 # Builder image
 FROM public.ecr.aws/docker/library/node:22.7.0-slim AS builder
+ENV VITE_MODE=dev
 WORKDIR /frontend
 COPY . .
 RUN ls -l
 RUN npm install
-RUN npm run build
+RUN ["sh", "-c", "npm run build -- --mode $VITE_MODE"]
 
 # Web image
 FROM public.ecr.aws/docker/library/node:22.7.0-slim AS runner
