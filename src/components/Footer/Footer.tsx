@@ -1,11 +1,11 @@
-import styles from './Footer.module.css'
+import { useState } from 'react'
+import { Link } from '@tanstack/react-router'
 import { SignInButton } from '../SignInButton/SignInButton'
 import {
   canPromptForInstall,
   performInstall,
 } from '../../controllers/app-banner'
-import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
+import styles from './Footer.module.css'
 
 export function Footer() {
   const [promptForInstall, setPromptForInstall] = useState(

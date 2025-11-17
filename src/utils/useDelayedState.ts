@@ -1,4 +1,5 @@
-import { type ToastPromiseParams, toast } from "react-toastify";
+import {  toast } from "react-toastify";
+import type {ToastPromiseParams} from "react-toastify";
 
 export class DelayAPI {
 	private timeout: number;

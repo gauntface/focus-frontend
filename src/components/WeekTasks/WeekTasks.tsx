@@ -1,11 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import {
-	type DailyPriority,
-	type DatePriorities,
-} from "../../models/priorities";
-
-import styles from "./WeekTasks.module.css";
 import { format } from "date-fns";
+import styles from "./WeekTasks.module.css";
+import type { DailyPriority, DatePriorities } from "../../models/priorities";
 
 export function WeekTasks({ datePriorities }: Props) {
 	return (
@@ -29,9 +25,12 @@ export function WeekTasks({ datePriorities }: Props) {
 									</Link>
 								</h3>
 								<ol className={styles["c-wt__tasks"]}>
-									{dps.priorities.map((priority, idx) => {
+									{dps.priorities.map((priority, priorityIdx) => {
 										return (
-											<li key={idx} className={styles["c-wt__task-item"]}>
+											<li
+												key={priorityIdx}
+												className={styles["c-wt__task-item"]}
+											>
 												{priority.note}
 											</li>
 										);

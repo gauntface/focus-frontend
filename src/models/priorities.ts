@@ -1,5 +1,5 @@
-import { type User } from "firebase/auth";
-import { parse, format } from "date-fns";
+import { format, parse } from "date-fns";
+import type { User } from "firebase/auth";
 
 const API_DATE_FORMAT = "yyyy-MM-dd";
 
@@ -66,14 +66,12 @@ export async function getPrioritiesForDates(
 			{ headers: { Authorization: `Bearer ${token}` } },
 		);
 		const data = (await resp.json()) as PriorityResponse;
-		if (data.dates) {
-			datePriorities = data.dates.map((d) => {
-				return {
-					date: parse(d.date, "yyyy-MM-dd", new Date()),
-					priorities: d.priorities.filter((p) => p.note.length > 0),
-				};
-			});
-		}
+		datePriorities = data.dates.map((d) => {
+			return {
+				date: parse(d.date, "yyyy-MM-dd", new Date()),
+				priorities: d.priorities.filter((p) => p.note.length > 0),
+			};
+		});
 	} catch (err) {
 		console.error(`Fetch request failed: `, err);
 		throw err;

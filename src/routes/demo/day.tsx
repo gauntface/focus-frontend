@@ -1,7 +1,7 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { DayTasks } from "@/components/DayTasks/DayTasks";
 import { QuarterTracker } from "@/components/QuarterTracker/QuarterTracker";
 import { TaskHeader } from "@/components/TaskHeader/TaskHeader";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/demo/day")({ component: DayDemo });
 

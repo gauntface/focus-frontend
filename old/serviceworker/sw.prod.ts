@@ -1,12 +1,12 @@
 /// <reference lib="WebWorker" />
 
-export type {};
-declare const self: ServiceWorkerGlobalScope;
-
-import { cleanupPrecacheCaches, getPrecacheFiles, precacheFiles } from './libs/precache';
-import { registerRoute, Route } from 'workbox-routing';
+import { Route, registerRoute } from 'workbox-routing';
 import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { ExpirationPlugin } from 'workbox-expiration';
+import { cleanupPrecacheCaches, getPrecacheFiles, precacheFiles } from './libs/precache';
+
+export type {};
+declare const self: ServiceWorkerGlobalScope;
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(precacheFiles());

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import Index from '../pages/index';
 import '@testing-library/jest-dom';
-import { getByText, getAllByRole } from '../__testutils__/screen';
+import { getAllByRole, getByText } from '../__testutils__/screen';
 
 jest.mock('../contexts/Auth', () => {
 	return {useAuth: () => {

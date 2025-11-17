@@ -6,7 +6,7 @@
 	position: relative;
 	width: var(--large-width);
 	margin: min(var(--l-padding), calc((100vw - var(--width)) / 4)) auto
-		min(var(--m-padding), calc((100vw - var(--width)) / 4)) auto;
+		min(var(--m-padding), calc((100vw - var(--width)) / 4));
 }
 
 .c-task-header__content {
@@ -98,7 +98,8 @@
 
 @container (min-width: 800px) {
 	.c-task-header__bg {
-		background-image: url("/header-blob.svg"), url("/header-blob.svg"),
+		background-image:
+			url("/header-blob.svg"), url("/header-blob.svg"),
 			url("/header-blob-2.svg");
 		background-repeat: no-repeat, no-repeat, no-repeat;
 		background-position:

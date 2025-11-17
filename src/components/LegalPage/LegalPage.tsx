@@ -15,5 +15,5 @@ export function LegalPage({ children }: LegalPageProps) {
 }
 
 interface LegalPageProps {
-  children: JSX.Element[];
+  children: Array<JSX.Element>;
 }

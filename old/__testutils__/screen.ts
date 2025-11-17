@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { screen, waitFor } from '@testing-library/react';
 
 async function screenFunc(fnName: string, input: string, opts?: any) {

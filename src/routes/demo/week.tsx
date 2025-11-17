@@ -1,9 +1,9 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { parse } from "date-fns";
 import { QuarterTracker } from "@/components/QuarterTracker/QuarterTracker";
 import { TaskHeader } from "@/components/TaskHeader/TaskHeader";
 import { WeekSelector } from "@/components/WeekSelector/WeekSelector";
 import { WeekTasks } from "@/components/WeekTasks/WeekTasks";
-import { createFileRoute } from "@tanstack/react-router";
-import { parse } from "date-fns";
 
 export const Route = createFileRoute("/demo/week")({ component: WeekDemo });
 

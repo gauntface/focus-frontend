@@ -1,5 +1,9 @@
 //  @ts-check
 
-import { tanstackConfig } from '@tanstack/eslint-config'
+import { tanstackConfig } from "@tanstack/eslint-config";
+import { globalIgnores } from "eslint/config";
 
-export default [...tanstackConfig]
+export default [
+	globalIgnores(["old/", "take-screenshots.js"]),
+	...tanstackConfig,
+];

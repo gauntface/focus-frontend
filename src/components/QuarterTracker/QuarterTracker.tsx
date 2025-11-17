@@ -1,6 +1,6 @@
+import {differenceInCalendarWeeks, endOfQuarter, format, getQuarter, startOfQuarter} from 'date-fns';
 import styles from './QuarterTracker.module.css';
 
-import {getQuarter, startOfQuarter, endOfQuarter, differenceInCalendarWeeks, format} from 'date-fns';
 
 export function QuarterTracker(props: Props) {
 	const d = props.date;

@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { add, sub, format, getWeek, getWeekYear } from 'date-fns'
+import { add, format, getWeek, getWeekYear, sub } from 'date-fns'
 
 import styles from './WeekSelector.module.css'
 

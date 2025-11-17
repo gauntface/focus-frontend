@@ -11,5 +11,5 @@ export function MarketingSplitSection({ children }: MarketingSplitSectionProps) 
 }
 
 interface MarketingSplitSectionProps {
-  children: JSX.Element[];
+  children: Array<JSX.Element>;
 }

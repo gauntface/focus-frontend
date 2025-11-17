@@ -1,8 +1,8 @@
-import { useAuth } from '../../contexts/Auth'
-import styles from './MarketingNav.module.css'
-import { SignInButton } from '../SignInButton/SignInButton'
-
 import { Link } from '@tanstack/react-router'
+import { useAuth } from '../../contexts/Auth'
+import { SignInButton } from '../SignInButton/SignInButton'
+import styles from './MarketingNav.module.css'
+
 
 export function MarketingNav() {
   const { user } = useAuth()

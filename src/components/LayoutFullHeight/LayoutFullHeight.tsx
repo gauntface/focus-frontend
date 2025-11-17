@@ -8,5 +8,5 @@ export function LayoutFullHeight(props: LayoutFullHeightProps) {
 }
 
 interface LayoutFullHeightProps {
-  children: JSX.Element[]|JSX.Element;
+  children: Array<JSX.Element>|JSX.Element;
 }

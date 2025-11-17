@@ -1,13 +1,16 @@
 import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
 import { Footer } from '../../components/Footer/Footer';
 import { getByRole, getByText } from '../../__testutils__/screen';
-import { render } from '@testing-library/react';
+
+import { useAuth} from '../../contexts/Auth';
+
+import {canPromptForInstall, performInstall} from '../../controllers/app-banner';
+import type {AuthProviderProps} from '../../contexts/Auth';
 
 jest.mock('../../utils/firebaseClient', () => {
 	return {};
 });
-
-import {AuthProviderProps, useAuth} from '../../contexts/Auth';
 jest.mock('../../contexts/Auth');
 const mockUseAuth = useAuth as jest.MockedFunction<typeof useAuth>;
 
@@ -16,8 +19,6 @@ jest.mock('next/router', () => {
 		useRouter: () => {},
 	};
 });
-
-import {canPromptForInstall, performInstall} from '../../controllers/app-banner';
 jest.mock('../../controllers/app-banner');
 const mockCanPromptForInstall = canPromptForInstall as jest.MockedFunction<typeof canPromptForInstall>;
 const mockPerformInstall = performInstall as jest.MockedFunction<typeof performInstall>;

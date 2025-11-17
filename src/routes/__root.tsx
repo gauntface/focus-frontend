@@ -1,10 +1,10 @@
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
+import { ToastContainer } from "react-toastify";
 import { FocusAuthProvider } from "@/contexts/Auth";
 import { MarketingNav } from "@/components/MarketingNav/MarketingNav";
 import { Footer } from "@/components/Footer/Footer";
-import { ToastContainer } from "react-toastify";
 import { registerInstallPrompt } from "@/controllers/app-banner";
 import { registerSW } from "@/controllers/service-worker";
 

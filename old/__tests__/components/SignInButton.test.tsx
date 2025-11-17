@@ -3,11 +3,12 @@ import { SignInButton } from '../../components/SignInButton/SignInButton';
 import '@testing-library/jest-dom';
 import { GoogleAuthProvider } from "firebase/auth";
 
+import { useAuth} from '../../contexts/Auth';
+import type {AuthProviderProps} from '../../contexts/Auth';
+
 jest.mock('../../utils/firebaseClient', () => {
 	return {};
 });
-
-import {AuthProviderProps, useAuth} from '../../contexts/Auth';
 jest.mock('../../contexts/Auth');
 
 const mockUseAuth = useAuth as jest.MockedFunction<typeof useAuth>;

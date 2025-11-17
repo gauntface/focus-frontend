@@ -44,7 +44,7 @@ describe('NotesArea', () => {
 		const textarea = notesareaDiv.querySelector('textarea') as HTMLTextAreaElement;
 		expect(textarea).toBeFalsy();
 
-		const skeletonDivs = notesareaDiv.querySelectorAll('.c-notesarea--skeleton') as NodeListOf<HTMLElement>;
+		const skeletonDivs = notesareaDiv.querySelectorAll('.c-notesarea--skeleton');
 		expect(skeletonDivs.length).toEqual(50);
 	});
 

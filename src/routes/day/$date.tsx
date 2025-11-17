@@ -1,3 +1,7 @@
+import { createFileRoute, useParams, useRouter } from "@tanstack/react-router";
+import { parseISO } from "date-fns";
+import { useEffect, useRef, useState } from "react";
+import type { DailyPriority } from "@/models/priorities";
 import { DayTasks } from "@/components/DayTasks/DayTasks";
 import { Footer } from "@/components/Footer/Footer";
 import { LayoutFullHeight } from "@/components/LayoutFullHeight/LayoutFullHeight";
@@ -5,17 +9,13 @@ import { QuarterTracker } from "@/components/QuarterTracker/QuarterTracker";
 import { TaskHeader } from "@/components/TaskHeader/TaskHeader";
 import { useAuth } from "@/contexts/Auth";
 import { getDailyNotes, setDailyNotes } from "@/models/notes";
-import {
-	getDailyPriorities,
-	setDailyPriorities,
-	type DailyPriority,
-} from "@/models/priorities";
+import { getDailyPriorities, setDailyPriorities } from "@/models/priorities";
 import { DelayAPI } from "@/utils/useDelayedState";
-import { createFileRoute, useParams, useRouter } from "@tanstack/react-router";
-import { parseISO } from "date-fns";
-import { useEffect, useRef, useState } from "react";
+import { wrapWithAuthWaiting } from "@/utils/wrapWithAuthWaiting";
 
-export const Route = createFileRoute("/day/$date")({ component: Day });
+export const Route = createFileRoute("/day/$date")({
+	component: wrapWithAuthWaiting(Day),
+});
 
 const SAVE_TIMEOUT_MS = 2000;
 
@@ -31,11 +31,9 @@ const notesDelay = new DelayAPI(SAVE_TIMEOUT_MS, "DatePageSaveNotes", {
 });
 
 export function Day() {
-	const userAuth = useAuth();
-	const user = userAuth.user;
-	const userAuthLoading = userAuth.loading;
+	const { user } = useAuth();
 	const params = useParams({ strict: false });
-	const dateString = params["date"] as string | undefined;
+	const dateString = params["date"];
 
 	const [loading, setLoading] = useState<boolean>(true);
 	const [priorities, setPriorities] =
@@ -45,7 +43,7 @@ export function Day() {
 	const dateRef = useRef(dateString);
 
 	useEffect(() => {
-		if (userAuthLoading) {
+		if (!user) {
 			return;
 		}
 
@@ -74,8 +72,7 @@ export function Day() {
 			setNotes(ns);
 			setLoading(false);
 		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dateString, userAuth]);
+	}, [dateString]);
 
 	let date = new Date();
 	if (dateString) {

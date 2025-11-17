@@ -1,14 +1,3 @@
-import { Footer } from "@/components/Footer/Footer";
-import { LayoutFullHeight } from "@/components/LayoutFullHeight/LayoutFullHeight";
-import { QuarterTracker } from "@/components/QuarterTracker/QuarterTracker";
-import { TaskHeader } from "@/components/TaskHeader/TaskHeader";
-import { WeekSelector } from "@/components/WeekSelector/WeekSelector";
-import { WeekTasks } from "@/components/WeekTasks/WeekTasks";
-import { useAuth } from "@/contexts/Auth";
-import {
-	getPrioritiesForDates,
-	type DatePriorities,
-} from "@/models/priorities";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import {
 	add,
@@ -20,11 +9,23 @@ import {
 	sub,
 } from "date-fns";
 import { useEffect, useState } from "react";
+import type { DatePriorities } from "@/models/priorities";
+import { Footer } from "@/components/Footer/Footer";
+import { LayoutFullHeight } from "@/components/LayoutFullHeight/LayoutFullHeight";
+import { QuarterTracker } from "@/components/QuarterTracker/QuarterTracker";
+import { TaskHeader } from "@/components/TaskHeader/TaskHeader";
+import { WeekSelector } from "@/components/WeekSelector/WeekSelector";
+import { WeekTasks } from "@/components/WeekTasks/WeekTasks";
+import { useAuth } from "@/contexts/Auth";
+import { getPrioritiesForDates } from "@/models/priorities";
+import { wrapWithAuthWaiting } from "@/utils/wrapWithAuthWaiting";
 
-export const Route = createFileRoute("/week/$year/$week")({ component: Week });
+export const Route = createFileRoute("/week/$year/$week")({
+	component: wrapWithAuthWaiting(Week),
+});
 
 function Week() {
-	const userAuth = useAuth();
+	const { user } = useAuth();
 
 	const { year, week } = Route.useParams();
 
@@ -55,11 +56,6 @@ function Week() {
 	useEffect(() => {
 		setDatePriorities(getEmptyWeekDetails(date));
 
-		if (userAuth.loading) {
-			return;
-		}
-
-		const user = userAuth.user;
 		if (!user) {
 			return;
 		}
@@ -76,9 +72,8 @@ function Week() {
 				console.error(`Failed to fetch week`);
 			}
 		})();
-	}, [yearNum, weekNum, userAuth]);
+	}, [yearNum, weekNum]);
 
-	const user = userAuth.user;
 	if (!user) {
 		return <div>Please sign in.</div>;
 	}

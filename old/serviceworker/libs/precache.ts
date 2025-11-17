@@ -1,9 +1,9 @@
 const precachePrefix = 'focus-precache';
 export const precacheCacheName = `${precachePrefix}${FOCUS_PRECACHE_SUFFIX || ''}`;
 
-export function getPrecacheFiles(): string[] {
+export function getPrecacheFiles(): Array<string> {
 	if (FOCUS_PRECACHE_FILES) {
-		return FOCUS_PRECACHE_FILES as string[];
+		return FOCUS_PRECACHE_FILES;
 	}
 	return [];
 }

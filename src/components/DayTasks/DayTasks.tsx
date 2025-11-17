@@ -1,6 +1,6 @@
-import styles from "./DayTasks.module.css";
 import { NotesArea } from "../NotesArea/NotesArea";
-import { type DailyPriority } from "../../models/priorities";
+import styles from "./DayTasks.module.css";
+import type {DailyPriority} from "../../models/priorities";
 
 export function DayTasks({
 	priorities,

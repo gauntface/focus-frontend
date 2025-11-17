@@ -1,5 +1,5 @@
-import { useAuth } from '../../contexts/Auth';
 import { GoogleAuthProvider } from "firebase/auth";
+import { useAuth } from '../../contexts/Auth';
 
 export function SignInButton({classModifier, signInText = 'Sign In', redirect = "/home"}: SignInButtonProps) {
 	const classList = [];
