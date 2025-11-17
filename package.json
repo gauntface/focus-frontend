@@ -14,6 +14,7 @@
 		"eslint": "eslint --config './eslint.config.js' .",
 		"stylelint": "stylelint './**/*.css'",
 		"prettier": "prettier './**/*.css'",
+		"ready": "npm run build && npm run lint && npm run test",
 		"ci": "npm run build && npm run lint:ci && npm run test",
 		"screenshots": "node ./take-screenshots.js"
 	},

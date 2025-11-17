@@ -27,7 +27,7 @@ describe("NotesArea", () => {
 		expect(textarea.value).toEqual("");
 	});
 
-	test("renders NotesArea with note", async () => {
+	test("renders NotesArea with note", () => {
 		const changeMock = vi.fn();
 		const componentRender = render(
 			<NotesArea
@@ -50,7 +50,7 @@ describe("NotesArea", () => {
 		expect(textarea.value).toEqual("This is an example note.");
 	});
 
-	test("renders NotesArea disabled while loading", async () => {
+	test("renders NotesArea disabled while loading", () => {
 		const changeMock = vi.fn();
 		const componentRender = render(
 			<NotesArea

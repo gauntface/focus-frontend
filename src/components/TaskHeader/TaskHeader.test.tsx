@@ -55,7 +55,7 @@ describe("TaskHeader", () => {
 	});
 
 	test("renders header with date for week view", () => {
-		const { container, getByTestId } = renderWithRouter(
+		const { getByTestId } = renderWithRouter(
 			<TaskHeader
 				date={new Date(2006, 0, 2)}
 				user={{ displayName: "Firstname Lastname" }}

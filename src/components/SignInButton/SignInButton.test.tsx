@@ -1,10 +1,11 @@
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { GoogleAuthProvider, type User } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
 import { useAuth } from "../../contexts/Auth";
 import { SignInButton } from "./SignInButton";
+import type { User } from "firebase/auth";
 import type { AuthProviderProps } from "../../contexts/Auth";
 
 vi.mock("../../utils/firebaseClient", () => {
