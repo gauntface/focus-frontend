@@ -1,4 +1,4 @@
-import { createFileRoute, useParams, useRouter } from "@tanstack/react-router";
+import { createFileRoute, useParams } from "@tanstack/react-router";
 import { parseISO } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import type { DailyPriority } from "@/models/priorities";

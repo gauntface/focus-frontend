@@ -14,7 +14,8 @@ export function WeekTasks({ datePriorities }: Props) {
 							<div className={styles["c-wt__day-section"]} key={idx}>
 								<h3>
 									<Link
-										to={`/day/${format(date, "yyyy-MM-dd")}`}
+										to="/day/$date"
+										params={{ date: format(date, "yyyy-MM-dd") }}
 										key={date.toString()}
 									>
 										{format(date, "EEEE")}
@@ -68,7 +69,8 @@ function addTaskButton(date: Date) {
 	return (
 		<Link
 			className={styles["c-wt__add-task"]}
-			to={`/day/${format(date, "yyyy-MM-dd")}`}
+			to="/day/$date"
+			params={{ date: format(date, "yyyy-MM-dd") }}
 		>
 			<img width="18" height="18" src="/icons/add.svg" alt="Add task icon" />
 			Add Task
