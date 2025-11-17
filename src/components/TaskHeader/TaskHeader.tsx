@@ -50,12 +50,14 @@ export function TaskHeader({ user, date, selectedView }: TaskHeaderProps) {
 	const viewIcons = [];
 	for (const v of views) {
 		const classes = [styles["c-task-header__task"]];
+		let testId = "task-header__task";
 		if (v.view == selectedView) {
 			classes.push(styles["c-task-header__task--selected"]);
+			testId = "task-header__task--selected";
 		}
 		viewIcons.push(
 			<div key={v.view}>
-				<Link to={v.link} className={classes.join(" ")}>
+				<Link to={v.link} className={classes.join(" ")} data-testid={testId}>
 					{v.img}
 					{v.text}
 				</Link>

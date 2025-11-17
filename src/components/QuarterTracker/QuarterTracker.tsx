@@ -1,6 +1,11 @@
-import {differenceInCalendarWeeks, endOfQuarter, format, getQuarter, startOfQuarter} from 'date-fns';
-import styles from './QuarterTracker.module.css';
-
+import {
+	differenceInCalendarWeeks,
+	endOfQuarter,
+	format,
+	getQuarter,
+	startOfQuarter,
+} from "date-fns";
+import styles from "./QuarterTracker.module.css";
 
 export function QuarterTracker(props: Props) {
 	const d = props.date;
@@ -9,11 +14,19 @@ export function QuarterTracker(props: Props) {
 		width: `${progress.percentage}%`,
 	};
 	return (
-		<div className={styles['c-qt']}>
-			<div>Progress in Q{getQuarter(d)} &apos;{format(d, 'yy')}</div>
-			<div>{progress.currentWeek + 1} of {progress.weeksInQuarter}</div>
-			<div className={styles['c-qt__bar']}>
-				<div className={styles['c-qt__prog']} style={progressStyles}></div>
+		<div className={styles["c-qt"]}>
+			<div>
+				Progress in Q{getQuarter(d)} &apos;{format(d, "yy")}
+			</div>
+			<div>
+				{progress.currentWeek + 1} of {progress.weeksInQuarter}
+			</div>
+			<div className={styles["c-qt__bar"]}>
+				<div
+					className={styles["c-qt__prog"]}
+					data-testid="qt__prog"
+					style={progressStyles}
+				></div>
 			</div>
 		</div>
 	);
@@ -32,5 +45,5 @@ function progressDetails(dayViewed: Date) {
 }
 
 interface Props {
-  date: Date;
+	date: Date;
 }
