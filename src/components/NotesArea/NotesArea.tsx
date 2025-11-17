@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./NotesArea.module.css";
-import type {JSX} from "react";
+import type { JSX } from "react";
 
 const widths = [100, 60, 80, 70, 75, 60, 45, 40, 50, 90, 80, 90];
 
@@ -17,15 +17,20 @@ export function NotesArea(props: NotesAreaProps) {
 				<div
 					key={`row-${i}`}
 					className={`${styles["c-notesarea--skeleton"]}`}
+					data-testid="notes-area--skeleton"
 					style={inlineStyles}
 				></div>,
 			);
 		}
-		return <div className={styles["c-notesarea"]}>{skeleton}</div>;
+		return (
+			<div className={styles["c-notesarea"]} data-testid="notes-area">
+				{skeleton}
+			</div>
+		);
 	}
 
 	return (
-		<div className={styles["c-notesarea"]}>
+		<div className={styles["c-notesarea"]} data-testid="notes-area">
 			<div
 				data-replicated-value={props.note}
 				className={styles["c-notesarea__growing-textarea"]}
