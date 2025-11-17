@@ -1,34 +1,32 @@
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-
+import { Footer } from "@/components/Footer/Footer";
+import { LayoutFullHeight } from "@/components/LayoutFullHeight/LayoutFullHeight";
+import { QuarterTracker } from "@/components/QuarterTracker/QuarterTracker";
+import { TaskHeader } from "@/components/TaskHeader/TaskHeader";
+import { WeekSelector } from "@/components/WeekSelector/WeekSelector";
+import { WeekTasks } from "@/components/WeekTasks/WeekTasks";
+import { useAuth } from "@/contexts/Auth";
+import {
+	getPrioritiesForDates,
+	type DatePriorities,
+} from "@/models/priorities";
+import { createFileRoute, useParams } from "@tanstack/react-router";
 import {
 	add,
-	sub,
-	startOfWeek,
 	endOfWeek,
-	parse,
-	getYear,
 	getWeek,
+	getYear,
+	parse,
+	startOfWeek,
+	sub,
 } from "date-fns";
 import { useEffect, useState } from "react";
-import {
-	DatePriorities,
-	getPrioritiesForDates,
-} from "../../../../src/models/priorities";
-import { withAuth } from "../../../../src/utils/withAuth";
-import { WeekTasks } from "../../../components/WeekTasks/WeekTasks";
-import { useAuth } from "../../../contexts/Auth";
-import { WeekSelector } from "../../../components/WeekSelector/WeekSelector";
-import { Footer } from "../../../components/Footer/Footer";
-import { TaskHeader } from "../../../components/TaskHeader/TaskHeader";
-import { QuarterTracker } from "../../../components/QuarterTracker/QuarterTracker";
-import { LayoutFullHeight } from "../../../components/LayoutFullHeight/LayoutFullHeight";
 
-const Week: NextPage = () => {
-	const { user } = useAuth();
-	const router = useRouter();
+export const Route = createFileRoute("/week/$year/$week")({ component: Week });
 
-	const { year, week } = router.query;
+function Week() {
+	const userAuth = useAuth();
+
+	const { year, week } = Route.useParams();
 
 	let yearNum: number, weekNum: number;
 	if (typeof year !== "string") {
@@ -57,7 +55,11 @@ const Week: NextPage = () => {
 	useEffect(() => {
 		setDatePriorities(getEmptyWeekDetails(date));
 
-		// TODO: Handle no user correctly.
+		if (userAuth.loading) {
+			return;
+		}
+
+		const user = userAuth.user;
 		if (!user) {
 			return;
 		}
@@ -74,10 +76,9 @@ const Week: NextPage = () => {
 				console.error(`Failed to fetch week`);
 			}
 		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [yearNum, weekNum]);
+	}, [yearNum, weekNum, userAuth]);
 
-	// TODO: Handle no user correctly.
+	const user = userAuth.user;
 	if (!user) {
 		return <div>Please sign in.</div>;
 	}
@@ -95,7 +96,7 @@ const Week: NextPage = () => {
 			</LayoutFullHeight>
 		</>
 	);
-};
+}
 
 function getWeekDates(date: Date) {
 	const start = add(startOfWeek(date), { days: 1 });
@@ -111,5 +112,3 @@ function getEmptyWeekDetails(date: Date): Array<DatePriorities> {
 	}
 	return week;
 }
-
-export default withAuth(Week);

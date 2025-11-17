@@ -1,4 +1,4 @@
-import { User } from "firebase/auth";
+import { type User } from "firebase/auth";
 import { format } from "date-fns";
 
 const API_DATE_FORMAT = "yyyy-MM-dd";

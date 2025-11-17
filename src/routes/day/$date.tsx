@@ -1,23 +1,21 @@
-import type { NextPage } from "next";
-import { parseISO } from "date-fns";
-
-import { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
-
+import { DayTasks } from "@/components/DayTasks/DayTasks";
+import { Footer } from "@/components/Footer/Footer";
+import { LayoutFullHeight } from "@/components/LayoutFullHeight/LayoutFullHeight";
+import { QuarterTracker } from "@/components/QuarterTracker/QuarterTracker";
+import { TaskHeader } from "@/components/TaskHeader/TaskHeader";
+import { useAuth } from "@/contexts/Auth";
+import { getDailyNotes, setDailyNotes } from "@/models/notes";
 import {
-	DailyPriority,
 	getDailyPriorities,
 	setDailyPriorities,
-} from "../../../src/models/priorities";
-import { getDailyNotes, setDailyNotes } from "../../../src/models/notes";
-import { withAuth } from "../../../src/utils/withAuth";
-import { useAuth } from "../../contexts/Auth";
-import { Footer } from "../../components/Footer/Footer";
-import { TaskHeader } from "../../components/TaskHeader/TaskHeader";
-import { DayTasks } from "../../components/DayTasks/DayTasks";
-import { QuarterTracker } from "../../components/QuarterTracker/QuarterTracker";
-import { LayoutFullHeight } from "../../components/LayoutFullHeight/LayoutFullHeight";
-import { DelayAPI } from "../../../src/utils/useDelayedState";
+	type DailyPriority,
+} from "@/models/priorities";
+import { DelayAPI } from "@/utils/useDelayedState";
+import { createFileRoute, useParams, useRouter } from "@tanstack/react-router";
+import { parseISO } from "date-fns";
+import { useEffect, useRef, useState } from "react";
+
+export const Route = createFileRoute("/day/$date")({ component: Day });
 
 const SAVE_TIMEOUT_MS = 2000;
 
@@ -32,20 +30,22 @@ const notesDelay = new DelayAPI(SAVE_TIMEOUT_MS, "DatePageSaveNotes", {
 	error: "Failed to save notes",
 });
 
-const Day: NextPage = () => {
-	const { user } = useAuth();
-	const { query, isReady } = useRouter();
+export function Day() {
+	const userAuth = useAuth();
+	const user = userAuth.user;
+	const userAuthLoading = userAuth.loading;
+	const params = useParams({ strict: false });
+	const dateString = params["date"] as string | undefined;
 
 	const [loading, setLoading] = useState<boolean>(true);
 	const [priorities, setPriorities] =
 		useState<Array<DailyPriority>>(getEmptyPriorities());
 	const [notes, setNotes] = useState<string>("");
 
-	const dateString = query.date as string;
 	const dateRef = useRef(dateString);
 
 	useEffect(() => {
-		if (!isReady) {
+		if (userAuthLoading) {
 			return;
 		}
 
@@ -75,7 +75,7 @@ const Day: NextPage = () => {
 			setLoading(false);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dateString, isReady]);
+	}, [dateString, userAuth]);
 
 	let date = new Date();
 	if (dateString) {
@@ -118,7 +118,7 @@ const Day: NextPage = () => {
 			</LayoutFullHeight>
 		</>
 	);
-};
+}
 
 function getEmptyPriorities() {
 	return [
@@ -127,5 +127,3 @@ function getEmptyPriorities() {
 		{ note: "", order: 0 },
 	];
 }
-
-export default withAuth(Day);

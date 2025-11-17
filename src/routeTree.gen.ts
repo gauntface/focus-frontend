@@ -9,38 +9,154 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemoWeekRouteImport } from './routes/demo/week'
+import { Route as DemoDayRouteImport } from './routes/demo/day'
+import { Route as DayDateRouteImport } from './routes/day/$date'
+import { Route as WeekYearWeekRouteImport } from './routes/week/$year/$week'
 
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoWeekRoute = DemoWeekRouteImport.update({
+  id: '/demo/week',
+  path: '/demo/week',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoDayRoute = DemoDayRouteImport.update({
+  id: '/demo/day',
+  path: '/demo/day',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DayDateRoute = DayDateRouteImport.update({
+  id: '/day/$date',
+  path: '/day/$date',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeekYearWeekRoute = WeekYearWeekRouteImport.update({
+  id: '/week/$year/$week',
+  path: '/week/$year/$week',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
+  '/home': typeof HomeRoute
+  '/privacy': typeof PrivacyRoute
+  '/day/$date': typeof DayDateRoute
+  '/demo/day': typeof DemoDayRoute
+  '/demo/week': typeof DemoWeekRoute
+  '/week/$year/$week': typeof WeekYearWeekRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
+  '/home': typeof HomeRoute
+  '/privacy': typeof PrivacyRoute
+  '/day/$date': typeof DayDateRoute
+  '/demo/day': typeof DemoDayRoute
+  '/demo/week': typeof DemoWeekRoute
+  '/week/$year/$week': typeof WeekYearWeekRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
+  '/home': typeof HomeRoute
+  '/privacy': typeof PrivacyRoute
+  '/day/$date': typeof DayDateRoute
+  '/demo/day': typeof DemoDayRoute
+  '/demo/week': typeof DemoWeekRoute
+  '/week/$year/$week': typeof WeekYearWeekRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/cookies'
+    | '/home'
+    | '/privacy'
+    | '/day/$date'
+    | '/demo/day'
+    | '/demo/week'
+    | '/week/$year/$week'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cookies'
+    | '/home'
+    | '/privacy'
+    | '/day/$date'
+    | '/demo/day'
+    | '/demo/week'
+    | '/week/$year/$week'
+  id:
+    | '__root__'
+    | '/'
+    | '/cookies'
+    | '/home'
+    | '/privacy'
+    | '/day/$date'
+    | '/demo/day'
+    | '/demo/week'
+    | '/week/$year/$week'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CookiesRoute: typeof CookiesRoute
+  HomeRoute: typeof HomeRoute
+  PrivacyRoute: typeof PrivacyRoute
+  DayDateRoute: typeof DayDateRoute
+  DemoDayRoute: typeof DemoDayRoute
+  DemoWeekRoute: typeof DemoWeekRoute
+  WeekYearWeekRoute: typeof WeekYearWeekRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +164,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/week': {
+      id: '/demo/week'
+      path: '/demo/week'
+      fullPath: '/demo/week'
+      preLoaderRoute: typeof DemoWeekRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/day': {
+      id: '/demo/day'
+      path: '/demo/day'
+      fullPath: '/demo/day'
+      preLoaderRoute: typeof DemoDayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/day/$date': {
+      id: '/day/$date'
+      path: '/day/$date'
+      fullPath: '/day/$date'
+      preLoaderRoute: typeof DayDateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/week/$year/$week': {
+      id: '/week/$year/$week'
+      path: '/week/$year/$week'
+      fullPath: '/week/$year/$week'
+      preLoaderRoute: typeof WeekYearWeekRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CookiesRoute: CookiesRoute,
+  HomeRoute: HomeRoute,
+  PrivacyRoute: PrivacyRoute,
+  DayDateRoute: DayDateRoute,
+  DemoDayRoute: DemoDayRoute,
+  DemoWeekRoute: DemoWeekRoute,
+  WeekYearWeekRoute: WeekYearWeekRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
