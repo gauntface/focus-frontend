@@ -23,7 +23,7 @@ describe("WeekSelector", () => {
 		});
 	};
 
-	test.only("renders week selector", () => {
+	test("renders week selector", () => {
 		renderWithRouter(<WeekSelector date={new Date(2006, 0, 2)} />);
 
 		// Check previous week button

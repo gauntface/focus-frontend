@@ -7,7 +7,7 @@ describe("QuarterTracker", () => {
 		cleanup();
 	});
 
-	test.only("renders QuarterTracker at start of quarter", () => {
+	test("renders QuarterTracker at start of quarter", () => {
 		const { getByTestId } = render(
 			<QuarterTracker date={new Date(2006, 0, 2)} />,
 		);
