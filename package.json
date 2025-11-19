@@ -8,7 +8,7 @@
 		"build": "vite build && tsc",
 		"build:ci": "vite build --mode=test && tsc",
 		"serve": "vite preview",
-		"test": "vitest run",
+		"test": "vitest --mode=test run",
 		"lint:ci": "npm run eslint && npm run stylelint && npm run prettier -- --check",
 		"lint": "npm run eslint -- --fix && npm run stylelint -- --fix && npm run prettier -- --write",
 		"eslint": "eslint --config './eslint.config.js' .",
