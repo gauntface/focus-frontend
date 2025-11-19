@@ -1,3 +1,5 @@
+/// <reference types="vitest/config" />
+
 import { URL, fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { devtools } from "@tanstack/devtools-vite";
