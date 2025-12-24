@@ -44,11 +44,11 @@ jobs:
 
       - name: Build 🔧
         env:
-          - VITE_FIREBASE_AUTH_DOMAIN: "focus-gaunt-dev-98424.firebaseapp.com"
-          - VITE_FIREBASE_API_KEY: "AIzaSyCNng5kcG181MrVJ0TW36TdNnRetgwnQWM"
-          - VITE_FIREBASE_APP_ID: "1:691636080749:web:666f1a18a3a354038b2f64"
-          - VITE_FIREBASE_PROJECT_ID: "focus-gaunt-dev-98424"
-          - VITE_API_SERVER: "https://focus-api.gaunt.dev"
+          VITE_FIREBASE_AUTH_DOMAIN: "focus-gaunt-dev-98424.firebaseapp.com"
+          VITE_FIREBASE_API_KEY: "AIzaSyCNng5kcG181MrVJ0TW36TdNnRetgwnQWM"
+          VITE_FIREBASE_APP_ID: "1:691636080749:web:666f1a18a3a354038b2f64"
+          VITE_FIREBASE_PROJECT_ID: "focus-gaunt-dev-98424"
+          VITE_API_SERVER: "https://focus-api.gaunt.dev"
         run: |
           cd ./site/
           npm run build
