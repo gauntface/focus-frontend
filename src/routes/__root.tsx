@@ -6,10 +6,8 @@ import { FocusAuthProvider } from "@/contexts/Auth";
 import { MarketingNav } from "@/components/MarketingNav/MarketingNav";
 import { Footer } from "@/components/Footer/Footer";
 import { registerInstallPrompt } from "@/controllers/app-banner";
-import { registerSW } from "@/controllers/service-worker";
 
 registerInstallPrompt();
-registerSW();
 
 export const Route = createRootRoute({
 	component: () => (
