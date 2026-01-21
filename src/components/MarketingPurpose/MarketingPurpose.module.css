@@ -47,7 +47,7 @@
 	.c-mkt-purpose {
 		display: grid;
 		grid-template-columns: min-content 1fr;
-		grid-template-rows: repeat(3 auto);
+		grid-template-rows: repeat(3, auto);
 		gap: var(--s-padding);
 	}
 
