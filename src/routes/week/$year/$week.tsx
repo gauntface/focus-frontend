@@ -72,7 +72,7 @@ function Week() {
 				console.error(`Failed to fetch week`);
 			}
 		})();
-	}, [yearNum, weekNum]);
+	}, [date, user]);
 
 	if (!user) {
 		return <div>Please sign in.</div>;
