@@ -31,7 +31,7 @@
 	border-style: solid;
 	border-width: var(--border-width-m);
 	padding: clamp(0.6rem, 1vw, 2rem);
-	word-break: break-word;
+	overflow-wrap: break-word;
 }
 
 .c-wt__missing-tasks,
