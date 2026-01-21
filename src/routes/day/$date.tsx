@@ -72,7 +72,7 @@ export function Day() {
 			setNotes(ns);
 			setLoading(false);
 		})();
-	}, [dateString]);
+	}, [dateString, user]);
 
 	let date = new Date();
 	if (dateString) {
